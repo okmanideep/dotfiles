@@ -14,6 +14,12 @@ set shiftwidth=4
 set expandtab
 filetype plugin indent on
 
+"highlight search results
+set hlsearch
+
+"highlight search results as you type
+set incsearch
+
 "Display whitespace characters
 set magic
 set listchars=tab:│\ ,trail:·
@@ -42,11 +48,16 @@ nmap K 5k
 xmap J 5j
 xmap K 5k
 
+"Switch splits faster
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
 "change leader to , from \
 let mapleader = ","
 
 "page down and page up the easy way
-"because Ctrl sucks too much
 nnoremap <leader>f <C-f>
 nnoremap <leader>b <C-b>
 
