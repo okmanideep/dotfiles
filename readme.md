@@ -8,7 +8,9 @@ $ git clone git://github.com/manidesto/dotfiles.git
 $ git submodule update --init --recursive
 ```
 
-## Install YouCompleteMe ##
+## Install Vim Plugins ##
+Not all plugins requiers this step
+#### YouCompleteMe ####
 ```
 $ cd vim/bundle/YouCompleteMe
 $ ./install.sh
