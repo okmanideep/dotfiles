@@ -15,11 +15,16 @@ Not all plugins require this step
 $ cd vim/bundle/YouCompleteMe
 $ ./install.sh
 ```
-
 ## Create symlinks ##
+#### vim ####
 ```
 $ ln -s ~/dotfiles/vim ~/.vim
 $ ln -s ~/dotfiles/vim/vimrc ~/.vimrc
+```
+
+#### bash profile ####
+You probably don't need this. Have a look at the file and decide
+```
 $ ln -s ~/dotfiles/bash/bash_profile ~/.bash_profile
 ```
 
