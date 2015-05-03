@@ -23,8 +23,12 @@ set list
 :noremap <Down> <NOP>
 :noremap <Left> <NOP>
 :noremap <Right> <NOP>
-:inoremap ✠ <Esc>
+
+"Shift+enter as Esc
 :inoremap <S-CR> <Esc>
+
+"Iterm Shift+Enter hack
+:inoremap ✠ <Esc>
 
 "move up and down by visual lines
 nnoremap j gj
