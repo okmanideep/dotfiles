@@ -1,0 +1,42 @@
+call pathogen#infect()
+call pathogen#helptags()
+
+syntax on
+set background=dark
+colorscheme solarized
+
+filetype on
+filetype plugin on
+
+set number
+set tabstop=4
+set shiftwidth=4
+set expandtab
+filetype plugin indent on
+
+"Display whitespace characters
+set magic
+set listchars=tab:│\ ,trail:·
+set list
+
+:noremap <Up> <NOP>
+:noremap <Down> <NOP>
+:noremap <Left> <NOP>
+:noremap <Right> <NOP>
+:inoremap ✠ <Esc>
+:inoremap <S-CR> <Esc>
+
+"move up and down by visual lines
+nnoremap j gj
+nnoremap k gk
+xnoremap j gj
+xnoremap k gk
+
+"Faster movements
+nmap J 5j
+nmap K 5k
+xmap J 5j
+xmap K 5k
+
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
