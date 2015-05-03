@@ -42,5 +42,13 @@ nmap K 5k
 xmap J 5j
 xmap K 5k
 
+"change leader to , from \
+let mapleader = ","
+
+"page down and page up the easy way
+"because Ctrl sucks too much
+nnoremap <leader>f <C-f>
+nnoremap <leader>b <C-b>
+
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
