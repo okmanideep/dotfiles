@@ -9,7 +9,7 @@ $ git submodule update --init --recursive
 ```
 
 ## Install Vim Plugins ##
-Not all plugins requiers this step
+Not all plugins require this step
 #### YouCompleteMe ####
 ```
 $ cd vim/bundle/YouCompleteMe
