@@ -11,3 +11,7 @@ alias hide="chflags hidden"
 alias unhide="chflags nohidden"
 export CLICOLOR=1
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+#Add user specific profile
+#Those aliases which are specific for users directory tree
+source ~/.bash_profile_user

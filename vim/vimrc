@@ -1,5 +1,9 @@
-call pathogen#infect()
-call pathogen#helptags()
+if filereadable(expand("~/.vim/plugrc"))
+    source ~/.vim/plugrc
+endif
+
+"call pathogen#infect()
+"call pathogen#helptags()
 
 syntax on
 set background=dark

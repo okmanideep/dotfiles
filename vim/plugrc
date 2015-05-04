@@ -1,0 +1,32 @@
+if &compatible
+    set nocompatible
+end
+
+filetype off
+
+call plug#begin('~/.vim/plugged')
+
+"Installs YCM if not already installed"
+function! BuildYCM(info)
+  " info is a dictionary with 3 fields
+  " - name:   name of the plugin
+  " - status: 'installed', 'updated', or 'unchanged'
+  " - force:  set on PlugInstall! or PlugUpdate!
+  if a:info.status == 'installed' || a:info.force
+    !./install.sh
+  endif
+endfunction
+
+"Autocomplete"
+Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+
+"color scheme"
+Plug 'altercation/vim-colors-solarized'
+
+"toggle comments"
+Plug 'scrooloose/nerdcommenter'
+
+"Auto closing brackets and quotes"
+Plug 'Raimondi/delimitMate'
+
+call plug#end()
