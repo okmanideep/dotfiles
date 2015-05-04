@@ -54,6 +54,9 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
+"go to cmd mode more easily
+nnoremap ; :
+
 "change leader to , from \
 let mapleader = ","
 
@@ -64,6 +67,13 @@ nnoremap <leader>b <C-b>
 "quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+"clears the search highlights
+nmap <silent> <leader>/ :nohlsearch<CR>
+
+"alternative for `;` since `;` is mapped to `:`
+"this line needs to after changing the leader from \
+nnoremap \ ;
 
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
