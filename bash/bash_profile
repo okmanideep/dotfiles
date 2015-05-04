@@ -11,6 +11,3 @@ alias hide="chflags hidden"
 alias unhide="chflags nohidden"
 export CLICOLOR=1
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-#stuff useful only for current user
-source ".bash_profile_user"
