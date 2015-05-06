@@ -40,14 +40,14 @@ set list
 "move up and down by visual lines
 nnoremap j gj
 nnoremap k gk
-xnoremap j gj
-xnoremap k gk
+vnoremap j gj
+vnoremap k gk
 
 "Faster movements
 nmap J 5j
 nmap K 5k
-xmap J 5j
-xmap K 5k
+vmap J 5j
+vmap K 5k
 
 "Switch splits faster
 map <C-h> <C-w>h
@@ -58,7 +58,7 @@ map <C-l> <C-w>l
 "go to cmd mode more easily
 nnoremap ; :
 
-"change leader to , from \
+"change leader from \ to ,
 let mapleader = ","
 
 "page down and page up the easy way
