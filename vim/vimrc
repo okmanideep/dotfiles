@@ -4,7 +4,7 @@ endif
 
 syntax on
 set background=dark
-colorscheme solarized
+colorscheme base16-atelierforest
 
 filetype on
 filetype plugin on

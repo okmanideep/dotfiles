@@ -20,8 +20,9 @@ endfunction
 "Autocomplete"
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 
-"color scheme"
+"color schemes"
 Plug 'altercation/vim-colors-solarized'
+Plug 'chriskempson/base16-vim'
 
 "toggle comments"
 Plug 'scrooloose/nerdcommenter'
