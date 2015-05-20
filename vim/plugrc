@@ -19,6 +19,7 @@ endfunction
 
 "Autocomplete"
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+Plug 'wincent/Command-T'
 
 "color schemes"
 Plug 'altercation/vim-colors-solarized'

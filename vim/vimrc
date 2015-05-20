@@ -76,5 +76,10 @@ nmap <silent> <leader>/ :nohlsearch<CR>
 "this line needs to after changing the leader from \
 nnoremap \ ;
 
+:vmap <leader>y "+y
+:nmap <leader>p "+p
+
+set wildignore+=*.class,*.pyc,*.iml
+
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
