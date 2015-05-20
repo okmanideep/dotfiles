@@ -48,6 +48,8 @@ nmap J 5j
 nmap K 5k
 vmap J 5j
 vmap K 5k
+nmap T <C-u>
+nmap B <C-d>
 
 "Switch splits faster
 map <C-h> <C-w>h
