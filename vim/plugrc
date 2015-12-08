@@ -31,4 +31,10 @@ Plug 'scrooloose/nerdcommenter'
 "Auto closing brackets and quotes"
 Plug 'Raimondi/delimitMate'
 
+"Tabular"
+Plug 'godlygeek/tabular'
+
+"Vim Markdown"
+Plug 'plasticboy/vim-markdown'
+
 call plug#end()
