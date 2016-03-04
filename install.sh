@@ -11,3 +11,4 @@ vim +PlugInstall +qall
 
 #setup symlink for bash
 ln -s $PWD/bash/bash_profile $HOME/.bash_profile
+ln -s $PWD/zsh/zshrc $HOME/.zshrc
