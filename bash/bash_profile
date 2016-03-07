@@ -1,3 +1,8 @@
+
+#Add user specific profile
+#Those aliases which are specific for users directory tree
+source ~/.bash_profile_user
+
 export TERM="xterm-256color"
 
 alias desk="cd ~/Desktop"
@@ -9,10 +14,6 @@ alias vbuser="vim ~/.bash_profile_user"
 
 alias gds="git diff --staged"
 
-alias fopen="open finder ."
-alias open="open -a "
-alias chrome="open Google\ Chrome "
-
 alias apache_start="sudo apachectl start"
 alias apache_stop="sudo apachectl stop"
 alias apache_restart="sudo apachectl restart"
@@ -21,7 +22,3 @@ alias hide="chflags hidden"
 alias unhide="chflags nohidden"
 export CLICOLOR=1
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-#Add user specific profile
-#Those aliases which are specific for users directory tree
-source ~/.bash_profile_user
