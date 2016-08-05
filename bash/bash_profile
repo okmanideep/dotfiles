@@ -11,6 +11,7 @@ alias zrc="vim ~/.zshrc"
 alias vrc="vim ~/.vimrc"
 alias vbash="vim ~/.bash_profile"
 alias vbuser="vim ~/.bash_profile_user"
+alias glr="git pull --rebase"
 
 alias gds="git diff --staged"
 
