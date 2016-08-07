@@ -19,7 +19,11 @@ endfunction
 
 "Autocomplete"
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
-Plug 'wincent/Command-T'
+Plug 'ctrlpvim/ctrlp.vim'
+set runtimepath^=~/.vim/plugged/ctrlp.vim
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
 
 "color schemes"
 Plug 'altercation/vim-colors-solarized'
