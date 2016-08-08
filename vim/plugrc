@@ -28,6 +28,7 @@ let g:ctrlp_working_path_mode = 'ra'
 "color schemes"
 Plug 'altercation/vim-colors-solarized'
 Plug 'chriskempson/base16-vim'
+Plug 'w0ng/vim-hybrid'
 
 "toggle comments"
 Plug 'scrooloose/nerdcommenter'
