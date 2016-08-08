@@ -8,6 +8,10 @@ mv $HOME/.vimrc $HOME/.vimrc-old
 ln -s $PWD/vim $HOME/.vim
 ln -s $HOME/.vim/vimrc $HOME/.vimrc
 
+#mkdir ~/.config
+#ln -s ~/.vim ~/.config/nvim
+#ln -s ~/.vimrc ~/.config/nvim/init.vim
+
 # Install vim plugins
 vim +PlugInstall +qall
 
