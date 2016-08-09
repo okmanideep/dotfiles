@@ -38,11 +38,13 @@ set list
 :noremap <Left> <NOP>
 :noremap <Right> <NOP>
 
-"Shift+enter as Esc
-:inoremap <S-CR> <Esc>
+"Home. Sweet Home.
+:inoremap jk <Esc>
 
-"Iterm Shift+Enter hack
-:inoremap ✠ <Esc>
+"nvim terminal esc
+if(has("nvim"))
+    :tnoremap <Esc> <C-\><C-n>
+endif
 
 "move up and down by visual lines
 nnoremap j gj
@@ -59,10 +61,16 @@ nmap T <C-u>
 nmap B <C-d>
 
 "Switch splits faster
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+:nnoremap <C-h> <C-w>h
+:nnoremap <C-j> <C-w>j
+:nnoremap <C-k> <C-w>k
+:nnoremap <C-l> <C-w>l
+if(has("nvim")) 
+    :tnoremap <C-h> <C-\><C-n><C-w>h
+    :tnoremap <C-j> <C-\><C-n><C-w>j
+    :tnoremap <C-k> <C-\><C-n><C-w>k
+    :tnoremap <C-l> <C-\><C-n><C-w>l
+endif
 
 "go to cmd mode more easily
 nnoremap ; :
@@ -80,9 +88,12 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 "clears the search highlights
 nmap <silent> <leader>/ :nohlsearch<CR>
+if(has("nvim"))
+    nnoremap <silent> <leader>t :terminal<CR>
+endif
 
 "alternative for `;` since `;` is mapped to `:`
-"this line needs to after changing the leader from \
+"this line needs to be after changing the leader from \
 nnoremap \ ;
 
 :vmap <leader>y "+y
@@ -94,3 +105,10 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 
 let g:vim_markdown_folding_disabled=1
+
+"Auto save for markdown files
+function! TurnOnAutoSave()
+    let g:auto_save = 1
+    let g:auto_save_silent = 1
+endfunction
+au BufNewFile,BufRead *.md call TurnOnAutoSave()

@@ -42,4 +42,7 @@ Plug 'godlygeek/tabular'
 "Vim Markdown"
 Plug 'plasticboy/vim-markdown'
 
+"Auto save"
+Plug 'vim-scripts/vim-auto-save'
+
 call plug#end()
