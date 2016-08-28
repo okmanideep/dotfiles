@@ -40,6 +40,9 @@ set list
 
 "Home. Sweet Home.
 :inoremap jk <Esc>
+:inoremap JK <Esc>
+:inoremap Jk <Esc>
+:inoremap jK <Esc>
 
 "nvim terminal esc
 if(has("nvim"))
@@ -110,5 +113,6 @@ let g:vim_markdown_folding_disabled=1
 function! TurnOnAutoSave()
     let g:auto_save = 1
     let g:auto_save_silent = 1
+    set noswapfile
 endfunction
 au BufNewFile,BufRead *.md call TurnOnAutoSave()
