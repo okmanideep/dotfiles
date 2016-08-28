@@ -1,1 +1,1 @@
-/home/manideep/.vimrc
+vimrc
