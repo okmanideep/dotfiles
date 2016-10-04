@@ -19,7 +19,6 @@ filetype plugin on
 set number
 set tabstop=4
 set shiftwidth=4
-set expandtab
 filetype plugin indent on
 
 "highlight search results
@@ -101,6 +100,12 @@ nnoremap \ ;
 
 :vmap <leader>y "+y
 :nmap <leader>p "+p
+
+function! StrikeOff() 
+    normal ys$<del>
+endfunction
+
+nnoremap <leader>d :call StrikeOff()<CR>
 
 set wildignore+=*.class,*.pyc,*.iml
 
