@@ -14,7 +14,8 @@ alias rebash="source ~/.bash_profile"
 alias vbash="vim ~/.bash_profile"
 alias vbuser="vim ~/.bash_profile_user"
 alias glr="git pull --rebase"
-
+alias gfd="git fetch origin develop:develop"
+alias gfm="git fetch origin master:master"
 alias gds="git diff --staged"
 
 alias apache_start="sudo apachectl start"

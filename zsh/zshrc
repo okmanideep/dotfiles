@@ -87,3 +87,4 @@ if [ "${#full_prompt}" -gt 44 ]; then
     fi
 }
 source ~/.bash_profile
+

@@ -30,6 +30,8 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'chriskempson/base16-vim'
 Plug 'w0ng/vim-hybrid'
 
+Plug 'scrooloose/syntastic'
+
 "toggle comments"
 Plug 'scrooloose/nerdcommenter'
 
@@ -47,5 +49,9 @@ Plug 'vim-scripts/vim-auto-save'
 
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+
+Plug 'mxw/vim-jsx'
+
+Plug 'neomake/neomake'
 
 call plug#end()
