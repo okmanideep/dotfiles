@@ -6,19 +6,8 @@ filetype off
 
 call plug#begin('~/.vim/plugged')
 
-"Installs YCM if not already installed"
-function! BuildYCM(info)
-  " info is a dictionary with 3 fields
-  " - name:   name of the plugin
-  " - status: 'installed', 'updated', or 'unchanged'
-  " - force:  set on PlugInstall! or PlugUpdate!
-  if a:info.status == 'installed' || a:info.force
-    !./install.sh
-  endif
-endfunction
-
 "Autocomplete"
-Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'wincent/command-t', { 'do': 'cd ruby/command-t && ruby extconf.rb && make' }
 set runtimepath^=~/.vim/plugged/ctrlp.vim
 let g:ctrlp_map = '<c-p>'
