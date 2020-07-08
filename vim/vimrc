@@ -1,5 +1,7 @@
-if filereadable(expand("~/.vim/plugrc"))
-    source ~/.vim/plugrc
+if (!has("nvim"))
+    if filereadable(expand("~/.vim/plugrc"))
+        source ~/.vim/plugrc
+    endif
 endif
 
 syntax on
