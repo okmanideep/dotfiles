@@ -2,8 +2,6 @@ if &compatible
     set nocompatible
 end
 
-filetype off
-
 call plug#begin('~/.vim/plugged')
 
 "Autocomplete"

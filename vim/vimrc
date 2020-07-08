@@ -1,28 +1,71 @@
-if (!has("nvim"))
-    if filereadable(expand("~/.vim/plugrc"))
-        source ~/.vim/plugrc
-    endif
-endif
+if &compatible
+    set nocompatible
+end
+
+call plug#begin('~/.vim/plugged')
+
+"Autocomplete"
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
+set signcolumn=yes
+"Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+nnoremap <C-p> :GFiles<CR>
+
+"color schemes"
+Plug 'gruvbox-community/gruvbox'
+Plug 'altercation/vim-colors-solarized'
+Plug 'chriskempson/base16-vim'
+Plug 'w0ng/vim-hybrid'
+
+Plug 'sheerun/vim-polyglot'
+Plug 'vim-airline/vim-airline'
+
+"toggle comments"
+Plug 'scrooloose/nerdcommenter'
+
+"Auto closing brackets and quotes"
+Plug 'Raimondi/delimitMate'
+
+"Vim Markdown"
+Plug 'plasticboy/vim-markdown'
+
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+
+Plug 'mxw/vim-jsx'
+
+Plug 'neomake/neomake'
+
+call plug#end()
 
 syntax on
+set hidden "Moving out of the file hides it and doesn't close
+set noerrorbells
+
+colorscheme gruvbox
 set background=dark
-let g:hybrid_custom_term_colors = 1
-let g:hybrid_reduced_contrast = 1
-
-try
-    colorscheme hybrid
-catch /:E185:/
-    "Silently ignore if colorscheme not found.
-endtry
-
-filetype on
-filetype plugin on
 
 set number
+set relativenumber
 set tabstop=2
 set expandtab
 set shiftwidth=4
-filetype plugin indent on
+set smartindent
+set nowrap
+set smartcase
+set colorcolumn=80
+highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 "dont highlight search results
 set nohlsearch
@@ -36,6 +79,12 @@ set magic
 set listchars=tab:│\ ,trail:·
 set list
 
+set noswapfile
+set nobackup
+set nowritebackup
+set undodir=~/.vim/undodir
+set undofile
+
 :noremap <Up> <NOP>
 :noremap <Down> <NOP>
 :noremap <Left> <NOP>
@@ -46,11 +95,9 @@ if(has("nvim"))
     :tnoremap <Esc> <C-\><C-n>
 endif
 
-"move up and down by visual lines
-nnoremap j gj
-nnoremap k gk
-vnoremap j gj
-vnoremap k gk
+if executable('rg')
+    let g:rg_derive_root='true'
+endif
 
 "Faster movements
 nmap J 5j
@@ -75,12 +122,8 @@ endif
 "go to cmd mode more easily
 nnoremap ; :
 
-"change leader from \ to ,
-let mapleader = ","
-
-"page down and page up the easy way
-nnoremap <leader>f <C-f>
-nnoremap <leader>b <C-b>
+"change leader from \ to space
+let mapleader = " "
 
 "quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
@@ -92,6 +135,12 @@ nmap <silent> <leader>ns :setlocal nospell<CR>
 
 "clears the search highlights
 nmap <silent> <leader>/ :nohlsearch<CR>
+
+nnoremap <leader>f :Vex<CR>
+let g:netrw_list_style=3
+let g:netrw_browse_split=4
+let g:netrw_banner=0
+let g:netrw_winsize=25
 
 "alternative for `;` since `;` is mapped to `:`
 "this line needs to be after changing the leader from \
@@ -108,20 +157,4 @@ nnoremap <leader>d :call StrikeOff()<CR>
 
 set wildignore+=*.class,*.pyc,*.iml
 
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
-
 let g:vim_markdown_folding_disabled=1
-
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_javascript_eslint_exe = $PWD .'/node_modules/.bin/eslint'
-autocmd! BufWritePost * Neomake
-nmap <Leader><Space>n :lnext<CR>
-
-"Auto save for markdown files
-function! TurnOnAutoSave()
-    let g:auto_save = 1
-    let g:auto_save_silent = 1
-    set noswapfile
-endfunction
-au BufNewFile,BufRead *.md call TurnOnAutoSave()
