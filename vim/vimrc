@@ -86,6 +86,10 @@ nnoremap <leader>b <C-b>
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
+"turn on spell check locally
+nmap <silent> <leader>sp :setlocal spell<CR>
+nmap <silent> <leader>ns :setlocal nospell<CR>
+
 "clears the search highlights
 nmap <silent> <leader>/ :nohlsearch<CR>
 
