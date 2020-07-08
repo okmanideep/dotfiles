@@ -7,12 +7,13 @@ filetype off
 call plug#begin('~/.vim/plugged')
 
 "Autocomplete"
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-Plug 'wincent/command-t', { 'do': 'cd ruby/command-t && ruby extconf.rb && make' }
-set runtimepath^=~/.vim/plugged/ctrlp.vim
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'ra'
+Plug 'lifepillar/vim-mucomplete'
+let g:mucomplete#enable_auto_at_startup = 1
+set completeopt+=menuone
+set completeopt+=noinsert
+set shortmess+=c
+
+"Plug 'wincent/command-t', { 'do': 'cd ruby/command-t/ext/command-t && ruby extconf.rb && make' }
 
 "color schemes"
 Plug 'altercation/vim-colors-solarized'
