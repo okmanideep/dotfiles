@@ -12,36 +12,60 @@ set shortmess+=c
 set signcolumn=yes
 "Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gf <Plug>(coc-references)
+nmap <silent> rr <Plug>(coc-rename)
+nmap <leader>g[ <Plug>(coc-diagnostic-prev)
+nmap <leader>g] <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev-error)
+nmap <silent> <leader>gn <Plug>(coc-diagnostic-next-error)
+nnoremap <leader>cr :CocRestart
+
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-nnoremap <C-p> :GFiles<CR>
+nnoremap <C-p> :Files<CR>
 
 "color schemes"
 Plug 'gruvbox-community/gruvbox'
 Plug 'altercation/vim-colors-solarized'
 Plug 'chriskempson/base16-vim'
+Plug 'hzchirs/vim-material'
 Plug 'w0ng/vim-hybrid'
 
 Plug 'sheerun/vim-polyglot'
-Plug 'vim-airline/vim-airline'
+
+Plug 'itchyny/lightline.vim'
+let g:lightline={'colorscheme':'seoul256'}
 
 "toggle comments"
-Plug 'scrooloose/nerdcommenter'
+Plug 'preservim/nerdcommenter'
+
+Plug 'godlygeek/tabular'
 
 "Auto closing brackets and quotes"
 Plug 'Raimondi/delimitMate'
 
-"Vim Markdown"
-Plug 'plasticboy/vim-markdown'
-
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+
+Plug 'vimwiki/vimwiki'
+let g:vimwiki_list = [{'path': '~/Dropbox/notes', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_key_mappings = {'lists': 0}
 
 Plug 'mxw/vim-jsx'
 
@@ -54,6 +78,7 @@ set hidden "Moving out of the file hides it and doesn't close
 set noerrorbells
 
 colorscheme gruvbox
+let g:gruvbox_contrast_dark='hard'
 set background=dark
 
 set number
@@ -136,9 +161,7 @@ nmap <silent> <leader>ns :setlocal nospell<CR>
 "clears the search highlights
 nmap <silent> <leader>/ :nohlsearch<CR>
 
-nnoremap <leader>f :Vex<CR>
-let g:netrw_list_style=3
-let g:netrw_browse_split=4
+nnoremap <silent> - :Ex<CR>
 let g:netrw_banner=0
 let g:netrw_winsize=25
 
@@ -149,12 +172,25 @@ nnoremap \ ;
 :vmap <leader>y "+y
 :nmap <leader>p "+p
 
+nmap <leader>x <Plug>VimwikiToggleListItem
+
 function! StrikeOff() 
     normal ys$<del>
 endfunction
+
+" overriding bad mappings by plugins
+nmap <C-\>1 <Plug>VimwikiRemoveHeaderLevel
+nmap <C-\>2 <Plug>VimwikiAddHeaderLevel
+nmap <C-\>3 <Plug>VimwikiNormalizeLink
+nmap <C-\>4 <Plug>VimwikiListNextSymbol
+nmap <C-\>5 <Plug>VimwikiListPrevSymbol
+nmap <C-\>6 <Plug>VimwikiListToggle
+imap <C-\>7 <Plug>VimwikiReturn
 
 nnoremap <leader>d :call StrikeOff()<CR>
 
 set wildignore+=*.class,*.pyc,*.iml
 
 let g:vim_markdown_folding_disabled=1
+
+nnoremap <leader>t :vsp <CR>:term<CR>:vert resize 40<CR>A
