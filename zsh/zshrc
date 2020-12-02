@@ -88,3 +88,5 @@ if [ "${#full_prompt}" -gt 44 ]; then
 }
 source ~/.bash_profile
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

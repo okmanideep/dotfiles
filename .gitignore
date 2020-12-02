@@ -2,3 +2,4 @@ bash_profile_user
 vim/plugged
 vim/.netrwhist
 vim/undodir
+.DS_Store
