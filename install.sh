@@ -2,17 +2,14 @@
 
 echo "Dependencies: vim"
 
-#Setup symlinks for vim
-mv $HOME/.vimrc $HOME/.vimrc-old
-ln -s $PWD/vim/vimrc $HOME/.vimrc
-
-#mkdir ~/.config
-ln -s ~/.vimrc ~/.config/nvim/init.vim
-mkdir -p ~/.config/nvim/site/autoload
-cp $PWD/vim/autoload/plug.vim ~/.config/nvim/site/autoload/plug.vim
+# Ensure directories
+mkdir -p $HOME/.config/nvim/site/autoload
+mv $HOME/.config/nvim/init.vim $HOME/.config/nvim/backup-init.vim
+ln -s $PWD/vim/vimrc $HOME/.config/nvim/init.vim
+cp $PWD/vim/autoload/plug.vim $HOME/.config/nvim/site/autoload/plug.vim
 
 # Install vim plugins
-vim +PlugInstall +qall
+nvim +PlugInstall +qall
 
 #setup symlink for bash
 mv $HOME/.bash_profile $HOME/.bash_profile-old

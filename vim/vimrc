@@ -137,6 +137,9 @@ nmap <leader>qf <Plug>(coc-fix-current)
 nmap <silent> gp <Plug>(coc-diagnostic-prev-error)
 nmap <silent> gn <Plug>(coc-diagnostic-next-error)
 nnoremap <leader>cr :CocRestart
+" ':Prettier' command to format a json
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
 
 " fzf! watch this if you forgot - https://www.youtube.com/watch?v=qgG5Jhi_Els
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -206,10 +209,11 @@ nmap gm <Plug>MarkdownPreview
 
 Plug 'gerw/vim-HiLinkTrace'
 
-Plug '~/Documents/code/personal/vim-settings'
+Plug 'okmanideep/vim-settings'
 call plug#end()
 
 colorscheme onedark
+let g:onedark_terminal_italics = 1
 set background=dark
 set termguicolors
 set noshowmode

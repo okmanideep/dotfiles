@@ -3,7 +3,6 @@
 #Those aliases which are specific for users directory tree
 source ~/.bash_profile_user
 
-export TERM="xterm-256color-italic"
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
@@ -24,3 +23,5 @@ export CLICOLOR=1
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 export FZF_DEFAULT_COMMAND="rg --files --hidden -g '!.git'"
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
