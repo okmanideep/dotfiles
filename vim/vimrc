@@ -61,17 +61,17 @@ vnoremap K 5k
 nnoremap T <C-u>
 nnoremap B <C-d>
 
-"Switch splits faster
-:nnoremap <C-h> <C-w>h
-:nnoremap <C-j> <C-w>j
-:nnoremap <C-k> <C-w>k
-:nnoremap <C-l> <C-w>l
-if(has("nvim")) 
-    :tnoremap <C-h> <C-\><C-n><C-w>h
-    :tnoremap <C-j> <C-\><C-n><C-w>j
-    :tnoremap <C-k> <C-\><C-n><C-w>k
-    :tnoremap <C-l> <C-\><C-n><C-w>l
-endif
+"Switch splits faster - replaced by Plug 'christoomey/vim-tmux-navigator'
+":nnoremap <C-h> <C-w>h
+":nnoremap <C-j> <C-w>j
+":nnoremap <C-k> <C-w>k
+":nnoremap <C-l> <C-w>l
+"if(has("nvim")) 
+"    :tnoremap <C-h> <C-\><C-n><C-w>h
+"    :tnoremap <C-j> <C-\><C-n><C-w>j
+"    :tnoremap <C-k> <C-\><C-n><C-w>k
+"    :tnoremap <C-l> <C-\><C-n><C-w>l
+"endif
 
 "go to cmd mode more easily
 nnoremap ; :
@@ -141,15 +141,15 @@ nnoremap <leader>cr :CocRestart
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 
-" fzf! watch this if you forgot - https://www.youtube.com/watch?v=qgG5Jhi_Els
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
-let $FZF_DEFAULT_OPTS='--reverse'
-nnoremap <leader>o :Files<CR>
-nnoremap <leader>/ :History<CR>
-nnoremap <leader>f :BLines<CR>
-nnoremap <leader>h :Helptags<CR>
+"telescope - fuzzy finder
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
+nnoremap <leader>o <cmd>Telescope find_files<cr>
+nnoremap <leader>h <cmd>Telescope help_tags<cr>
+nnoremap <leader>f <cmd>Telescope current_buffer_fuzzy_find<cr>
+nnoremap <leader>F <cmd>Telescope live_grep<cr>
 
 "color schemes"
 Plug 'gruvbox-community/gruvbox'
@@ -209,6 +209,8 @@ nmap gm <Plug>MarkdownPreview
 
 Plug 'gerw/vim-HiLinkTrace'
 
+Plug 'christoomey/vim-tmux-navigator'
+
 Plug 'okmanideep/vim-settings'
 call plug#end()
 
@@ -218,14 +220,24 @@ set background=dark
 set termguicolors
 set noshowmode
 
-highlight String cterm=italic gui=italic
-highlight Boolean cterm=italic gui=italic
-highlight Type cterm=italic gui=italic
-highlight StorageClass cterm=italic gui=italic
-highlight Structure cterm=italic gui=italic
-highlight Conditional cterm=italic gui=italic
-highlight Repeat cterm=italic gui=italic
-highlight Label cterm=italic gui=italic
-highlight Keyword cterm=italic gui=italic
-highlight Exception cterm=italic gui=italic
-highlight Include cterm=italic gui=italic
+highlight   String         cterm=italic   gui=italic
+highlight   Boolean        cterm=italic   gui=italic
+highlight   Type           cterm=italic   gui=italic
+highlight   StorageClass   cterm=italic   gui=italic
+highlight   Structure      cterm=italic   gui=italic
+highlight   Conditional    cterm=italic   gui=italic
+highlight   Repeat         cterm=italic   gui=italic
+highlight   Label          cterm=italic   gui=italic
+highlight   Keyword        cterm=italic   gui=italic
+highlight   Exception      cterm=italic   gui=italic
+highlight   Include        cterm=italic   gui=italic
+
+function s:OpenNote()
+    let l:url = 'http://localhost:8080/'.expand('%:t:r')
+    call netrw#BrowseX(l:url,netrw#CheckIfRemote())
+endfunction
+
+command! ViewNoteInBrowser :call <SID>OpenNote()
+nnoremap gn <cmd>ViewNoteInBrowser<CR>
+
+lua require("okmanideep")

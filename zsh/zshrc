@@ -5,7 +5,7 @@ export ZSH=~/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="miloshadzic"
+ZSH_THEME="agnoster"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -74,27 +74,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-#Add a new line character if prompt is long
-PROMPT=$'%{$fg[red]%}%1~%{$reset_color%}%{$fg[cyan]%}|%{$reset_color%}$(git_prompt_info)%{$fg[red]%}$(add_new_line_if_long)⇒%{$reset_color%} '
-
-function add_new_line_if_long() {
-folder='%1~'
-folder=${(%)folder}
-branch=${(e%)$(git_prompt_info)}
-full_prompt=$folder'|'$branch
-if [ "${#full_prompt}" -gt 44 ]; then
-        echo ' \n '
-    fi
-}
 source ~/.bash_profile
 
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-autoload -Uz compinit
-compinit
-# Completion for kitty
-kitty + complete setup zsh | source /dev/stdin
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"

@@ -8,6 +8,15 @@ mv $HOME/.config/nvim/init.vim $HOME/.config/nvim/backup-init.vim
 ln -s $PWD/vim/vimrc $HOME/.config/nvim/init.vim
 cp $PWD/vim/autoload/plug.vim $HOME/.config/nvim/site/autoload/plug.vim
 
+# Commands to link all default editors to nvim
+# NVIM_PATH=/usr/local/bin/nvim.appimage
+# set -u
+# sudo update-alternatives --install /usr/bin/ex ex "${NVIM_PATH}" 110
+# sudo update-alternatives --install /usr/bin/vi vi "${NVIM_PATH}" 110
+# sudo update-alternatives --install /usr/bin/view view "${NVIM_PATH}" 110
+# sudo update-alternatives --install /usr/bin/vim vim "${NVIM_PATH}" 110
+# sudo update-alternatives --install /usr/bin/vimdiff vimdiff "${NVIM_PATH}" 110
+
 # Install vim plugins
 nvim +PlugInstall +qall
 
