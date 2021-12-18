@@ -211,7 +211,7 @@ Plug 'gerw/vim-HiLinkTrace'
 
 Plug 'christoomey/vim-tmux-navigator'
 
-Plug 'okmanideep/vim-settings'
+Plug '/home/manideep/Documents/code/personal/vim-settings'
 call plug#end()
 
 colorscheme onedark
@@ -233,7 +233,7 @@ highlight   Exception      cterm=italic   gui=italic
 highlight   Include        cterm=italic   gui=italic
 
 function s:OpenNote()
-    let l:url = 'http://localhost:8080/'.expand('%:t:r')
+    let l:url = 'http://localhost:3000/'.expand('%:t:r')
     call netrw#BrowseX(l:url,netrw#CheckIfRemote())
 endfunction
 

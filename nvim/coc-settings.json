@@ -1,0 +1,5 @@
+{
+    "suggest.noselect": false,
+    "coc.source.emoji.filetypes": ["markdown", "html"],
+    "emmet.includeLanguages": {"liquid": "html"}
+}

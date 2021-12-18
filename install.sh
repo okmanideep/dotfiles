@@ -1,12 +1,9 @@
 #! /usr/bin/env bash
 
-echo "Dependencies: vim"
+echo "Dependencies: nvim"
 
 # Ensure directories
-mkdir -p $HOME/.config/nvim/site/autoload
-mv $HOME/.config/nvim/init.vim $HOME/.config/nvim/backup-init.vim
-ln -s $PWD/vim/vimrc $HOME/.config/nvim/init.vim
-cp $PWD/vim/autoload/plug.vim $HOME/.config/nvim/site/autoload/plug.vim
+ln -s $PWD/nvim $HOME/.config/nvim
 
 # Commands to link all default editors to nvim
 # NVIM_PATH=/usr/local/bin/nvim.appimage
