@@ -85,6 +85,8 @@ nnoremap \ ;
 nnoremap <silent> - :Ex<CR>
 let g:netrw_banner=0
 let g:netrw_winsize=25
+let g:netrw_sort_by="time"
+let g:netrw_sort_direction="reverse"
 
 "change leader from \ to space
 let mapleader = " "
@@ -210,8 +212,6 @@ nmap gm <Plug>MarkdownPreview
 Plug 'gerw/vim-HiLinkTrace'
 
 Plug 'christoomey/vim-tmux-navigator'
-
-Plug '/home/manideep/Documents/code/personal/vim-settings'
 call plug#end()
 
 colorscheme onedark

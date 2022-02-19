@@ -3,11 +3,11 @@
 #Those aliases which are specific for users directory tree
 source ~/.bash_profile_user
 
-export VISUAL=vim
+export VISUAL=nvim
 export EDITOR="$VISUAL"
 
 alias zrc="vim ~/.zshrc"
-alias vrc="vim ~/.vimrc"
+alias vrc="vim ~/.config/nvim/init.vim"
 alias rebash="source ~/.bash_profile"
 alias vbash="vim ~/.bash_profile"
 alias vbuser="vim ~/.bash_profile_user"
