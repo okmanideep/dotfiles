@@ -45,9 +45,7 @@ set undofile
 set wildignore+=*.class,*.pyc,*.iml
 
 "nvim terminal esc
-if(has("nvim"))
-    :tnoremap <Esc> <C-\><C-n>
-endif
+:tnoremap <Esc> <C-\><C-n>
 
 if executable('rg')
     let g:rg_derive_root='true'
@@ -61,17 +59,15 @@ vnoremap K 5k
 nnoremap T <C-u>
 nnoremap B <C-d>
 
-"Switch splits faster - replaced by Plug 'christoomey/vim-tmux-navigator'
-":nnoremap <C-h> <C-w>h
-":nnoremap <C-j> <C-w>j
-":nnoremap <C-k> <C-w>k
-":nnoremap <C-l> <C-w>l
-"if(has("nvim")) 
-"    :tnoremap <C-h> <C-\><C-n><C-w>h
-"    :tnoremap <C-j> <C-\><C-n><C-w>j
-"    :tnoremap <C-k> <C-\><C-n><C-w>k
-"    :tnoremap <C-l> <C-\><C-n><C-w>l
-"endif
+"Switch splits faster
+:nnoremap <C-h> <C-w>h
+:nnoremap <C-j> <C-w>j
+:nnoremap <C-k> <C-w>k
+:nnoremap <C-l> <C-w>l
+:tnoremap <C-h> <C-\><C-n><C-w>h
+:tnoremap <C-j> <C-\><C-n><C-w>j
+:tnoremap <C-k> <C-\><C-n><C-w>k
+:tnoremap <C-l> <C-\><C-n><C-w>l
 
 "go to cmd mode more easily
 nnoremap ; :
@@ -210,8 +206,6 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install'  }
 nmap gm <Plug>MarkdownPreview
 
 Plug 'gerw/vim-HiLinkTrace'
-
-Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 colorscheme onedark
