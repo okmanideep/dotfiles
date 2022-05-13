@@ -7,7 +7,7 @@ require('telescope').setup {
         "--column",
         "--smart-case",
         "--hidden",
-        "--glob '!.git'"
+        "--glob='!.git/*'"
     },
     defaults = {
         layout_strategy = 'horizontal',
@@ -16,5 +16,10 @@ require('telescope').setup {
             prompt_position = "top",
         },
         use_less = true,
-    }
+    },
+    pickers = {
+        find_files = {
+            hidden = true,
+        }
+    },
 }

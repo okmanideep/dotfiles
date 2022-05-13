@@ -22,6 +22,11 @@ setlocal wrap
 nmap <buffer> j gj
 nmap <buffer> k gk
 
+augroup markdown_autowrite
+    autocmd! * <buffer>
+    autocmd TextChanged,TextChangedI <buffer> if &readonly == 0 && filereadable(bufname('%')) | silent write | endif
+augroup END
+
 if exists("b:undo_ftplugin")
     let b:undo_ftplugin .= "| setlocal conceallevel<"
 else

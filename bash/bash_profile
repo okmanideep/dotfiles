@@ -3,7 +3,7 @@
 #Those aliases which are specific for users directory tree
 source ~/.bash_profile_user
 
-export VISUAL=nvim
+export VISUAL=vim
 export EDITOR="$VISUAL"
 
 alias zrc="vim ~/.zshrc"
