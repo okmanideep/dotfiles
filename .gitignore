@@ -1,5 +1,5 @@
 bash_profile_user
 vim/plugged
-vim/.netrwhist
+nvim/.netrwhist
 vim/undodir
 .DS_Store
