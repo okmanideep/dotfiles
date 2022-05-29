@@ -59,7 +59,10 @@
           "foreground": "#ffffff",
           "style": "diamond",
           "trailing_diamond": "",
-          "template": " {{ if .Root }}{{ end }} ",
+          "background_templates": [
+            "{{ if .Root }}#8D97A9{{ end }}"
+          ],
+          "template": " {{ if .Root }}#{{ else }}{{ end }} ",
           "type": "session"
         }
       ],
