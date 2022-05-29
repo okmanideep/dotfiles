@@ -5,7 +5,7 @@
       "alignment": "left",
       "segments": [
         {
-          "background": "#D74551",
+          "background": "#DB5762",
           "foreground": "#ffffff",
           "leading_diamond": "",
           "properties": {
@@ -23,7 +23,7 @@
           "foreground": "#ffffff",
           "powerline_symbol": "",
           "background_templates": [
-            "{{ if or (.Working.Changed) (.Staging.Changed) }}#DDAC51{{ end }}",
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}#DAA544{{ end }}",
             "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#80B55A{{ end }}",
             "{{ if gt .Ahead 0 }}#3599EB{{ end }}",
             "{{ if gt .Behind 0 }}#3599EB{{ end }}"
