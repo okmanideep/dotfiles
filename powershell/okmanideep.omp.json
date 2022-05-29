@@ -5,7 +5,7 @@
       "alignment": "left",
       "segments": [
         {
-          "background": "#80B55A",
+          "background": "#3599EB",
           "foreground": "#ffffff",
           "leading_diamond": "",
           "properties": {
@@ -24,9 +24,9 @@
           "powerline_symbol": "",
           "background_templates": [
             "{{ if or (.Working.Changed) (.Staging.Changed) }}#DAA544{{ end }}",
-            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#DAA544{{ end }}",
-            "{{ if gt .Ahead 0 }}#3599EB{{ end }}",
-            "{{ if gt .Behind 0 }}#3599EB{{ end }}"
+            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#80B55A{{ end }}",
+            "{{ if gt .Ahead 0 }}#80B55A{{ end }}",
+            "{{ if gt .Behind 0 }}#80B55A{{ end }}"
           ],
           "properties": {
             "branch_icon": "",
@@ -47,10 +47,10 @@
           "type": "node"
         },
         {
-          "background": "#40A4B1",
+          "background": "#3599EB",
           "foreground": "#ffffff",
           "style": "diamond",
-          "trailing_diamond": "",
+          "trailing_diamond": "",
           "template": " {{ if .Root }}{{ end }} ",
           "type": "session"
         }
