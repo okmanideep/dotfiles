@@ -36,12 +36,23 @@
           "type": "git"
         },
         {
-          "background": "#8D97A9",
+          "background": "#D74551",
           "foreground": "#ffffff",
           "powerline_symbol": "",
           "style": "powerline",
           "template": "  {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} ",
           "type": "node"
+        },
+        {
+          "background": "#D74551",
+          "foreground": "#ffffff",
+          "powerline_symbol": "",
+          "properties": {
+            "display_mode": "files"
+          },
+          "style": "powerline",
+          "template": "  {{ .Major }} ",
+          "type": "java"
         },
         {
           "background": "#3599EB",
