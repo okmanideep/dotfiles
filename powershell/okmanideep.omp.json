@@ -3,6 +3,7 @@
   "blocks": [
     {
       "alignment": "left",
+      "type": "prompt",
       "segments": [
         {
           "background": "#3599EB",
@@ -65,8 +66,20 @@
           "template": " {{ if .Root }}#{{ else }}{{ end }} ",
           "type": "session"
         }
-      ],
-      "type": "prompt"
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "text",
+          "foreground": "#3599EB",
+          "style": "plain",
+          "template": ""
+        }
+      ]
     }
   ],
   "final_space": true,
