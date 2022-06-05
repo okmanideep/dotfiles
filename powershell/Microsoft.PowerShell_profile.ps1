@@ -1,6 +1,7 @@
 oh-my-posh init pwsh --config ~/Documents/code/personal/dotfiles/powershell/okmanideep.omp.json | Invoke-Expression
 
 Import-Module git-aliases -DisableNameChecking
+Import-Module posh-git
 
 #Icons
 Import-Module -Name Terminal-Icons
