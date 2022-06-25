@@ -24,17 +24,28 @@ Set-Alias grep findstr
 Set-Alias less 'C:\Program Files\Git\usr\bin\less.exe'
 
 # Utilities
-function which($command) {
-  Get-Command -Name $command -ErrorAction SilentlyContinue |
-    Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
-}
-
 function vnotes {
   cd ~/Dropbox/notes; vim .
 }
 
-# Start Notes Preview Server
-Start-Job -Name NotesPreview -ScriptBlock {
-  cd ~/Documents/code/personal/notes-preview
-  npm start
+function fmain {
+  cd ~/Documents/code/hotstar/hotstar-android-mobile;
+}
+
+function firetv {
+  cd ~/Documents/code/hotstar/hotstar-android-livingroom;
+}
+
+function frocky {
+  cd ~/Documents/code/hotstar/android;
+}
+
+function which($command) {
+  $obj = Get-Command -Name $command
+
+  if ($obj.CommandType -eq "Application") {
+    Write-Output $obj.Path
+  } elseif ($obj.CommandType -eq "Function") {
+    Write-Output $obj.definition
+  }
 }
