@@ -20,7 +20,6 @@ Set-PSFzfOption -PSReadlineChordProvider 'Ctrl+f' -PSReadlineChordReverseHistory
 # Alias Commands
 Set-Alias vim nvim
 Set-Alias ll ls
-Set-Alias grep findstr
 Set-Alias less 'C:\Program Files\Git\usr\bin\less.exe'
 
 # Utilities
@@ -48,4 +47,12 @@ function which($command) {
   } elseif ($obj.CommandType -eq "Function") {
     Write-Output $obj.definition
   }
+}
+
+function beepOnCrash() {
+    do {
+        $app = adb shell ps | findstr 'com.disneyplus.mea'
+    } until ($app.count -eq 0)
+
+    [console]::beep(5000, 300)
 }

@@ -1,3 +1,4 @@
+-- telescope
 require('telescope').setup {
     vimgrep_arguments = {
         "rg",
