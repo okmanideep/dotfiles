@@ -44,6 +44,7 @@ set nobackup
 set nowritebackup
 set undodir=~/.vim/undodir
 set undofile
+set updatetime=300
 
 set wildignore+=*.class,*.pyc,*.iml
 
@@ -104,30 +105,29 @@ nnoremap <silent> <leader>rl :w<CR>:e!<CR>
 nnoremap <leader>t :sp <CR>:term<CR>:resize 10<CR>A
 
 call plug#begin('~/.vim/plugged')
+Plug 'nvim-lua/plenary.nvim'
 
 "lspconfig
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'neovim/nvim-lspconfig'
 "lsp completion
 Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'L3MON4D3/LuaSnip'
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'onsails/lspkind.nvim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'p00f/nvim-ts-rainbow'
 
 "telescope - fuzzy finder
 Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
-nnoremap <leader>o <cmd>Telescope find_files<cr>
-nnoremap <leader>h <cmd>Telescope help_tags<cr>
-nnoremap <leader>f <cmd>Telescope current_buffer_fuzzy_find<cr>
-nnoremap <leader>F <cmd>Telescope live_grep<cr>
 
 "color schemes"
 Plug 'joshdick/onedark.vim'

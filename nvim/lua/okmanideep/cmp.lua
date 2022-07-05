@@ -1,4 +1,5 @@
 local cmp = require'cmp'
+local lspkind = require'lspkind'
 
 cmp.setup({
     snippet = {
@@ -15,9 +16,29 @@ cmp.setup({
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
     }),
     sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'buffer'}
-    })
+        { name = 'jira'},
+        { name = 'nvim_lua'},
+        { name = 'nvim_lsp'},
+        { name = 'path'},
+        { name = 'luasnip'},
+        { name = 'buffer', keyword_length = 4 },
+    }),
+    formatting = {
+        format = lspkind.cmp_format({
+            mode = 'symbol_text',
+            menu = {
+                buffer = "[buf]",
+                nvim_lsp = "[LSP]",
+                nvim_lua = "[NVIM]",
+                path = "[path]",
+                luasnip = "[snip]",
+            }
+        })
+    },
+    experimental = {
+        native_menu = false,
+        ghost_text = true,
+    }
 })
 
 cmp.setup.filetype('gitcommit', {
