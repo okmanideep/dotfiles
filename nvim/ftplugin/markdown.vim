@@ -24,7 +24,7 @@ nmap <buffer> k gk
 
 augroup markdown_autowrite
     autocmd! * <buffer>
-    autocmd TextChanged,TextChangedI <buffer> if &readonly == 0 && filereadable(bufname('%')) | silent write | endif
+    autocmd TextChanged,InsertLeave,CursorHoldI <buffer> if &readonly == 0 && filereadable(bufname('%')) | silent write | endif
 augroup END
 
 if exists("b:undo_ftplugin")

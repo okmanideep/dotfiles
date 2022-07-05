@@ -44,7 +44,7 @@ set nobackup
 set nowritebackup
 set undodir=~/.vim/undodir
 set undofile
-set updatetime=300
+set updatetime=500
 
 set wildignore+=*.class,*.pyc,*.iml
 
