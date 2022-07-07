@@ -167,7 +167,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install'  }
-Plug 'preservim/vim-markdown'
+Plug 'sheerun/vim-polyglot'
 let g:vim_markdown_conceal_code_blocks = 0
 nmap gm <Plug>MarkdownPreview
 nmap <CR> <Plug>Markdown_OpenUrlUnderCursor

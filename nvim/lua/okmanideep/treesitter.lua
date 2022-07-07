@@ -7,7 +7,7 @@ configs.setup {
     highlight = {
         enable = true,
         disable = { "markdown" }, -- list of languages that will be disabled for treesitter highlighting
-        additional_vim_regex_highlighting = false,
+        additional_vim_regex_highlighting = true,
     },
     indent = { enable = true, disable = { "" } },
     rainbow = {
