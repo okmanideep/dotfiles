@@ -23,20 +23,8 @@ Set-Alias ll ls
 Set-Alias less 'C:\Program Files\Git\usr\bin\less.exe'
 
 # Utilities
-function vnotes {
-  cd ~/Dropbox/notes; vim .
-}
-
-function fmain {
-  cd ~/Documents/code/hotstar/hotstar-android-mobile;
-}
-
-function firetv {
-  cd ~/Documents/code/hotstar/hotstar-android-livingroom;
-}
-
-function frocky {
-  cd ~/Documents/code/hotstar/android;
+function vn {
+  cd ~/Dropbox/notes; nvim (ls | sort LastWriteTime -Descending | select Name -ExpandProperty Name | fzf --reverse --print-query | select-object -Last 1)
 }
 
 function which($command) {
@@ -47,12 +35,4 @@ function which($command) {
   } elseif ($obj.CommandType -eq "Function") {
     Write-Output $obj.definition
   }
-}
-
-function beepOnCrash() {
-    do {
-        $app = adb shell ps | findstr 'com.disneyplus.mea'
-    } until ($app.count -eq 0)
-
-    [console]::beep(5000, 300)
 }

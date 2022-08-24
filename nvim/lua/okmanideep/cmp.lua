@@ -32,6 +32,7 @@ cmp.setup({
                 nvim_lua = "[NVIM]",
                 path = "[path]",
                 luasnip = "[snip]",
+                jira = "[JIRA]"
             }
         })
     },

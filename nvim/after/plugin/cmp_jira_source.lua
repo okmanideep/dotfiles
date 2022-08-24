@@ -52,12 +52,12 @@ source.complete = function (self, params, callback)
                 for _,item in ipairs(result) do
                     --replacing tabs with `;` for easier pattern matching
                     local subbed = item:gsub("\t", ";")
-                    local _, _, key, ttype, summary, status, assignee = string.find(subbed, ("([^;]*);*"):rep(5, ";*"))
+                    local _, _, key, ttype, summary, assignee = string.find(subbed, ("([^;]*);*"):rep(4, ";*"))
                     table.insert(tickets, {
                         label = key,
                         documentation = {
                             kind = "markdown",
-                            value = "# "..summary.."\n"..ttype.."\t"..assignee.."\t"..status
+                            value = "# "..summary.."\n"..ttype.." • "..assignee
                         }
                     })
                 end
