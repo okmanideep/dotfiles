@@ -2,7 +2,7 @@ require('nvim-lsp-installer').setup()
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 local lspconfig = require 'lspconfig'
-local servers = { 'tsserver', 'sumneko_lua', 'kotlin_language_server', 'emmet_ls', 'pyright' }
+local servers = { 'tsserver', 'sumneko_lua', 'kotlin_language_server', 'emmet_ls', 'pyright', 'powershell_es' }
 
 local custom_options = {
     sumneko_lua = {
@@ -25,7 +25,6 @@ local custom_options = {
 local on_attach = function(_, bufnr)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
@@ -39,6 +38,7 @@ local on_attach = function(_, bufnr)
     vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
     vim.keymap.set('n', '<space>l', vim.lsp.buf.formatting, bufopts)
+    vim.keymap.set('n', '<space>e', vim.lsp.diagnostic.show_line_diagnostics, bufopts)
 end
 
 for _, server in ipairs(servers) do
