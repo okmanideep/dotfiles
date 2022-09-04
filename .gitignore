@@ -3,3 +3,4 @@ vim/plugged
 nvim/.netrwhist
 vim/undodir
 .DS_Store
+user_profile.ps1

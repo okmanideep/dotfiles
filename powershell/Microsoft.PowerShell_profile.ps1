@@ -1,3 +1,5 @@
+. "$PSScriptRoot/user_profile.ps1"
+
 oh-my-posh init pwsh --config ~/Documents/code/personal/dotfiles/powershell/okmanideep.omp.json | Invoke-Expression
 
 Import-Module git-aliases -DisableNameChecking
@@ -19,12 +21,14 @@ Set-PSFzfOption -PSReadlineChordProvider 'Ctrl+f' -PSReadlineChordReverseHistory
 
 # Alias Commands
 Set-Alias vim nvim
-Set-Alias ll ls
-Set-Alias less 'C:\Program Files\Git\usr\bin\less.exe'
+
+# Move to user_profile in Windows
+# Set-Alias ll ls
+# Set-Alias less 'C:\Program Files\Git\usr\bin\less.exe'
 
 # Utilities
 function vn {
-  cd ~/Dropbox/notes; nvim (ls | sort LastWriteTime -Descending | select Name -ExpandProperty Name | fzf --reverse --print-query | select-object -Last 1)
+  Set-Location ~/Dropbox/notes; nvim (Get-ChildItem | Sort-Object LastWriteTime -Descending | Select-Object Name -ExpandProperty Name | fzf --reverse --print-query | select-object -Last 1)
 }
 
 function which($command) {
