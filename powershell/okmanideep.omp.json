@@ -8,14 +8,14 @@
         {
           "background": "#3599EB",
           "foreground": "#ffffff",
-          "leading_diamond": "",
+          "powerline_symbol": "",
           "properties": {
             "style": "agnoster_short",
             "max_depth": 2,
             "hide_root_location": true,
             "folder_separator_icon": "/"
           },
-          "style": "diamond",
+          "style": "powerline",
           "template": "  {{ .Path }} ",
           "type": "path"
         },
@@ -59,7 +59,7 @@
           "background": "#3599EB",
           "foreground": "#ffffff",
           "style": "diamond",
-          "trailing_diamond": "",
+          "trailing_diamond": "",
           "background_templates": [
             "{{ if .Root }}#8D97A9{{ end }}"
           ],
