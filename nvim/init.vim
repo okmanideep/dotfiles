@@ -185,12 +185,12 @@ set noshowmode
 
 set nofoldenable
 
-function s:OpenNote()
+function s:OpenMote()
     let l:command = 'mote open '.expand('%:t')
     call system(l:command)
 endfunction
 
-command! ViewNoteInBrowser :call <SID>OpenNote()
-nnoremap gn <cmd>ViewNoteInBrowser<CR>
+command! OpenMote :call <SID>OpenMote()
+nnoremap gn <cmd>OpenMote<CR>
 
 lua require("okmanideep")
