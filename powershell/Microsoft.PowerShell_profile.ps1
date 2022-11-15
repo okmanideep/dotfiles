@@ -1,4 +1,5 @@
-. "$PSScriptRoot/user_profile.ps1"
+$user_profile_path = Join-Path -Path $PSScriptRoot -ChildPath 'user_profile.ps1'
+. $user_profile_path
 
 oh-my-posh init pwsh --config ~/Documents/code/personal/dotfiles/powershell/okmanideep.omp.json | Invoke-Expression
 
