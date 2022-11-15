@@ -186,8 +186,8 @@ set noshowmode
 set nofoldenable
 
 function s:OpenNote()
-    let l:url = 'http://localhost:3000/'.expand('%:t:r')
-    call netrw#BrowseX(l:url,netrw#CheckIfRemote())
+    let l:command = 'mote open '.expand('%:t')
+    call system(l:command)
 endfunction
 
 command! ViewNoteInBrowser :call <SID>OpenNote()
