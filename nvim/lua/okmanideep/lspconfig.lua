@@ -19,7 +19,7 @@ local custom_options = {
                 },
             }
         }
-    }
+    },
 }
 
 local on_attach = function(_, bufnr)
@@ -44,7 +44,7 @@ end
 for _, server in ipairs(servers) do
     local opts = {
         on_attach = on_attach,
-        capabilities = capabilities
+        capabilities = capabilities,
     }
 
     local server_custom_options = custom_options[server]

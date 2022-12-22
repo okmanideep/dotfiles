@@ -22,6 +22,7 @@ Set-PSFzfOption -PSReadlineChordProvider 'Ctrl+f' -PSReadlineChordReverseHistory
 
 # Alias Commands
 Set-Alias vim nvim
+Set-Alias ll Get-ChildItem
 
 # Move to user_profile in Windows
 # Set-Alias ll ls
@@ -30,6 +31,14 @@ Set-Alias vim nvim
 # Utilities
 function vn {
   Set-Location ~/Dropbox/notes; nvim (Get-ChildItem | Sort-Object LastWriteTime -Descending | Select-Object Name -ExpandProperty Name | fzf --reverse --print-query | select-object -Last 1)
+}
+
+function vbuser {
+  vim "$PSScriptRoot/user_profile.ps1"
+}
+
+function rmd($path) {
+  Remove-Item -Path $path -Force -Recurse
 }
 
 function which($command) {
