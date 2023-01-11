@@ -1,8 +1,8 @@
 highlight htmlItalic cterm=italic gui=italic
 
-" Hide and format markdown elements like **bold**
+" Don't Hide and format markdown elements like **bold**
 " See: `syn-conceal`
-setlocal conceallevel=2
+setlocal conceallevel=0
 
 " Remove color column
 setlocal colorcolumn=0
