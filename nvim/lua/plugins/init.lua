@@ -15,13 +15,7 @@ return {
 		end
 	},
 
-	{
-		'junegunn/vim-easy-align',
-		config = function ()
-			vim.keymap.set('n', 'ga', '<Plug>(EasyAlign)', { desc = "Align", noremap = false })
-			vim.keymap.set('x', 'ga', '<Plug>(EasyAlign)', { desc = "Align", noremap = false })
-		end
-	},
+	'junegunn/vim-easy-align',
 	'tpope/vim-surround', -- Add () with csaw(
 	'tpope/vim-sleuth', -- automatically set shiftwidth, expandtab based on the file that is opened
 

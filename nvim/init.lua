@@ -24,11 +24,11 @@ vim.go.showmode = false
 
 local autosave_group = vim.api.nvim_create_augroup('AutoSave', { clear = true})
 vim.api.nvim_create_autocmd({'FocusLost', 'BufLeave'}, {
-	callback = function ()
-		vim.cmd [[ :wa ]]
-	end,
-	pattern = "*",
-	group = autosave_group,
+  callback = function ()
+    vim.cmd [[ :wa ]]
+  end,
+  pattern = "*",
+  group = autosave_group,
 })
 
 -- PLUGINS! by lazy.nvim 
