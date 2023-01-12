@@ -23,7 +23,8 @@ local on_bar_inserted = function ()
 
 	-- Easy Align markdown table
 	vim.cmd [[ stopinsert ]]
-	vim.cmd [[ normal! vip<Plug>(EasyAlign)*| ]] -- visually select the paragraph, EasyAlign all | -- () around EasyAlign are important
+	vim.cmd [[ normal! vip ]] -- visually select the paragraph
+	vim.api.nvim_feedkeys('ga*|', 'v', false) -- EasyAlign all |s in the paragraph -- ga = keymap for <Plug>(EasyAlign)
 
 	-- place the cursor at the end of the entered | (pre_bar_count + 1)
 	-- we need to schedule this since the above nvim_feedkeys need to trigger EasyAlign and it needs to
@@ -34,6 +35,10 @@ local on_bar_inserted = function ()
 		end
 	)
 end
+
+-- set ga as keymap for EasyAlign in normal and visual models
+vim.keymap.set('n', 'ga', '<Plug>(EasyAlign)', { desc = "Align", noremap = false })
+vim.keymap.set('x', 'ga', '<Plug>(EasyAlign)', { desc = "Align", noremap = false })
 
 local align_group = vim.api.nvim_create_augroup('AlignMDTable', { clear = true })
 vim.api.nvim_create_autocmd('FileType', {
