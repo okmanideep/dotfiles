@@ -17,7 +17,6 @@ cmp.setup({
     }),
     sources = cmp.config.sources({
         { name = 'jira'},
-        { name = 'nvim_lua'},
         { name = 'nvim_lsp'},
         { name = 'path'},
         { name = 'luasnip'},
@@ -29,7 +28,6 @@ cmp.setup({
             menu = {
                 buffer = "[buf]",
                 nvim_lsp = "[LSP]",
-                nvim_lua = "[NVIM]",
                 path = "[path]",
                 luasnip = "[snip]",
                 jira = "[JIRA]"
