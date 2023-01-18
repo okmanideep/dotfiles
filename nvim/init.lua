@@ -1,6 +1,8 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-vim.o.tabstop = 4
+vim.go.tabstop = 4
+vim.go.shiftwidth = 4
+vim.go.noexpandtab = 4
 vim.o.fileformats = 'unix,dos'
 vim.o.hidden = true --Moving out of the file hides it and doesn't close
 vim.o.number = true

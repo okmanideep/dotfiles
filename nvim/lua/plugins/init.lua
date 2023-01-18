@@ -17,7 +17,7 @@ return {
 
 	'junegunn/vim-easy-align',
 	'tpope/vim-surround', -- Add () with csaw(
-	'tpope/vim-sleuth', -- automatically set shiftwidth, expandtab based on the file that is opened
+	'editorconfig/editorconfig-vim',
 
 	{
 		'lewis6991/gitsigns.nvim',
