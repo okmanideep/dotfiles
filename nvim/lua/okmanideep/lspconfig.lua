@@ -60,6 +60,7 @@ local servers = {
   pyright = {},
   -- rust_analyzer = {},
   tsserver = {},
+  emmet_ls = {},
 
   sumneko_lua = {
     Lua = {
