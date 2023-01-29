@@ -26,24 +26,24 @@ vim.go.showmode = false
 
 local autosave_group = vim.api.nvim_create_augroup('AutoSave', { clear = true})
 vim.api.nvim_create_autocmd({'FocusLost', 'BufLeave'}, {
-  callback = function ()
-    vim.cmd [[ :wa ]]
-  end,
-  pattern = "*",
-  group = autosave_group,
+	callback = function ()
+		vim.cmd [[ :wa ]]
+	end,
+	pattern = "*",
+	group = autosave_group,
 })
 
 -- PLUGINS! by lazy.nvim 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "git@github.com:folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"git@github.com:folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
 end
 vim.opt.rtp:prepend(lazypath)
 
