@@ -17,7 +17,7 @@ return {
 
 	'junegunn/vim-easy-align',
 	'tpope/vim-surround', -- Add () with csaw(
-	'editorconfig/editorconfig-vim',
+	'gpanders/editorconfig.nvim', -- Won't be required after NVIM 0.9
 
 	{
 		'lewis6991/gitsigns.nvim',
