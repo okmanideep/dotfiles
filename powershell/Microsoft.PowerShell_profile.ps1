@@ -30,7 +30,7 @@ Set-Alias ll Get-ChildItem
 
 # Utilities
 function vn {
-  Set-Location ~/Dropbox/notes; nvim (Get-ChildItem | Sort-Object LastWriteTime -Descending | Select-Object Name -ExpandProperty Name | fzf --reverse --print-query | select-object -Last 1)
+  Set-Location ~/Library/CloudStorage/Dropbox/notes; nvim (Get-ChildItem | Sort-Object LastWriteTime -Descending | Select-Object Name -ExpandProperty Name | fzf --reverse --print-query | select-object -Last 1)
 }
 
 function vbuser {
