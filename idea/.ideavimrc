@@ -1,0 +1,37 @@
+"Faster movements
+nnoremap T <C-u>
+nnoremap B <C-d>
+vnoremap T <C-u>
+vnoremap B <C-d>
+
+"Switch splits faster
+:nnoremap <C-h> <C-w>h
+:nnoremap <C-j> <C-w>j
+:nnoremap <C-k> <C-w>k
+:nnoremap <C-l> <C-w>l
+
+"go to cmd mode more easily
+nnoremap ; :
+vnoremap ; :
+
+"alternative for `;` since `;` is mapped to `:`
+"this line needs to be after changing the leader from \
+nnoremap \ ;
+
+"change leader from \ to space
+let mapleader = " "
+
+" Copy to clipboard and paste from clipboard
+:vnoremap <leader>y "+y
+:vnoremap <leader>p "+p
+:nnoremap <leader>y "+y
+:nnoremap <leader>p "+p
+
+" IDEA keybindings
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gf :action FindUsages<CR>
+nnoremap gr :action RenameElement<CR>
+nnoremap gs :action FindInPath<CR>
+nnoremap <leader>o :action GotoFile<CR>
+nnoremap <leader>/ :action RecentFiles<CR>
+nnoremap <C-w><C-o> :action UnsplitAll<CR>
