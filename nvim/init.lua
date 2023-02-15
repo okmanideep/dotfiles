@@ -23,6 +23,13 @@ vim.o.completeopt = 'menu,menuone,noselect'
 vim.o.autowriteall = true
 vim.o.termguicolors = true
 vim.go.showmode = false
+vim.cmd [[
+	let &shell = executable('pwsh') ? 'pwsh' : 'powershell'
+	let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
+	let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+	let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+	set shellquote= shellxquote=
+]]
 
 local autosave_group = vim.api.nvim_create_augroup('AutoSave', { clear = true})
 vim.api.nvim_create_autocmd({'FocusLost', 'BufLeave'}, {
