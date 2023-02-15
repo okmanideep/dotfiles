@@ -23,6 +23,7 @@ Set-PSFzfOption -PSReadlineChordProvider 'Ctrl+f' -PSReadlineChordReverseHistory
 # Alias Commands
 Set-Alias vim nvim
 Set-Alias ll Get-ChildItem
+Set-Alias flutter ".fvm/flutter_sdk/bin/flutter"
 
 # Move to user_profile in Windows
 # Set-Alias ll ls
