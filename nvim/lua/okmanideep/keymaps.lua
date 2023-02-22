@@ -44,3 +44,17 @@ vim.keymap.set('v', '<leader>p', '"+p', { desc = "Paste from clipboard" })
 
 -- reload current file
 vim.keymap.set('n', '<leader>rl', ':w<CR>:e!<CR>', { silent = true, desc = "reload current file" })
+
+local switch_to_terminal = function ()
+	local buffers = vim.fn.getbufinfo({loaded = 1})
+	for _, buffer in ipairs(buffers) do
+		if vim.api.nvim_buf_get_option(buffer.bufnr, 'buftype') == 'terminal' then
+			vim.cmd('buffer ' .. buffer.bufnr)
+			return
+		end
+	end
+	-- if there is no terminal buffer
+	vim.cmd('terminal pwsh')
+end
+
+vim.keymap.set('n', '<leader>t', switch_to_terminal, { silent = true, desc = "switch to terminal" })
