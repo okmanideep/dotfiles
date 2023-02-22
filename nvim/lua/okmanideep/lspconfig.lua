@@ -62,7 +62,7 @@ local servers = {
 	tsserver = {},
 	emmet_ls = {},
 
-	sumneko_lua = {
+	lua_ls = {
 		Lua = {
 			workspace = { checkThirdParty = false },
 			telemetry = { enable = false },
