@@ -29,9 +29,8 @@ let mapleader = " "
 
 " IDEA keybindings
 nnoremap gd :action GotoDeclaration<CR>
-nnoremap gf :action FindUsages<CR>
-nnoremap gr :action RenameElement<CR>
-nnoremap gs :action FindInPath<CR>
+nnoremap gr :action FindUsages<CR>
+nnoremap <leader>rn :action RenameElement<CR>
 nnoremap <leader>o :action GotoFile<CR>
 nnoremap <leader>/ :action RecentFiles<CR>
 nnoremap <C-w><C-o> :action UnsplitAll<CR>
