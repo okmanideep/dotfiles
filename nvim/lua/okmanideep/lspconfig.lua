@@ -101,3 +101,12 @@ mason_lspconfig.setup_handlers {
 
 -- Turn on lsp status information
 require('fidget').setup()
+
+-- Setep flutter-tools
+require('flutter-tools').setup{
+	fvm = true,
+	lsp = {
+		on_attach = on_attach,
+		capabilities = capabilities,
+	},
+}
