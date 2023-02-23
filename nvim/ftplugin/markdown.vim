@@ -1,5 +1,8 @@
 highlight htmlItalic cterm=italic gui=italic
 
+setlocal shiftwidth=4
+setlocal tabstop=4
+
 " Don't Hide and format markdown elements like **bold**
 " See: `syn-conceal`
 setlocal conceallevel=0
@@ -33,6 +36,8 @@ else
     let b:undo_ftplugin = "setlocal conceallevel<"
 endif
 
+let b:undo_ftplugin .= "| setlocal shiftwidth<"
+let b:undo_ftplugin .= "| setlocal tabstop<"
 let b:undo_ftplugin .= "| setlocal colorcolumn<"
 let b:undo_ftplugin .= "| setlocal nonu<"
 let b:undo_ftplugin .= "| setlocal nornu<"
