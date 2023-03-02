@@ -16,7 +16,7 @@ vim.o.magic = true -- \d = number in cmd line regex etc
 vim.o.listchars = 'tab:| ,trail:·'
 vim.o.list = true
 vim.o.title = true
-vim.o.titlestring = '%{expand("%:p:~:h")}'
+vim.o.titlestring = '%{expand("%:p:~")}'
 vim.o.scrolloff = 3
 vim.o.updatetime = 500
 vim.o.completeopt = 'menu,menuone,noselect'
