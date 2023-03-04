@@ -1,8 +1,7 @@
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'LSP: ([)Prev [D]iagnostic' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'LSP: (])Next [D]iagnostic' })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'LSP: [E]ntire Diagnostic in float' })
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.

@@ -25,6 +25,15 @@ return {
 			require('gitsigns').setup()
 		end
 	},
+	{
+		'folke/trouble.nvim',
+		config = function ()
+			require('trouble').setup()
+
+			vim.keymap.set('n', '<leader>x', '<cmd>TroubleToggle<cr>', { desc = 'LSP: Toggle Diagnostics'})
+			vim.keymap.set('n', 'gx', '<cmd>TroubleToggle document_diagnostics<cr>', { desc = 'LSP: Toggle Diagnostics'})
+		end
+	},
 
 	'github/copilot.vim'
 }
