@@ -45,13 +45,3 @@ function vbuser {
 function rmd($path) {
   Remove-Item -Path $path -Force -Recurse
 }
-
-function which($command) {
-  $obj = Get-Command -Name $command
-
-  if ($obj.CommandType -eq "Application") {
-    Write-Output $obj.Path
-  } elseif ($obj.CommandType -eq "Function") {
-    Write-Output $obj.definition
-  }
-}
