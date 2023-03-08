@@ -3,6 +3,7 @@ vim.g.maplocalleader = ' '
 vim.go.tabstop = 4
 vim.go.shiftwidth = 4
 vim.go.expandtab = false
+vim.o.smartindent = true
 vim.o.fileformats = 'unix,dos'
 vim.o.hidden = true --Moving out of the file hides it and doesn't close
 vim.o.number = true

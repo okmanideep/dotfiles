@@ -5,6 +5,7 @@ cmp.setup({
     snippet = {
         expand = function(args)
             require('luasnip').lsp_expand(args.body)
+			vim.cmd [[ :Format ]]
         end,
     },
     mapping = cmp.mapping.preset.insert({
@@ -16,7 +17,6 @@ cmp.setup({
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
     }),
     sources = cmp.config.sources({
-        { name = 'jira'},
         { name = 'nvim_lsp'},
         { name = 'path'},
         { name = 'luasnip'},
