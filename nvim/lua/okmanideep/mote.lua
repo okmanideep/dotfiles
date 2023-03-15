@@ -1,5 +1,5 @@
 local open_mote = function ()
-	local filename = vim.fn.expand('%:t')
+	local filename = vim.fn.expand('%:p')
 	vim.fn.system({
 		"mote",
 		"open",
