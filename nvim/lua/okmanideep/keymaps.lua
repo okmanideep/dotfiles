@@ -45,6 +45,9 @@ vim.keymap.set('v', '<leader>p', '"+p', { desc = "Paste from clipboard" })
 -- reload current file
 vim.keymap.set('n', '<leader>rl', ':w<CR>:e!<CR>', { silent = true, desc = "reload current file" })
 
+-- Git Blame
+vim.keymap.set('n', 'gb', ':Gitsigns blame_line<CR>', { desc = '[G]it [B]lame' })
+
 local switch_to_terminal = function ()
 	local buffers = vim.fn.getbufinfo({loaded = 1})
 	for _, buffer in ipairs(buffers) do
