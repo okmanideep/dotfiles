@@ -10,10 +10,9 @@ end
 config.color_scheme_dirs = { wezterm.home_dir .. "/Documents/code/personal/dotfiles/wezterm" }
 config.color_scheme = "okmanideep"
 config.use_fancy_tab_bar = true
-config.default_prog = { "C:\\Program Files\\WindowsApps\\Microsoft.PowerShell_7.3.3.0_x64__8wekyb3d8bbwe\\pwsh.exe" }
-config.leader = { key = "a", mods = "CTRL" }
+config.default_prog = { "pwsh" }
 config.keys = {
-	{ key = "t", mods = "CTRL",   action = wezterm.action.SpawnCommandInNewTab {} },
+	{ key = "t", mods = "CTRL", action = wezterm.action.SpawnCommandInNewTab {} },
 	{ key = "1", mods = "ALT", action = wezterm.action.ActivateTab(0) },
 	{ key = "2", mods = "ALT", action = wezterm.action.ActivateTab(1) },
 	{ key = "3", mods = "ALT", action = wezterm.action.ActivateTab(2) },
@@ -29,9 +28,19 @@ config.keys = {
 config.window_decorations = "RESIZE"
 config.initial_cols = 120
 config.initial_rows = 44
+config.window_frame = {
+	font = wezterm.font { family = 'Roboto', weight = 'Regular' },
+	font_size = 16,
+}
 
 local bg_color = "#282c34"
 local fg_color = "#dcdfe4"
+
+config.font = wezterm.font_with_fallback({
+	"JetBrains Mono",
+	"Symbols Nerd Font Mono",
+})
+config.font_size = 18.0
 
 -- https://github.com/wez/wezterm/issues/522 for renaming tab title
 wezterm.on("format-tab-title", function(tab, _, _, _, _, _)
@@ -39,7 +48,7 @@ wezterm.on("format-tab-title", function(tab, _, _, _, _, _)
 	local user_title = tab.active_pane.user_vars.panetitle
 
 	if user_title ~= nil and #user_title > 0 then
-		pane_title = (tab.tab_index + 1) .. ":" .. user_title
+		pane_title = (tab.tab_index + 1) .. "     " .. user_title
 	end
 
 	local bg = wezterm.color.parse(bg_color)
