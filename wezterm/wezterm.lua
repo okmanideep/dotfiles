@@ -10,7 +10,12 @@ end
 config.color_scheme_dirs = { wezterm.home_dir .. "/Documents/code/personal/dotfiles/wezterm" }
 config.color_scheme = "okmanideep"
 config.use_fancy_tab_bar = true
-config.default_prog = { "pwsh" }
+if wezterm.target_triple == "aarch64-apple-darwin" then
+	config.default_prog = { "/usr/local/bin/pwsh" }
+elseif wezterm.target_triple == "x86_64-pc-windows-msvc" then
+	config.default_prog = { "C:\\Program Files\\WindowsApps\\Microsoft.PowerShell_7.3.3.0_x64__8wekyb3d8bbwe\\pwsh.exe" }
+end
+
 config.keys = {
 	{ key = "t", mods = "CTRL", action = wezterm.action.SpawnCommandInNewTab {} },
 	{ key = "1", mods = "ALT", action = wezterm.action.ActivateTab(0) },
@@ -24,6 +29,12 @@ config.keys = {
 	{ key = "9", mods = "ALT", action = wezterm.action.ActivateTab(8) },
 	{ key = "v", mods = "ALT", action = wezterm.action.PasteFrom('Clipboard')},
 	{ key = "r", mods = "CTRL|SHIFT", action = wezterm.action.ReloadConfiguration},
+}
+config.window_padding = {
+	left = 0,
+	right = 0,
+	top = 0,
+	bottom = 0,
 }
 config.window_decorations = "RESIZE"
 config.initial_cols = 120
