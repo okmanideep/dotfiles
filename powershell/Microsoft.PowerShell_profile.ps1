@@ -1,7 +1,7 @@
 $user_profile_path = Join-Path -Path $PSScriptRoot -ChildPath 'user_profile.ps1'
 . $user_profile_path
 
-oh-my-posh init pwsh --config ~/Documents/code/personal/dotfiles/powershell/okmanideep.omp.json | Invoke-Expression
+Invoke-Expression (&starship init powershell)
 
 Import-Module git-aliases -DisableNameChecking
 Import-Module posh-git
@@ -25,6 +25,19 @@ Set-Alias vim nvim
 Set-Alias ll Get-ChildItem
 Set-Alias flutter ".fvm/flutter_sdk/bin/flutter"
 
+# Shell Integration between Powershell + Starship with Terminal Emulator to communicate cwd
+# https://wezfurlong.org/wezterm/shell-integration.html#osc-7-on-windows-with-powershell-with-starship
+$prompt = ""
+function Invoke-Starship-PreCommand {
+    $current_location = $executionContext.SessionState.Path.CurrentLocation
+    if ($current_location.Provider.Name -eq "FileSystem") {
+        $ansi_escape = [char]27
+        $provider_path = $current_location.ProviderPath -replace "\\", "/"
+        $prompt = "$ansi_escape]7;file://${env:COMPUTERNAME}/${provider_path}$ansi_escape\"
+    }
+    $host.ui.Write($prompt)
+}
+
 # Move to user_profile in Windows
 # Set-Alias ll ls
 # Set-Alias less 'C:\Program Files\Git\usr\bin\less.exe'
@@ -44,4 +57,8 @@ function vbuser {
 
 function rmd($path) {
   Remove-Item -Path $path -Force -Recurse
+}
+
+function tt($title) {
+  write-output "$([char]27)]1337;SetUserVar=panetitle=$([Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($title)))$([char]7)"
 }
