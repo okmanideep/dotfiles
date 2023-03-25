@@ -29,6 +29,7 @@ config.keys = {
 	{ key = "9", mods = "ALT", action = wezterm.action.ActivateTab(8) },
 	{ key = "v", mods = "ALT", action = wezterm.action.PasteFrom('Clipboard')},
 	{ key = "r", mods = "CTRL|SHIFT", action = wezterm.action.ReloadConfiguration},
+	{ key = "d", mods = "CTRL|SHIFT", action = wezterm.action.ShowDebugOverlay},
 }
 config.window_padding = {
 	left = 0,
@@ -53,9 +54,22 @@ config.font = wezterm.font_with_fallback({
 })
 config.font_size = 14.0
 
+local path_after_scheme = function(path)
+	local p = path:match(":///(.*)")
+	if p == nil then
+		p = path
+	end
+	return p
+end
+
+local path_in_unix_format = function(path)
+	local p = path:gsub("\\", "/")
+	return p
+end
+
 local get_dir_name = function(path)
-	if path == wezterm.home_dir then
-		return "ﰣ"
+	if path_after_scheme(path) == path_in_unix_format(wezterm.home_dir) then
+		return "ﴤ"
 	end
 
 	local dir_name = path:match("^.*/(.*)$")
