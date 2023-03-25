@@ -10,12 +10,6 @@ end
 config.color_scheme_dirs = { wezterm.home_dir .. "/Documents/code/personal/dotfiles/wezterm" }
 config.color_scheme = "okmanideep"
 config.use_fancy_tab_bar = true
-if wezterm.target_triple == "aarch64-apple-darwin" then
-	config.default_prog = { "/usr/local/bin/pwsh" }
-elseif wezterm.target_triple == "x86_64-pc-windows-msvc" then
-	config.default_prog = { "C:\\Program Files\\WindowsApps\\Microsoft.PowerShell_7.3.3.0_x64__8wekyb3d8bbwe\\pwsh.exe" }
-end
-
 config.keys = {
 	{ key = "t", mods = "CTRL", action = wezterm.action.SpawnCommandInNewTab {} },
 	{ key = "1", mods = "ALT", action = wezterm.action.ActivateTab(0) },
@@ -36,13 +30,6 @@ config.window_padding = {
 	right = 0,
 	top = 0,
 	bottom = 0,
-}
-config.window_decorations = "RESIZE"
-config.initial_cols = 120
-config.initial_rows = 44
-config.window_frame = {
-	font = wezterm.font_with_fallback({ { family = 'Roboto', weight = 'Regular'}, 'Symbols Nerd Font' }),
-	font_size = 12,
 }
 
 local bg_color = "#282c34"
@@ -103,6 +90,22 @@ wezterm.on("format-tab-title", function(tab, _, _, _, _, _)
 		{Text=" " .. pane_title .. " "},
 	}
 end)
+
+config.window_decorations = "RESIZE"
+config.initial_cols = 120
+config.initial_rows = 44
+config.window_frame = {
+	font = wezterm.font_with_fallback({ { family = 'Roboto', weight = 'Regular'}, 'Symbols Nerd Font' }),
+	font_size = 12,
+}
+
+if wezterm.target_triple == "aarch64-apple-darwin" then
+	config.initial_rows = 44
+	config.default_prog = { "/usr/local/bin/pwsh" }
+elseif wezterm.target_triple == "x86_64-pc-windows-msvc" then
+	config.initial_rows = 39
+	config.default_prog = { "C:\\Program Files\\WindowsApps\\Microsoft.PowerShell_7.3.3.0_x64__8wekyb3d8bbwe\\pwsh.exe" }
+end
 
 
 return config
