@@ -40,8 +40,8 @@ config.window_decorations = "RESIZE"
 config.initial_cols = 120
 config.initial_rows = 44
 config.window_frame = {
-	font = wezterm.font { family = 'Roboto', weight = 'Regular' },
-	font_size = 16,
+	font = wezterm.font_with_fallback({ { family = 'Roboto', weight = 'Regular'}, 'Symbols Nerd Font' }),
+	font_size = 12,
 }
 
 local bg_color = "#282c34"
@@ -51,7 +51,19 @@ config.font = wezterm.font_with_fallback({
 	"JetBrains Mono",
 	"Symbols Nerd Font Mono",
 })
-config.font_size = 18.0
+config.font_size = 14.0
+
+local get_dir_name = function(path)
+	if path == wezterm.home_dir then
+		return "ﰣ"
+	end
+
+	local dir_name = path:match("^.*/(.*)$")
+	if dir_name == nil then
+		dir_name = path
+	end
+	return dir_name
+end
 
 -- https://github.com/wez/wezterm/issues/522 for renaming tab title
 wezterm.on("format-tab-title", function(tab, _, _, _, _, _)
@@ -59,7 +71,9 @@ wezterm.on("format-tab-title", function(tab, _, _, _, _, _)
 	local user_title = tab.active_pane.user_vars.panetitle
 
 	if user_title ~= nil and #user_title > 0 then
-		pane_title = (tab.tab_index + 1) .. "     " .. user_title
+		pane_title = (tab.tab_index + 1) .. "  " .. user_title
+	else
+		pane_title = (tab.tab_index + 1) .. "  " .. get_dir_name(tab.active_pane.current_working_dir)
 	end
 
 	local bg = wezterm.color.parse(bg_color)
