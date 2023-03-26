@@ -50,8 +50,8 @@ style = "bg:blue fg:white"
 format = "[ ](bg:blue fg:black)[ $symbol ]($style)"
 disabled = false # Disabled by default
 [os.symbols]
-Macos = " "
-Windows = " "
+Macos = ""
+Windows = ""
 
 
 [directory]
