@@ -32,7 +32,7 @@ config.window_padding = {
 	bottom = 0,
 }
 
-local bg_color = "#282c34"
+local bg_color = "#21252b"
 local fg_color = "#dcdfe4"
 
 config.font = wezterm.font_with_fallback({
@@ -81,7 +81,7 @@ wezterm.on("format-tab-title", function(tab, _, _, _, _, _)
 	local fg = wezterm.color.parse(fg_color)
 	if (not tab.is_active) then
 		bg = bg:darken(0.2)
-		fg = fg:darken(0.2)
+		fg = fg:darken(0.5)
 	end
 
 	return {
