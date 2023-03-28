@@ -35,12 +35,6 @@ config.window_padding = {
 local bg_color = "#21252b"
 local fg_color = "#dcdfe4"
 
-config.font = wezterm.font_with_fallback({
-	"JetBrains Mono",
-	"Symbols Nerd Font Mono",
-})
-config.font_size = 14.0
-
 local path_after_scheme = function(path)
 	local p = path:match(":///(.*)")
 	if p == nil then
@@ -99,9 +93,20 @@ config.window_frame = {
 	font_size = 12,
 }
 
+config.font = wezterm.font_with_fallback({
+	"JetBrains Mono",
+	"Symbols Nerd Font Mono",
+})
+config.font_size = 14.0
+
 if wezterm.target_triple == "aarch64-apple-darwin" then
 	config.initial_rows = 44
 	config.default_prog = { "/usr/local/bin/pwsh" }
+	config.font_size = 18.0
+	config.window_frame = {
+		font = wezterm.font_with_fallback({ { family = 'Roboto', weight = 'Regular'}, 'Symbols Nerd Font' }),
+		font_size = 14,
+	}
 elseif wezterm.target_triple == "x86_64-pc-windows-msvc" then
 	config.initial_rows = 39
 	config.default_prog = { "C:\\Program Files\\WindowsApps\\Microsoft.PowerShell_7.3.3.0_x64__8wekyb3d8bbwe\\pwsh.exe" }
