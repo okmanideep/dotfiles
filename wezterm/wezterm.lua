@@ -24,6 +24,7 @@ config.keys = {
 	{ key = "v", mods = "ALT", action = wezterm.action.PasteFrom('Clipboard')},
 	{ key = "r", mods = "CTRL|SHIFT", action = wezterm.action.ReloadConfiguration},
 	{ key = "d", mods = "CTRL|SHIFT", action = wezterm.action.ShowDebugOverlay},
+	{ key = "Enter", mods = "CMD", action = wezterm.action.ToggleFullScreen},
 }
 config.window_padding = {
 	left = 0,
