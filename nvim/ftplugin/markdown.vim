@@ -1,12 +1,12 @@
 highlight htmlItalic cterm=italic gui=italic
 
-setlocal shiftwidth=2
-setlocal tabstop=2
-setlocal expandtab
-
 " Don't Hide and format markdown elements like **bold**
 " See: `syn-conceal`
 setlocal conceallevel=0
+
+setlocal shiftwidth=2
+setlocal tabstop=2
+setlocal expandtab
 
 " Remove color column
 setlocal colorcolumn=0
