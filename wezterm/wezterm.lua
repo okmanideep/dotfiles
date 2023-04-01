@@ -11,20 +11,20 @@ config.color_scheme_dirs = { wezterm.home_dir .. "/Documents/code/personal/dotfi
 config.color_scheme = "okmanideep"
 config.use_fancy_tab_bar = true
 config.keys = {
-	{ key = "t", mods = "CTRL", action = wezterm.action.SpawnCommandInNewTab {} },
-	{ key = "1", mods = "ALT", action = wezterm.action.ActivateTab(0) },
-	{ key = "2", mods = "ALT", action = wezterm.action.ActivateTab(1) },
-	{ key = "3", mods = "ALT", action = wezterm.action.ActivateTab(2) },
-	{ key = "4", mods = "ALT", action = wezterm.action.ActivateTab(3) },
-	{ key = "5", mods = "ALT", action = wezterm.action.ActivateTab(4) },
-	{ key = "6", mods = "ALT", action = wezterm.action.ActivateTab(5) },
-	{ key = "7", mods = "ALT", action = wezterm.action.ActivateTab(6) },
-	{ key = "8", mods = "ALT", action = wezterm.action.ActivateTab(7) },
-	{ key = "9", mods = "ALT", action = wezterm.action.ActivateTab(8) },
-	{ key = "v", mods = "ALT", action = wezterm.action.PasteFrom('Clipboard')},
-	{ key = "r", mods = "CTRL|SHIFT", action = wezterm.action.ReloadConfiguration},
-	{ key = "d", mods = "CTRL|SHIFT", action = wezterm.action.ShowDebugOverlay},
-	{ key = "Enter", mods = "CMD", action = wezterm.action.ToggleFullScreen},
+	{ key = "t",     mods = "CTRL",       action = wezterm.action.SpawnCommandInNewTab {} },
+	{ key = "1",     mods = "ALT",        action = wezterm.action.ActivateTab(0) },
+	{ key = "2",     mods = "ALT",        action = wezterm.action.ActivateTab(1) },
+	{ key = "3",     mods = "ALT",        action = wezterm.action.ActivateTab(2) },
+	{ key = "4",     mods = "ALT",        action = wezterm.action.ActivateTab(3) },
+	{ key = "5",     mods = "ALT",        action = wezterm.action.ActivateTab(4) },
+	{ key = "6",     mods = "ALT",        action = wezterm.action.ActivateTab(5) },
+	{ key = "7",     mods = "ALT",        action = wezterm.action.ActivateTab(6) },
+	{ key = "8",     mods = "ALT",        action = wezterm.action.ActivateTab(7) },
+	{ key = "9",     mods = "ALT",        action = wezterm.action.ActivateTab(8) },
+	{ key = "v",     mods = "ALT",        action = wezterm.action.PasteFrom('Clipboard') },
+	{ key = "r",     mods = "CTRL|SHIFT", action = wezterm.action.ReloadConfiguration },
+	{ key = "d",     mods = "CTRL|SHIFT", action = wezterm.action.ShowDebugOverlay },
+	{ key = "Enter", mods = "CMD",        action = wezterm.action.ToggleFullScreen },
 }
 config.window_padding = {
 	left = 0,
@@ -80,9 +80,9 @@ wezterm.on("format-tab-title", function(tab, _, _, _, _, _)
 	end
 
 	return {
-		{Background={Color=bg}},
-		{Foreground={Color=fg}},
-		{Text=" " .. pane_title .. " "},
+		{ Background = { Color = bg } },
+		{ Foreground = { Color = fg } },
+		{ Text = " " .. pane_title .. " " },
 	}
 end)
 
@@ -90,21 +90,38 @@ config.window_decorations = "RESIZE"
 config.initial_cols = 136
 config.initial_rows = 44
 config.window_frame = {
-	font = wezterm.font_with_fallback({ { family = 'Roboto', weight = 'Regular'}, 'Symbols Nerd Font' }),
+	font = wezterm.font_with_fallback({ { family = 'Roboto', weight = 'Regular' }, 'Symbols Nerd Font' }),
 	font_size = 12,
 }
 
 config.font = wezterm.font_with_fallback({
 	"IBM Plex Mono Text",
+	"IBM Plex Mono Medm",
 	"Symbols Nerd Font Mono",
 })
+config.font_rules = {
+	{
+		intensity = "Normal",
+		italic = false,
+		font = wezterm.font("IBM Plex Mono Text"),
+	},
+	{
+		intensity = "Normal",
+		italic = true,
+		font = wezterm.font("IBM Plex Mono Text", { style = "Italic" }),
+	},
+	{
+		intensity = "Bold",
+		font = wezterm.font("IBM Plex Mono", { weight = "Bold" }),
+	},
+}
 config.font_size = 12.0
 
 if wezterm.target_triple == "aarch64-apple-darwin" then
 	config.default_prog = { "/usr/local/bin/pwsh" }
 	config.font_size = 18.0
 	config.window_frame = {
-		font = wezterm.font_with_fallback({ { family = 'Roboto', weight = 'Regular'}, 'Symbols Nerd Font' }),
+		font = wezterm.font_with_fallback({ { family = 'Roboto', weight = 'Regular' }, 'Symbols Nerd Font' }),
 		font_size = 14,
 	}
 elseif wezterm.target_triple == "x86_64-pc-windows-msvc" then
