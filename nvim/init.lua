@@ -25,16 +25,16 @@ vim.o.autowriteall = true
 vim.o.termguicolors = true
 vim.go.showmode = false
 
-local autosave_group = vim.api.nvim_create_augroup('AutoSave', { clear = true})
-vim.api.nvim_create_autocmd({'FocusLost', 'BufLeave'}, {
-	callback = function ()
+local autosave_group = vim.api.nvim_create_augroup('AutoSave', { clear = true })
+vim.api.nvim_create_autocmd({ 'FocusLost', 'BufLeave' }, {
+	callback = function()
 		vim.cmd [[ :wa ]]
 	end,
 	pattern = "*",
 	group = autosave_group,
 })
 
--- PLUGINS! by lazy.nvim 
+-- PLUGINS! by lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -51,5 +51,11 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup('plugins')
 
 vim.cmd [[colorscheme onedark]]
+vim.cmd [[
+highlight @keyword cterm=italic gui=italic
+highlight @keyword.function cterm=italic gui=italic
+highlight @include cterm=italic gui=italic
+highlight link @type.qualifier @keyword
+]]
 
 require('okmanideep')

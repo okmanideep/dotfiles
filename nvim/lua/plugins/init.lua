@@ -18,6 +18,7 @@ return {
 	'junegunn/vim-easy-align',
 	'tpope/vim-surround', -- Add () with csaw(
 	'gpanders/editorconfig.nvim', -- Won't be required after NVIM 0.9
+	'nvim-treesitter/playground', -- Treesitter playground :TSHighlightCapturesUnderCursor
 
 	{
 		'lewis6991/gitsigns.nvim',

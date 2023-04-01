@@ -87,7 +87,7 @@ wezterm.on("format-tab-title", function(tab, _, _, _, _, _)
 end)
 
 config.window_decorations = "RESIZE"
-config.initial_cols = 120
+config.initial_cols = 136
 config.initial_rows = 44
 config.window_frame = {
 	font = wezterm.font_with_fallback({ { family = 'Roboto', weight = 'Regular'}, 'Symbols Nerd Font' }),
@@ -95,13 +95,12 @@ config.window_frame = {
 }
 
 config.font = wezterm.font_with_fallback({
-	"JetBrains Mono",
+	"IBM Plex Mono Text",
 	"Symbols Nerd Font Mono",
 })
-config.font_size = 14.0
+config.font_size = 12.0
 
 if wezterm.target_triple == "aarch64-apple-darwin" then
-	config.initial_rows = 44
 	config.default_prog = { "/usr/local/bin/pwsh" }
 	config.font_size = 18.0
 	config.window_frame = {
@@ -109,7 +108,6 @@ if wezterm.target_triple == "aarch64-apple-darwin" then
 		font_size = 14,
 	}
 elseif wezterm.target_triple == "x86_64-pc-windows-msvc" then
-	config.initial_rows = 39
 	config.default_prog = { "C:\\Program Files\\WindowsApps\\Microsoft.PowerShell_7.3.3.0_x64__8wekyb3d8bbwe\\pwsh.exe" }
 end
 
