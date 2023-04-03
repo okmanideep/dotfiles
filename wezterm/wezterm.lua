@@ -37,7 +37,7 @@ local bg_color = "#21252b"
 local fg_color = "#dcdfe4"
 
 local path_after_scheme = function(path)
-	local p = path:match(":///(.*)")
+	local p = path:match("://(.*)")
 	if p == nil then
 		p = path
 	end
