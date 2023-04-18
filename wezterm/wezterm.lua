@@ -125,7 +125,8 @@ if wezterm.target_triple == "aarch64-apple-darwin" then
 		font_size = 14,
 	}
 elseif wezterm.target_triple == "x86_64-pc-windows-msvc" then
-	config.default_prog = { "C:\\Program Files\\WindowsApps\\Microsoft.PowerShell_7.3.3.0_x64__8wekyb3d8bbwe\\pwsh.exe" }
+	config.default_prog = {
+		"C:\\Users\\okman\\AppData\\Local\\Microsoft\\WindowsApps\\Microsoft.PowerShell_8wekyb3d8bbwe\\pwsh.exe" }
 end
 
 
