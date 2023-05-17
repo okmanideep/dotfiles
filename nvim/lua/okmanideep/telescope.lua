@@ -11,21 +11,26 @@ table.insert(vimgrep_arguments, "--glob")
 table.insert(vimgrep_arguments, "!**/.git/*")
 -- telescope
 telescope.setup {
-    defaults = {
-        layout_strategy = 'flex',
-        sorting_strategy = 'ascending',
-        layout_config = {
-            prompt_position = "top",
-        },
-        use_less = true,
+	defaults = {
+		layout_strategy = 'flex',
+		sorting_strategy = 'ascending',
+		layout_config = {
+			prompt_position = "top",
+		},
+		use_less = true,
 		vimgrep_arguments = vimgrep_arguments,
-    },
-    pickers = {
-        find_files = {
-            hidden = true,
-        }
-    },
+	},
+	pickers = {
+		find_files = {
+			hidden = true,
+		}
+	},
+	extensions = {
+		["ui-select"] = require('telescope.themes').get_dropdown {}
+	}
 }
+
+telescope.load_extension("ui-select")
 
 vim.keymap.set("n", "<leader>o", "<cmd>Telescope find_files<cr>")
 vim.keymap.set("n", "<leader>h", "<cmd>Telescope help_tags<cr>")
