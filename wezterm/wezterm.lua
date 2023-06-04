@@ -7,6 +7,8 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
+-- ❤️👉🙏
+config.unicode_version = 14
 config.color_scheme_dirs = { wezterm.home_dir .. "/Documents/code/personal/dotfiles/wezterm" }
 config.color_scheme = "okmanideep"
 config.use_fancy_tab_bar = true
@@ -98,21 +100,22 @@ config.font = wezterm.font_with_fallback({
 	"IBM Plex Mono Text",
 	"IBM Plex Mono Medm",
 	"Symbols Nerd Font Mono",
+	"Noto Sans Telugu",
 })
 config.font_rules = {
 	{
 		intensity = "Normal",
 		italic = false,
-		font = wezterm.font("IBM Plex Mono Text"),
+		font = wezterm.font_with_fallback({ "IBM Plex Mono Text", "Noto Sans Telugu" }),
 	},
 	{
 		intensity = "Normal",
 		italic = true,
-		font = wezterm.font("IBM Plex Mono Text", { style = "Italic" }),
+		font = wezterm.font_with_fallback({ { family = "IBM Plex Mono Text", style = "Italic" }, "Noto Sans Telugu" }),
 	},
 	{
 		intensity = "Bold",
-		font = wezterm.font("IBM Plex Mono", { weight = "Bold" }),
+		font = wezterm.font_with_fallback({ { family = "IBM Plex Mono", weight = "Bold" }, "Noto Sans Telugu" }),
 	},
 }
 config.font_size = 12.0
