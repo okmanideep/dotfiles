@@ -24,6 +24,6 @@ require('formatter').setup {
 vim.cmd [[
 	augroup FormatAutogroup
 	  autocmd!
-	  autocmd BufWritePre *.dart Format
+	  autocmd BufWritePre *.dart,*.lua Format
 	augroup END
 ]]
