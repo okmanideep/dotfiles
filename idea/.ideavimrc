@@ -35,5 +35,4 @@ nnoremap <leader>o :action GotoFile<CR>
 nnoremap <leader>/ :action RecentFiles<CR>
 nnoremap <C-w><C-o> :action UnsplitAll<CR>
 
-set NERDTree
-nnoremap - :NERDTreeToggle<CR>
+nnoremap - :action OpenProjectGroup<CR>
