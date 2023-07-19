@@ -59,6 +59,12 @@ function rmd($path) {
   Remove-Item -Path $path -Force -Recurse
 }
 
+# wezterm tab title
 function tt($title) {
-  write-output "$([char]27)]1337;SetUserVar=panetitle=$([Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($title)))$([char]7)"
+  wezterm cli set-tab-title $title
+}
+
+function lg {
+  tt("LazyGit")
+  lazygit
 }

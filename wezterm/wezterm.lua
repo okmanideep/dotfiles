@@ -65,13 +65,13 @@ end
 
 -- https://github.com/wez/wezterm/issues/522 for renaming tab title
 wezterm.on("format-tab-title", function(tab, _, _, _, _, _)
-	local pane_title = tab.active_pane.title
-	local user_title = tab.active_pane.user_vars.panetitle
+	local tab_title = tab.tab_title
+	local formatted
 
-	if user_title ~= nil and #user_title > 0 then
-		pane_title = (tab.tab_index + 1) .. "  " .. user_title
+	if tab_title ~= nil and #tab_title > 0 then
+		formatted = (tab.tab_index + 1) .. "  " .. tab_title
 	else
-		pane_title = (tab.tab_index + 1) .. "  " .. get_dir_name(tab.active_pane.current_working_dir)
+		formatted = (tab.tab_index + 1) .. "  " .. get_dir_name(tab.active_pane.current_working_dir)
 	end
 
 	local bg = wezterm.color.parse(bg_color)
@@ -84,7 +84,7 @@ wezterm.on("format-tab-title", function(tab, _, _, _, _, _)
 	return {
 		{ Background = { Color = bg } },
 		{ Foreground = { Color = fg } },
-		{ Text = " " .. pane_title .. " " },
+		{ Text = " " .. formatted .. " " },
 	}
 end)
 
