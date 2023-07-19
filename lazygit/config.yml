@@ -1,0 +1,5 @@
+os:
+  editPreset: 'nvim'
+gui:
+  nerdFontsVersion: "2"
+  showIcons: true
