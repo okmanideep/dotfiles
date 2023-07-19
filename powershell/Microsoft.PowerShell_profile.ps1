@@ -61,7 +61,11 @@ function rmd($path) {
 
 # wezterm tab title
 function tt($title) {
-  wezterm cli set-tab-title $title
+  $t = ''
+  if ($title) {
+	$t = $title
+  }
+  wezterm cli set-tab-title $t
 }
 
 function lg {
