@@ -3,3 +3,4 @@ os:
 gui:
   nerdFontsVersion: "2"
   showIcons: true
+promptToReturnFromSubprocess: false
