@@ -13,7 +13,7 @@ vim.o.colorcolumn = 80
 vim.wo.signcolumn = 'yes'
 vim.o.hlsearch = false -- don't highlight search results after searching
 vim.o.incsearch = true -- highlight search results while typing
-vim.o.magic = true -- \d = number in cmd line regex etc
+vim.o.magic = true     -- \d = number in cmd line regex etc
 vim.o.listchars = 'tab:| ,trail:·'
 vim.o.list = true
 vim.o.title = true
@@ -28,7 +28,7 @@ vim.go.showmode = false
 local autosave_group = vim.api.nvim_create_augroup('AutoSave', { clear = true })
 vim.api.nvim_create_autocmd({ 'FocusLost', 'BufLeave' }, {
 	callback = function()
-		vim.cmd [[ :wa ]]
+		vim.cmd [[ :wa! ]]
 	end,
 	pattern = "*",
 	group = autosave_group,

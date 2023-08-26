@@ -129,7 +129,7 @@ if wezterm.target_triple == "aarch64-apple-darwin" then
 	}
 elseif wezterm.target_triple == "x86_64-pc-windows-msvc" then
 	config.default_prog = {
-		"C:\\Users\\okman\\AppData\\Local\\Microsoft\\WindowsApps\\Microsoft.PowerShell_8wekyb3d8bbwe\\pwsh.exe" }
+		"nu" }
 end
 
 
