@@ -283,6 +283,27 @@ export extern "git branch" [
   --track(-t)                                                    # when creating a branch, set upstream
 ]
 
+export extern "git merge" [
+  branch?: string@"nu-complete git local branches" # name of branch to merge into current branch
+  --abort                                          # abort the merge and reset HEAD to the original branch
+  --continue                                       # continue the merge after resolving conflicts
+  --commit                                         # perform the merge and commit the result
+  -m: string                                       # use the given commit message
+  --no-commit                                      # perform the merge but do not commit
+  --edit(-e)                                       # edit commit message before committing
+  --no-edit                                        # do not edit commit message before committing
+  --cleanup: string                                # how merge message will be cleaned up before committing
+  --ff                                             # fast-forward if possible
+  --ff-only                                        # abort if fast-forward is not possible
+  --no-ff                                          # create a merge commit even if fast-forward is possible
+  --log                                            # add list of merged commits to commit message
+  --no-log                                         # do not add list of merged commits to commit message
+  --squash                                         # create a single commit instead of performing a merge
+  --strategy: string                               # merge strategy to use
+  --strategy-option: string                        # option to pass to merge strategy
+  --verify-signatures(-S)                          # verify that the named commit has a valid GPG signature
+]
+
 # List or change tracked repositories
 export extern "git remote" [
   --verbose(-v)                            # Show URL for remotes
