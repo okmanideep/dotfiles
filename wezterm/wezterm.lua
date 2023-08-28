@@ -97,11 +97,11 @@ config.window_frame = {
 }
 
 config.font = wezterm.font_with_fallback({
-	"IBM Plex Mono Text",
-	"IBM Plex Mono Medm",
-	"Symbols Nerd Font Mono",
-	"Noto Sans Telugu",
-})
+		"IBM Plex Mono Text",
+		"IBM Plex Mono Medm",
+		"Symbols Nerd Font Mono",
+		"Noto Sans Telugu",
+	})
 config.font_rules = {
 	{
 		intensity = "Normal",
@@ -121,7 +121,7 @@ config.font_rules = {
 config.font_size = 12.0
 
 if wezterm.target_triple == "aarch64-apple-darwin" then
-	config.default_prog = { "/usr/local/bin/pwsh" }
+	config.default_prog = { "/opt/homebrew/bin/nu" }
 	config.font_size = 18.0
 	config.window_frame = {
 		font = wezterm.font_with_fallback({ { family = 'Roboto', weight = 'Regular' }, 'Symbols Nerd Font' }),
