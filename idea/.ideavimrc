@@ -34,5 +34,8 @@ nnoremap <leader>rn :action RenameElement<CR>
 nnoremap <leader>o :action GotoFile<CR>
 nnoremap <leader>/ :action RecentFiles<CR>
 nnoremap <C-w><C-o> :action UnsplitAll<CR>
+nnoremap <leader>ca :action ShowIntentionActions<CR>
+nnoremap <C-o> :action Back<CR>
+nnoremap <C-i> :action Forward<CR>
 
 nnoremap - :action OpenProjectGroup<CR>
