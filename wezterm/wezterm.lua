@@ -56,6 +56,9 @@ local get_dir_name = function(path)
 		return "ﴤ"
 	end
 
+	-- remove trailing slash
+	path = path:gsub("/$", "")
+
 	local dir_name = path:match("^.*/(.*)$")
 	if dir_name == nil then
 		dir_name = path
@@ -97,11 +100,11 @@ config.window_frame = {
 }
 
 config.font = wezterm.font_with_fallback({
-		"IBM Plex Mono Text",
-		"IBM Plex Mono Medm",
-		"Symbols Nerd Font Mono",
-		"Noto Sans Telugu",
-	})
+	"IBM Plex Mono Text",
+	"IBM Plex Mono Medm",
+	"Symbols Nerd Font Mono",
+	"Noto Sans Telugu",
+})
 config.font_rules = {
 	{
 		intensity = "Normal",
