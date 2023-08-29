@@ -10,6 +10,3 @@ export alias gd = git diff
 
 # Neovim
 export alias vim = nvim
-
-# Fvm Flutter
-export alias flutter = fvm flutter
