@@ -7,6 +7,7 @@ export alias gst = git status
 export alias gc = git commit --verbose
 export alias gca = git commit --all --verbose
 export alias gd = git diff
+export alias gf = git fetch
 
 # Neovim
 export alias vim = nvim
