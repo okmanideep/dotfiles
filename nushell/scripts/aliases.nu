@@ -11,3 +11,6 @@ export alias gf = git fetch
 
 # Neovim
 export alias vim = nvim
+
+# Lazygit
+export alias lg = lazygit
