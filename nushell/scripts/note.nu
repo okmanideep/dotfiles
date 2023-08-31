@@ -7,7 +7,11 @@ def os_home [] {
 }
 
 def notes_dir [] {
-	(os_home) | path join 'Dropbox' 'notes'
+	if ('NOTES_DIR' in $env) {
+		$env.NOTES_DIR
+	} else {
+		(os_home) | path join 'Dropbox' 'notes'
+	}
 }
 
 def notes [] {
