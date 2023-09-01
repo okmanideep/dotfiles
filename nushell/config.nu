@@ -780,3 +780,4 @@ source git-completions.nu
 source folder-bookmarks.nu
 source note.nu
 source wezterm-tab-title.nu
+source repo.nu
