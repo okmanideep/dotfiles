@@ -91,7 +91,7 @@ wezterm.on("format-tab-title", function(tab, _, _, _, _, _)
 	}
 end)
 
-config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
+config.window_decorations = "RESIZE"
 config.initial_cols = 136
 config.initial_rows = 44
 config.window_frame = {
