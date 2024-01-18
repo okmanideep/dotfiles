@@ -17,6 +17,9 @@ require('formatter').setup {
 	filetypes = {
 		dart = {
 			dartformat
+		},
+		typescript = {
+			require('formatter.filetypes.typescript').prettier,
 		}
 	}
 }
@@ -24,6 +27,6 @@ require('formatter').setup {
 vim.cmd [[
 	augroup FormatAutogroup
 	  autocmd!
-	  autocmd BufWritePre *.dart,*.lua Format
+	  autocmd BufWritePre *.dart,*.lua,*.ts Format
 	augroup END
 ]]
