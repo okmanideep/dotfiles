@@ -51,7 +51,8 @@ local path_in_unix_format = function(path)
 	return p
 end
 
-local get_dir_name = function(path)
+local get_dir_name = function(url)
+	local path = url.path
 	if path_after_scheme(path) == path_in_unix_format(wezterm.home_dir) then
 		return "ﴤ"
 	end
