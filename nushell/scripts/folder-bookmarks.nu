@@ -103,7 +103,7 @@ def marks [] {
 }
 
 # Goto your bookmark
-export def-env f [
+export def --env f [
   name: string@marks # Name of Path to "go to"
   ] {
   let prev = $env.PWD

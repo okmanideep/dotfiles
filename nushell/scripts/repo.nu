@@ -6,7 +6,7 @@ def repo_list [] {
 	ls personal | append (ls praja) | get name
 }
 
-export def-env repo [pth: string@repo_list] {
+export def --env repo [pth: string@repo_list] {
 	cd (if ($nu.os-info.name == windows ) {
 		($env.USERPROFILE)
 	} else {
