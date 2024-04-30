@@ -18,7 +18,7 @@ def notes [] {
 	notes_dir | ls $in | get name | path basename
 }
 
-export def-env note [
+export def note [
 	name: string@notes
 ] {
 	let pth = notes_dir
