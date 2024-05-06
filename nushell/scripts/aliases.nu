@@ -16,8 +16,5 @@ export alias vim = nvim
 # Lazygit
 export alias lg = lazygit
 
-# fvm flutter alias
-export alias flutter = .fvm/flutter_sdk/bin/flutter
-
 # pipenv python
 export alias python = pipenv run python
