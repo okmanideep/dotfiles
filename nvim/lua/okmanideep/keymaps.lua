@@ -29,8 +29,6 @@ vim.keymap.set('v', ';', ':')
 -- alternative to ';' since 👆
 vim.keymap.set('n', '\\', ';')
 
--- open netrw using -
-vim.keymap.set('n', '-', ':Ex<CR>', { silent = true})
 vim.g['netrw_banner'] = 0
 vim.g['netrw_winsize'] = 25
 vim.g['netrw_sort_by'] = 'time'
@@ -48,8 +46,8 @@ vim.keymap.set('n', '<leader>rl', ':w<CR>:e!<CR>', { silent = true, desc = "relo
 -- Git Blame
 vim.keymap.set('n', 'gb', ':Gitsigns blame_line<CR>', { desc = '[G]it [B]lame' })
 
-local switch_to_terminal = function ()
-	local buffers = vim.fn.getbufinfo({loaded = 1})
+local switch_to_terminal = function()
+	local buffers = vim.fn.getbufinfo({ loaded = 1 })
 	for _, buffer in ipairs(buffers) do
 		if vim.api.nvim_buf_get_option(buffer.bufnr, 'buftype') == 'terminal' then
 			vim.cmd('buffer ' .. buffer.bufnr)
