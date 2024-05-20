@@ -28,6 +28,10 @@ vim.go.showmode = false
 local autosave_group = vim.api.nvim_create_augroup('AutoSave', { clear = true })
 vim.api.nvim_create_autocmd({ 'FocusLost', 'BufLeave' }, {
 	callback = function()
+		if vim.bo.filetype == 'oil' or vim.bo.filetype == 'oil_preview' then
+			return
+		end
+
 		vim.cmd [[ :wa! ]]
 	end,
 	pattern = "*",
