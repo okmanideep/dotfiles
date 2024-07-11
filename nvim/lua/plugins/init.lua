@@ -27,8 +27,9 @@ return {
 		config = function()
 			require('trouble').setup()
 
-			vim.keymap.set('n', '<leader>x', '<cmd>TroubleToggle<cr>', { desc = 'LSP: Toggle Diagnostics' })
-			vim.keymap.set('n', 'gx', '<cmd>TroubleToggle document_diagnostics<cr>', { desc = 'LSP: Toggle Diagnostics' })
+			vim.keymap.set('n', '<leader>x', '<cmd>Trouble diagnostics toggle<cr>', { desc = 'LSP: Toggle Diagnostics' })
+			vim.keymap.set('n', 'gx', '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
+				{ desc = 'LSP: Toggle Diagnostics' })
 		end
 	},
 
