@@ -1,0 +1,17 @@
+[
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      "space o": "file_finder::Toggle",
+      ";": "command_palette::Toggle",
+      "space p": "vim::Paste"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
+    "bindings": {
+      "space y": ["editor::Copy", "vim::SwitchMode", "Normal"],
+      "space p": "vim::Paste"
+    }
+  }
+]
