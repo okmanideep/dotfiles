@@ -20,6 +20,9 @@ require('formatter').setup {
 		},
 		typescript = {
 			require('formatter.filetypes.typescript').prettier,
+		},
+		json = {
+			require('formatter.filetypes.json').jq
 		}
 	}
 }
