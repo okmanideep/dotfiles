@@ -7,7 +7,6 @@ vim.o.smartindent = true
 vim.o.fileformats = 'unix,dos'
 vim.o.hidden = true --Moving out of the file hides it and doesn't close
 vim.o.number = true
-vim.o.relativenumber = true
 vim.o.wrap = false
 vim.o.colorcolumn = '+1'
 vim.wo.signcolumn = 'yes'
