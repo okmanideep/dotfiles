@@ -1,6 +1,7 @@
 require 'okmanideep.telescope'
 require 'okmanideep.formatter'
 require 'okmanideep.cmp'
+require 'okmanideep.copilot'
 require 'okmanideep.lspconfig'
 require 'okmanideep.treesitter'
 require 'okmanideep.luasnip'
