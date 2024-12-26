@@ -14,7 +14,7 @@ local dartformat = function(t)
 end
 
 require('formatter').setup {
-	filetypes = {
+	filetype = {
 		dart = {
 			dartformat
 		},
@@ -22,7 +22,7 @@ require('formatter').setup {
 			require('formatter.filetypes.typescript').prettier,
 		},
 		json = {
-			require('formatter.filetypes.json').jq
+			require('formatter.filetypes.json').jq,
 		}
 	}
 }
@@ -30,6 +30,6 @@ require('formatter').setup {
 vim.cmd [[
 	augroup FormatAutogroup
 	  autocmd!
-	  autocmd BufWritePre *.dart,*.lua,*.ts Format
+	  autocmd BufWritePost *.dart,*.lua,*.ts Format
 	augroup END
 ]]
