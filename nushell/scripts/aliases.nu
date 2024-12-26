@@ -18,3 +18,6 @@ export alias lg = lazygit
 
 # pipenv python
 export alias python = pipenv run python
+
+# Github Copilot in CLI
+export alias ai = gh copilot explain
