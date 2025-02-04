@@ -804,3 +804,4 @@ source note.nu
 source wezterm-tab-title.nu
 source repo.nu
 source rbenv.nu
+source ding.nu
