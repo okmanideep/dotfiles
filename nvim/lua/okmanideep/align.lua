@@ -43,7 +43,7 @@ vim.keymap.set('x', 'ga', '<Plug>(EasyAlign)', { desc = "Align", noremap = false
 local align_group = vim.api.nvim_create_augroup('AlignMDTable', { clear = true })
 vim.api.nvim_create_autocmd('FileType', {
 	callback = function()
-		vim.keymap.set('i', '<Bar>', on_bar_inserted, { desc = "Align Tables", silent = true })
+		vim.keymap.set('i', '<Bar>', on_bar_inserted, { desc = "Align Tables", silent = true, buffer = true })
 	end,
 	group = align_group,
 	pattern = "markdown",
