@@ -59,3 +59,9 @@ local switch_to_terminal = function()
 end
 
 vim.keymap.set('n', '<leader>t', switch_to_terminal, { silent = true, desc = "switch to terminal" })
+
+-- make Option+Shift+4 output rupee symbol only if mac
+local is_mac = vim.fn.has("macunix") == 1 or vim.fn.has("mac") == 1
+if is_mac then
+	vim.keymap.set('i', '<M-$>', '₹', { noremap = true })
+end
