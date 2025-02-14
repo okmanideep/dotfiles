@@ -1,0 +1,49 @@
+Metrics/PerceivedComplexity:
+  Max: 20
+
+Metrics/MethodLength:
+  Max: 100
+
+Metrics/CyclomaticComplexity:
+  Max: 20
+
+Metrics/AbcSize:
+  Max: 30
+
+Layout/EndOfLine:
+  EnforcedStyle: lf
+
+Style/HashSyntax:
+  EnforcedShorthandSyntax: consistent
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+Metrics/ParameterLists:
+  Max: 10
+
+Metrics/ModuleLength:
+  Max: 500
+Metrics/BlockLength:
+  Max: 200
+
+Style/Documentation:
+  Enabled: false
+
+Style/GlobalVars:
+  Enabled: false
+
+Style/NumericLiterals:
+  Enabled: false
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: consistent_comma # Requires a trailing comma if the last argument is on a new line.
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: consistent_comma # Requires a trailing comma if the last argument is on a new line.
+
+Style/GuardClause:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
