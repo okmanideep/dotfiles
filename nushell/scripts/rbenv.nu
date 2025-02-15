@@ -1,3 +1,10 @@
+# Determine the home directory based on the operating system
+if $env.OS == 'Windows_NT' {
+    $env.HOME = $env.USERPROFILE
+} else {
+    $env.HOME = $env.HOME  # On Unix-like systems, HOME is usually already set
+}
+
 # rbenv
 export-env {
     load-env {
