@@ -21,18 +21,13 @@ telescope.setup {
 		use_less = true,
 		vimgrep_arguments = vimgrep_arguments,
 	},
-	pickers = {
-		find_files = {
-			-- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
-			find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
-		}
-	},
 	extensions = {
 		["ui-select"] = require('telescope.themes').get_dropdown {}
 	}
 }
 
 telescope.load_extension("ui-select")
+telescope.load_extension("zf-native")
 
 vim.keymap.set("n", "<leader>o", "<cmd>Telescope find_files<cr>")
 vim.keymap.set("n", "<leader>h", "<cmd>Telescope help_tags<cr>")
