@@ -18,10 +18,10 @@ local settings = {
 		dartformat
 	},
 	typescript = {
-		require('formatter.filetypes.typescript').prettier,
+		require('formatter.filetypes.typescript').prettier
 	},
 	json = {
-		require('formatter.filetypes.json').jq,
+		require('formatter.filetypes.json').jq
 	},
 }
 
@@ -29,16 +29,26 @@ require('formatter').setup {
 	filetype = settings
 }
 
-local format = function()
+local format = function(write)
+	write = write or false
 	if settings[vim.bo.filetype] ~= nil then
-		vim.cmd([[Format]])
+		if write then
+			vim.cmd([[FormatWrite]])
+		else
+			vim.cmd([[Format]])
+		end
 	else
 		vim.lsp.buf.format()
+		if write then
+			vim.cmd([[write]])
+		end
 	end
 end
 
-vim.api.nvim_create_autocmd("BufWritePost", {
-	pattern = { "*.*" },
-	callback = format,
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = { "*.dart", "*.go", "*.webc" },
+	callback = function() format(true) end,
 	group = vim.api.nvim_create_augroup("FormatOnSave", { clear = true })
 })
+
+vim.keymap.set('n', '<leader>f', format, { noremap = true, silent = true })
