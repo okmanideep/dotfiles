@@ -15,9 +15,6 @@ setlocal colorcolumn=0
 setlocal nonu
 setlocal nornu
 
-" Turn on spell check
-setlocal spell
-
 " Turn off showing traling space etc
 setlocal nolist
 
@@ -43,7 +40,6 @@ let b:undo_ftplugin .= "| setlocal expandtab<"
 let b:undo_ftplugin .= "| setlocal colorcolumn<"
 let b:undo_ftplugin .= "| setlocal nonu<"
 let b:undo_ftplugin .= "| setlocal nornu<"
-let b:undo_ftplugin .= "| setlocal spell<"
 let b:undo_ftplugin .= "| setlocal nolist<"
 let b:undo_ftplugin .= "| setlocal wrap<"
 let b:undo_ftplugin .= "| nunmap <buffer> j"
