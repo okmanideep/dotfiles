@@ -1,6 +1,7 @@
 local configs = require 'nvim-treesitter.configs'
 
 configs.setup {
+	auto_install = false,
 	ensure_installed = {
 		"bash",
 		"c",
@@ -54,6 +55,7 @@ configs.setup {
 		"vimdoc",
 		"vue",
 		"yaml",
+		"zig",
 	},
 	sync_install = false,
 	ignore_install = {}, -- List of parsers to ignore installing
