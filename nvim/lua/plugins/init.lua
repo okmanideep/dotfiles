@@ -32,6 +32,4 @@ return {
 				{ desc = 'LSP: Toggle Diagnostics' })
 		end
 	},
-
-	'github/copilot.vim'
 }
