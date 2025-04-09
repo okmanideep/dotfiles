@@ -45,10 +45,20 @@ local format = function(write)
 	end
 end
 
+local format_group = vim.api.nvim_create_augroup("FormatOnSave", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = { "*.dart", "*.go", "*.webc" },
-	callback = function() format(true) end,
-	group = vim.api.nvim_create_augroup("FormatOnSave", { clear = true })
+	callback = function(args)
+		local buftype = vim.api.nvim_get_option_value("buftype", { buf = args.buf })
+		if buftype ~= "" then return end -- skip non-normal buffers
+
+		-- optionally skip specific filetypes like 'oil'
+		local ft = vim.api.nvim_get_option_value("filetype", { buf = args.buf })
+		if ft == "oil" then return end
+
+		format(true)
+	end,
+	group = format_group,
 })
 
-vim.keymap.set('n', '<leader>f', format, { noremap = true, silent = true })
+vim.keymap.set('n', 'gf', format, { noremap = true, silent = true, desc = "[F]ormat File" })

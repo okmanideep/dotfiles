@@ -12,7 +12,6 @@ return {
 		opts = { scope = { enabled = false } },
 	},
 
-	'junegunn/vim-easy-align',
 	'tpope/vim-surround',      -- Add () with csaw(
 	'nvim-treesitter/playground', -- Treesitter playground :TSHighlightCapturesUnderCursor
 
@@ -24,12 +23,12 @@ return {
 	},
 	{
 		'folke/trouble.nvim',
+		keys = {
+			{ '<leader>x', '<cmd>Trouble diagnostics toggle<cr>',              desc = 'LSP: Toggle Diagnostics' },
+			{ 'gx',        '<cmd>Trouble diagnostics toggle filter.buf=0<cr>', desc = 'LSP: Toggle Buffer Diagnostics' },
+		},
 		config = function()
 			require('trouble').setup()
-
-			vim.keymap.set('n', '<leader>x', '<cmd>Trouble diagnostics toggle<cr>', { desc = 'LSP: Toggle Diagnostics' })
-			vim.keymap.set('n', 'gx', '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
-				{ desc = 'LSP: Toggle Diagnostics' })
-		end
-	},
+		end,
+	}
 }

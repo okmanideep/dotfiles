@@ -1,6 +1,7 @@
 return {
 	"rcarriga/nvim-dap-ui",
 	dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+	ft = 'zig',
 	config = function()
 		local dap, dapui = require("dap"), require("dapui")
 		-- nvim dap mappings
