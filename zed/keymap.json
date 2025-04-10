@@ -10,8 +10,8 @@
   {
     "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
     "bindings": {
-      "space y": ["editor::Copy", "vim::SwitchMode", "Normal"],
-      "space p": ["editor::Backspace", "editor::Delete", "editor::Paste", "vim::SwitchMode", "Normal"]
+      "space y": "editor::Copy",
+      "space p": "editor::Paste"
     }
   }
 ]
