@@ -6,9 +6,9 @@ def gpt [query?: string] {
     }
 
     let api_key = $env.OPEN_AI_API_KEY
-    let model = "gpt-4o-mini"
+    let model = "gpt-4.1-mini"
     let body = { "model": $model, "messages": [
-        { "role": "developer", "content": "You are helpful assistant. Be as brief as possible. Simple text output suitable for a terminal" },
+        { "role": "developer", "content": "You are helpful assistant. The user is trying to get something done in his terminal. Be as brief as possible. Provide markdown output with fenced code blocks for syntax highlighting." },
         { "role": "user", "content": $q },
     ] } | to json
     http post https://api.openai.com/v1/chat/completions --headers [
