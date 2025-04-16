@@ -785,6 +785,16 @@ $env.config = {
             mode: emacs
             event: {edit: capitalizechar}
         }
+        {
+            name: reload_config
+            modifier: control
+            keycode: char_s
+            mode: [emacs vi_normal vi_insert]
+            event: {
+              send: executehostcommand,
+              cmd: $"clear;source '($nu.env-path)';source '($nu.config-path)';print '🔁 nu reloaded.\n'"
+            }
+        }
     ]
 }
 
