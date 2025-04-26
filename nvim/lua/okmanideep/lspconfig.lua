@@ -1,7 +1,13 @@
+local methods = vim.lsp.protocol.Methods
+
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'LSP: ([)Prev [D]iagnostic' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'LSP: (])Next [D]iagnostic' })
+vim.keymap.set('n', '[d', function() vim.diagnostic.jump { count = -1 } end, { desc = 'LSP: ([)Prev [D]iagnostic' })
+vim.keymap.set('n', ']d', function() vim.diagnostic.jump { count = 1 } end, { desc = 'LSP: (])Next [D]iagnostic' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'LSP: [E]ntire Diagnostic in float' })
+
+vim.diagnostic.config({
+	virtual_lines = { current_line = true },
+})
 
 local on_attach = function(client, bufnr)
 	if client.name == "yamlls" then
@@ -42,6 +48,13 @@ local on_attach = function(client, bufnr)
 	vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
 		vim.lsp.buf.format()
 	end, { desc = 'Format current buffer with LSP' })
+
+	if client:supports_method(methods.textDocument_inlayHint) then
+		vim.defer_fn(function()
+			local mode = vim.api.nvim_get_mode().mode
+			vim.lsp.inlay_hint.enable(mode == 'n' or mode == 'v', { bufnr = bufnr })
+		end, 500)
+	end
 end
 
 -- Enable the following language servers
