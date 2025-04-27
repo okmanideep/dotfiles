@@ -6,6 +6,9 @@ return {
 		version = '1.*',
 		event = { "InsertEnter", "CmdlineEnter" },
 		opts = {
+			enabled = function ()
+				return vim.bo.filetype ~= "markdown"
+			end,
 			keymap = {
 				['<CR>'] = { 'accept', 'fallback' },
 				['<C-\\>'] = { 'hide', 'fallback' },
