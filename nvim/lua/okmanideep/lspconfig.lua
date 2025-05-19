@@ -30,13 +30,6 @@ local on_attach = function(client, bufnr)
 
 	-- Lesser used LSP functionality
 	nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-
-	if client:supports_method(methods.textDocument_inlayHint) then
-		vim.defer_fn(function()
-			local mode = vim.api.nvim_get_mode().mode
-			vim.lsp.inlay_hint.enable(mode == 'n' or mode == 'v', { bufnr = bufnr })
-		end, 500)
-	end
 end
 
 local servers = { 'pyright', 'gopls', 'ts_ls', 'lua_ls', 'solargraph', 'powershell_es' }
