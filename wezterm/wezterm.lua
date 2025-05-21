@@ -19,6 +19,7 @@ config.keys = {
 	{ key = "d",     mods = "CTRL|SHIFT", action = wezterm.action.ShowDebugOverlay },
 	{ key = "Enter", mods = "CMD",        action = wezterm.action.ToggleFullScreen },
 }
+config.window_close_confirmation = "NeverPrompt"
 
 windows_shortcuts = {
 	{ key = "1", mods = "ALT", action = wezterm.action.ActivateTab(0) },
