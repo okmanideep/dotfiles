@@ -60,6 +60,8 @@ end
 
 vim.keymap.set('n', '<leader>t', switch_to_terminal, { silent = true, desc = "switch to terminal" })
 
+vim.keymap.set('n', '<C-q>', ':cclose<CR>', { desc = "close quickfix" })
+
 -- make Option+Shift+4 output rupee symbol only if mac
 local is_mac = vim.fn.has("macunix") == 1 or vim.fn.has("mac") == 1
 if is_mac then
