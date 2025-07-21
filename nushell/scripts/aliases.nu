@@ -16,5 +16,3 @@ export alias vim = nvim
 # Lazygit
 export alias lg = lazygit
 
-# pipenv python
-export alias python = pipenv run python
