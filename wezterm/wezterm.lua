@@ -21,7 +21,7 @@ config.keys = {
 }
 config.window_close_confirmation = "NeverPrompt"
 
-windows_shortcuts = {
+local windows_shortcuts = {
 	{ key = "1", mods = "ALT", action = wezterm.action.ActivateTab(0) },
 	{ key = "2", mods = "ALT", action = wezterm.action.ActivateTab(1) },
 	{ key = "3", mods = "ALT", action = wezterm.action.ActivateTab(2) },
@@ -33,7 +33,7 @@ windows_shortcuts = {
 	{ key = "9", mods = "ALT", action = wezterm.action.ActivateTab(8) },
 }
 -- add windows_shortcuts to keys if in windows
-if wezterm.target_triple == "x86_64-pc-windows-msvc" then
+if wezterm.target_triple == "x86_64-pc-windows-msvc" or wezterm.target_triple == "x86_64-unknown-linux-gnu" then
 	for _, v in ipairs(windows_shortcuts) do
 		table.insert(config.keys, v)
 	end
@@ -103,6 +103,10 @@ wezterm.on("format-tab-title", function(tab, _, _, _, _, _)
 	}
 end)
 
+wezterm.on("format-window-title", function(_,_,_,_,_)
+	return "Wezterm"
+end)
+
 config.window_decorations = "RESIZE"
 config.initial_cols = 136
 config.initial_rows = 44
@@ -145,6 +149,8 @@ if wezterm.target_triple == "aarch64-apple-darwin" then
 elseif wezterm.target_triple == "x86_64-pc-windows-msvc" then
 	config.default_prog = {
 		"nu" }
+elseif wezterm.target_triple == "x86_64-unknown-linux-gnu" then
+	config.default_prog = { "nu" }
 end
 
 
