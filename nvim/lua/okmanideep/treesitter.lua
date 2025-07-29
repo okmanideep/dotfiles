@@ -29,7 +29,7 @@ configs.setup {
 		"jsdoc",
 		"json",
 		"json5",
-		"JSON",
+		"jsonc",
 		"kotlin",
 		"latex",
 		"llvm",
