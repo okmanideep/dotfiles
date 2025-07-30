@@ -54,9 +54,7 @@ def get_path [] {
 }
 
 def save_path [] {
-  $in |
-  update path { str replace (os_home) '~' } |
-  collect { save -f (get_path) }
+  $in | collect { save -f (get_path) }
 }
 
 # Reset the bookmarks
@@ -71,9 +69,10 @@ export def fadd [
   pth: path       # Path to bookmark to.
   name?: string   # Optional name to give to it
                     ] {
-  if (($pth | path type) == "dir") and ($pth | path exists) {
-    flist | 
-    append {name: ($name), path: ($pth)} |
+  let abs_path = ($pth | path expand)
+  if (($abs_path | path type) == "dir") and ($abs_path | path exists) {
+    flist | where name != $name |
+    append {name: ($name), path: ($abs_path)} |
     save_path
   }
 }
@@ -81,20 +80,21 @@ export def fadd [
 # remove one or more bookmarks
 export def fremove [] {
   let rm_these = (
-    flist | 
+    flist |
     where name != "prev" |
     input list -m
   )
 
-  flist | where {|it|
-    not $it in $rm_these
-  } |
-  print
-  
+  let result = flist | where {|it|
+    not ($it in $rm_these)
+  }
+
+  $result | print
+  $result | save_path
 }
 
 def marks [] {
-  flist | each {|it| 
+  flist | each {|it|
     {
     value: $it.name,
     description: $it.path
@@ -113,8 +113,8 @@ export def --env f [
 }
 
 def change_prev [new_path: path] {
-    ( flist | 
-      where name != "prev" 
+    ( flist |
+      where name != "prev"
     ) |
     append {name: prev, path: $new_path} |
     save_path
