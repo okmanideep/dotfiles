@@ -810,3 +810,4 @@ source repo.nu
 source ding.nu
 source gpt.nu
 source asdf.nu
+source $"($nu.home-path)/.cargo/env.nu"
