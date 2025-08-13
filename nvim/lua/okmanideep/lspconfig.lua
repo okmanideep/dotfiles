@@ -32,7 +32,7 @@ local on_attach = function(client, bufnr)
 	nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 end
 
-local servers = { 'pyright', 'gopls', 'ts_ls', 'lua_ls', 'solargraph', 'powershell_es' }
+local servers = { 'pyright', 'gopls', 'ts_ls', 'lua_ls', 'solargraph', 'powershell_es', 'kotlin_lsp' }
 
 -- Setup neovim lua configuration
 require('neodev').setup()
