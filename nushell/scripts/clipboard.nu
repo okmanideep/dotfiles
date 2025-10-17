@@ -14,3 +14,20 @@ export def copy [
         }
     }
 }
+
+export def pasta [
+    --allow-errors (-e)
+] {
+    if (which xclip | is-empty) == false {
+        xclip -selection clipboard -o
+    } else if (which pbpaste | is-empty) == false {
+        pbpaste
+    } else {
+        let msg = "Clipboard program not found"
+        if $allow_errors {
+            error make -u {msg: $msg}
+        } else {
+            echo $msg
+        }
+    }
+}
