@@ -7,7 +7,7 @@ local dartformat = function(t)
 	end
 
 	return {
-		exe = "fvm dart format",
+		exe = "dart format",
 		args = args,
 		stdin = true,
 	}

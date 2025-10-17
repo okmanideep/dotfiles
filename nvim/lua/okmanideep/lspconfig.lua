@@ -80,11 +80,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
 	end,
 })
 
--- Setep flutter-tools
+-- Setup flutter-tools
 require('flutter-tools').setup {
-	fvm = true,
 	lsp = {
 		on_attach = on_attach,
+		cmd = { "dart", "language-server", "--protocol=lsp" },
 	},
 }
 
