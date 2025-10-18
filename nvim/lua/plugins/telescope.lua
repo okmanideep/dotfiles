@@ -32,6 +32,15 @@ return {
 				},
 				use_less = true,
 				vimgrep_arguments = vimgrep_arguments,
+				file_ignore_patterns = { "%.git/" },
+			},
+			pickers = {
+				find_files = {
+					hidden = true,
+					no_ignore = true,
+					no_ignore_parent = true,
+					follow = true,
+				},
 			},
 			extensions = {
 				["ui-select"] = require('telescope.themes').get_dropdown {}
