@@ -3,7 +3,7 @@ def repo_list [] {
 	cd Documents
 	cd code
 
-	ls personal | append (ls praja) | get name
+    ls | where type == dir | get name | each { |f| ls $f | where type == dir | get name } | flatten
 }
 
 export def --env repo [pth: string@repo_list] {
