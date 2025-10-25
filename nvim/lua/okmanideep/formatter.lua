@@ -29,6 +29,19 @@ require('formatter').setup {
 	filetype = settings
 }
 
+local has_lsp_format = function()
+	for _, client in ipairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
+		if client.supports_method and client.supports_method('textDocument/formatting') then
+			return true
+		end
+		local caps = client.server_capabilities or client.resolved_capabilities
+		if caps and (caps.documentFormattingProvider or caps.document_formatting) then
+			return true
+		end
+	end
+	return false
+end
+
 local format = function(write)
 	write = write or false
 	if settings[vim.bo.filetype] ~= nil then
@@ -37,11 +50,19 @@ local format = function(write)
 		else
 			vim.cmd([[Format]])
 		end
-	else
+		return
+	end
+	if has_lsp_format() then
 		vim.lsp.buf.format()
 		if write then
 			vim.cmd([[write]])
 		end
+		return
+	end
+	-- Fallback: reindent the whole buffer (respects .editorconfig via buffer options)
+	vim.cmd([[normal! gg=G]])
+	if write then
+		vim.cmd([[write]])
 	end
 end
 
