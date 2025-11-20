@@ -48,8 +48,13 @@ mason_lspconfig.setup {
 	automatic_installation = true,
 }
 
+
 -- for each of the value in servers call vim.lsp.enable
 for _, server in ipairs(servers) do
+	local ok, config = pcall(require, 'okmanideep.lsp.' .. server)
+	if ok then
+		vim.lsp.config(server, config)
+	end
 	vim.lsp.enable(server)
 end
 
