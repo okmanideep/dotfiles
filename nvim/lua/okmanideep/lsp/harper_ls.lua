@@ -4,6 +4,8 @@ return {
 		["harper-ls"] = {
 			linters = {
 				LongSentences = false,
+				SentenceCapitalization = false,
+				NumberSuffixCapitalization = false,
 			}
 		}
 	}
