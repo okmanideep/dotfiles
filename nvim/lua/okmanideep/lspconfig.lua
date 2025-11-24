@@ -5,6 +5,16 @@ vim.keymap.set('n', '[d', function() vim.diagnostic.jump { count = -1 } end, { d
 vim.keymap.set('n', ']d', function() vim.diagnostic.jump { count = 1 } end, { desc = 'LSP: (])Next [D]iagnostic' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'LSP: [E]ntire Diagnostic in float' })
 
+-- hide diagnostics for this buffer
+vim.keymap.set('n', '<leader>dh', function()
+	vim.diagnostic.disable(0)
+end, { desc = 'LSP: [D]iagnostics [H]ide' })
+
+-- unhide diagnostics for this buffer
+vim.keymap.set('n', '<leader>ds', function()
+	vim.diagnostic.enable(0)
+end, { desc = 'LSP: [D]iagnostics [S]how' })
+
 vim.diagnostic.config({
 	virtual_lines = { current_line = true },
 })
