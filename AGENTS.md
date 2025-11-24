@@ -1,0 +1,21 @@
+# AGENTS
+- Repo captures personal dotfiles (Neovim, Nushell, tmux, etc.).
+- Keep secrets, tokens, and machine-specific paths out of commits.
+- Prefer minimal, surgical diffs focused on the requested task.
+- Build/lint: run `stylua nvim/**/*.lua` before touching Lua config.
+- Build/lint: run `nu -c "fmt nushell/**/*.nu"` to reformat Nushell scripts (Nu >=0.97).
+- Build/lint: run `yamlfmt **/*.yml` if you change YAML (2-space indent).
+- Test: smoke Neovim config with `nvim --headless -u nvim/init.lua "+quit"`.
+- Test single module via `nvim --headless -u nvim/init.lua "+lua dofile('relative.lua')" +qa`.
+- Use `nu --test file.nu` (or targeted `nu file.nu`) to validate Nushell helpers.
+- Formatting follows .editorconfig: tabs default, YAML/JSON/Nushell use spaces as declared.
+- Lua: place all `require` calls at top, group stdlib/core/plugins alphabetically.
+- Lua: prefer `local` helpers, return module tables, respect `.luarc.json` (`vim` global).
+- Lua: handle errors with `vim.notify` or `pcall(require(...))` instead of crashing init.
+- Vimscript: keep autocommands idempotent, guard Neovim-only APIs with `has('nvim')`.
+- Nushell: export commands via `export def`, keep argument/flag names descriptive.
+- Shell/zsh: avoid hardcoding absolute paths; use `$HOME` and platform guards.
+- Keep naming descriptive; avoid 1-letter identifiers outside short loops.
+- Prefer declarative tables over imperative mutation when configuring plugins.
+- Document non-obvious decisions inline sparingly; prefer README for workflows.
+- No Cursor or Copilot rules exist; follow this file for agent guidance.
