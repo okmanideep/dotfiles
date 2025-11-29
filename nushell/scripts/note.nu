@@ -26,7 +26,7 @@ export def --env note [
     let file = $pth | path join $name
 
     cd $pth
-    wezterm cli set-tab-title 'notes'
+    wezterm cli set-tab-title '󱞁 note'
     nvim $name
     wezterm cli set-tab-title ''
     cd $cur_pwd
