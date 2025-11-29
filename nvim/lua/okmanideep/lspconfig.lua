@@ -7,12 +7,12 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'LSP: [E]nt
 
 -- hide diagnostics for this buffer
 vim.keymap.set('n', '<leader>dh', function()
-	vim.diagnostic.disable(0)
+	vim.diagnostic.enable(false, { bufnr = 0 })
 end, { desc = 'LSP: [D]iagnostics [H]ide' })
 
 -- unhide diagnostics for this buffer
 vim.keymap.set('n', '<leader>ds', function()
-	vim.diagnostic.enable(0)
+	vim.diagnostic.enable(true, { bufnr = 0 })
 end, { desc = 'LSP: [D]iagnostics [S]how' })
 
 vim.diagnostic.config({
