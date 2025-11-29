@@ -30,12 +30,12 @@ require('formatter').setup {
 }
 
 local has_lsp_format = function()
-	for _, client in ipairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
-		if client.supports_method and client.supports_method('textDocument/formatting') then
+	for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
+		if client:supports_method('textDocument/formatting') then
 			return true
 		end
-		local caps = client.server_capabilities or client.resolved_capabilities
-		if caps and (caps.documentFormattingProvider or caps.document_formatting) then
+		local caps = client.server_capabilities
+		if caps and caps.documentFormattingProvider then
 			return true
 		end
 	end
