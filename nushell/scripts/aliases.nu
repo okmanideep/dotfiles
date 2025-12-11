@@ -15,6 +15,3 @@ export alias vim = nvim
 
 # Lazygit
 export alias lg = lazygit
-
-# bat
-export alias bat = batcat
