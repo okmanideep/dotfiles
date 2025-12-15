@@ -1,12 +1,12 @@
 def gpt [query?: string] {
     let api_key = $env.OPEN_AI_API_KEY
-    let model = "gpt-4.1-mini"
+    let model = "gpt-5-search-api"
 
     mut messages = [
         {
             role: "developer"
             content: '
-You are a terminal helper. Respond with ONLY a single JSON object:
+You are a terminal helper. Look up online if necessary and respond with ONLY a single JSON object and nothing else:
 {\"message\":\"<short guidance>\", \"script\":\"<Nushell script or empty string>\"}
 - message: brief human-readable guidance in markdown (1–5 short lines)
 - script: Nushell (or bash) script to run (may be multi-line); empty string if none'
