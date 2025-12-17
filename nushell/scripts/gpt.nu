@@ -1,6 +1,6 @@
 def gpt [query?: string] {
     let api_key = $env.OPEN_AI_API_KEY
-    let model = "gpt-5-search-api"
+    let model = "gpt-4o-mini-search-preview"
 
     mut messages = [
         {
@@ -37,12 +37,18 @@ You are a terminal helper. Look up online if necessary and respond with ONLY a s
 
         let parsed = (try { $cleaned | from json } catch { { message: $cleaned, script: "" } })
 
-        if (($parsed.message | str length) > 0) {
-            $parsed.message | glow -s dark
+        mut parts = []
+        if ($parsed.message | is-not-empty) {
+            $parts = ($parts | append $parsed.message)
         }
-        if (($parsed.script | str length) > 0) {
-            let md = (["Proposed script:", "", "```nu", $parsed.script, "```"] | str join "\n")
-            $md | glow -s dark
+        if (($parsed.message | is-not-empty) and ($parsed.script | is-not-empty)) {
+            $parts = ($parts | append ["", "---"])
+        }
+        if ($parsed.script | is-not-empty) {
+            $parts = ($parts | append ["Proposed script:", "", "```nu", $parsed.script, "```"])
+        }
+        if ($parts | is-not-empty) {
+            $parts | flatten | str join "\n" | glow -s dark
         }
 
         # Keep assistant turn as the exact JSON for better context
