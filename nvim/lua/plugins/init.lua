@@ -13,7 +13,6 @@ return {
 	},
 
 	'tpope/vim-surround',      -- Add () with csaw(
-	'nvim-treesitter/playground', -- Treesitter playground :TSHighlightCapturesUnderCursor
 
 	{
 		'lewis6991/gitsigns.nvim',

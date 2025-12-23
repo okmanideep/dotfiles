@@ -23,6 +23,7 @@ vim.o.completeopt = 'menu,menuone,noselect'
 vim.o.autowriteall = true
 vim.o.termguicolors = true
 vim.go.showmode = false
+vim.o.shell = 'sh' -- because nu created problems with nvim-treesitter
 
 local autosave_group = vim.api.nvim_create_augroup('AutoSave', { clear = true })
 vim.api.nvim_create_autocmd({ 'FocusLost', 'BufLeave' }, {

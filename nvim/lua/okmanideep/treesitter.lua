@@ -1,6 +1,4 @@
-local configs = require 'nvim-treesitter.configs'
-
-configs.setup {
+require('nvim-treesitter').setup({
 	auto_install = false,
 	ensure_installed = {
 		"bash",
@@ -125,4 +123,14 @@ configs.setup {
 			},
 		},
 	},
-}
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function()
+    -- Check if a treesitter query exists for this language before starting
+    local lang = vim.treesitter.language.get_lang(vim.bo.filetype)
+    if lang and vim.treesitter.query.get(lang, "highlights") then
+      vim.treesitter.start()
+    end
+  end,
+})
