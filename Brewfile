@@ -4,6 +4,8 @@ brew "neovim"
 brew "starship"
 brew "asdf"
 brew "opencode"
+brew "bat"
+brew "lazygit"
 
 # Ruby build dependencies
 brew "openssl@3"

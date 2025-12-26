@@ -1,6 +1,7 @@
 gh
 nushell
 wezterm
+bat
 autoconf
 libssl-dev
 libyaml-dev
