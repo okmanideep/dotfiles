@@ -12,7 +12,8 @@ log() {
 # Initialize asdf completions
 log "Initializing asdf completions..."
 mkdir -p ~/.asdf/completions
-asdf completion nushell > ~/.asdf/completions/nushell.nu
+# Temporary fix for [asdf-vm/asdf#2156](https://github.com/asdf-vm/asdf/issues/2156)
+asdf completion nushell | sed 's/get --ignore-errors/get -o/g' > ~/.asdf/completions/nushell.nu
 
 # Install plugins
 PLUGINS=(java kotlin ruby golang nodejs)
