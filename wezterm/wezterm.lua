@@ -9,7 +9,7 @@ end
 
 -- ❤️👉🙏
 config.unicode_version = 14
-config.color_scheme_dirs = { wezterm.home_dir .. "/Documents/code/personal/dotfiles/wezterm" }
+config.color_scheme_dirs = { wezterm.config_dir }
 config.color_scheme = "okmanideep"
 config.use_fancy_tab_bar = true
 config.keys = {
@@ -63,6 +63,10 @@ local path_in_unix_format = function(path)
 end
 
 local get_dir_name = function(url)
+	if url == nil then
+		return ""
+	end
+
 	local path = url.path
 	if path_after_scheme(path) == path_in_unix_format(wezterm.home_dir) then
 		return ""
