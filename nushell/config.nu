@@ -3,8 +3,6 @@
 # version = "0.84.0"
 
 source device-env.nu
-mkdir ~/.cache/starship
-starship init nu | save -f ~/.cache/starship/init.nu
 use ~/.cache/starship/init.nu
 
 # For more information on defining custom themes, see

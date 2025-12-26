@@ -1,0 +1,7 @@
+brew "gh"
+brew "nushell"
+brew "neovim"
+brew "starship"
+brew "asdf"
+brew "opencode"
+cask "wezterm"
