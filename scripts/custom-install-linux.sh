@@ -48,3 +48,11 @@ if ! command -v opencode &>/dev/null; then
 else
     log "opencode is already installed"
 fi
+
+# Install rustup (for Ruby YJIT support)
+log "Installing rustup..."
+if command -v rustc &>/dev/null; then
+    log "Rust toolchain already installed"
+else
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+fi

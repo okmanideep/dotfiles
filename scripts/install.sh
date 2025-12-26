@@ -72,6 +72,14 @@ git config --global user.email "okmanideep@users.noreply.github.com"
 log "Installing packages..."
 if [ "$OS" = "macos" ]; then
     brew bundle --file="$DOTFILES_DIR/Brewfile"
+
+    # Initialize rustup
+    log "Initializing rustup..."
+    if command -v rustc &>/dev/null; then
+        log "Rust toolchain already installed"
+    else
+        rustup-init -y
+    fi
 else
     sudo apt update
     xargs -a "$DOTFILES_DIR/apt-packages.txt" sudo apt install -y

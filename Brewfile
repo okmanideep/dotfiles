@@ -11,4 +11,7 @@ brew "readline"
 brew "libyaml"
 brew "gmp"
 brew "autoconf"
+
+brew "rustup"
+
 cask "wezterm"
