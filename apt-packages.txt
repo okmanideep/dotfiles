@@ -1,3 +1,10 @@
 gh
 nushell
 wezterm
+autoconf
+libssl-dev
+libyaml-dev
+libreadline-dev
+libgmp-dev
+libffi-dev
+zlib1g-dev
