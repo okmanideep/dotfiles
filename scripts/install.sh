@@ -88,6 +88,39 @@ else
     "$DOTFILES_DIR/scripts/custom-install-linux.sh"
 fi
 
+# GitHub CLI authentication
+log "Setting up GitHub CLI..."
+if gh auth status &>/dev/null; then
+    log "GitHub CLI already authenticated"
+else
+    log "Please authenticate with GitHub CLI..."
+    gh auth login
+fi
+
+# Set up commit signing with SSH key
+log "Setting up commit signing..."
+if git config --global --get user.signingkey &>/dev/null; then
+    log "Commit signing already configured"
+else
+    log "Configuring commit signing..."
+    # Find SSH key (prefer ed25519, fallback to rsa)
+    if [ -f "$HOME/.ssh/id_ed25519.pub" ]; then
+        SSH_KEY="$HOME/.ssh/id_ed25519.pub"
+    elif [ -f "$HOME/.ssh/id_rsa.pub" ]; then
+        SSH_KEY="$HOME/.ssh/id_rsa.pub"
+    else
+        warn "No SSH key found. Please generate one and re-run"
+        SSH_KEY=""
+    fi
+
+    if [ -n "$SSH_KEY" ]; then
+        git config --global gpg.format ssh
+        git config --global user.signingkey "$SSH_KEY"
+        git config --global commit.gpgsign true
+        log "Commit signing configured with $SSH_KEY"
+    fi
+fi
+
 # Create symlinks
 log "Creating symlinks..."
 create_symlink "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
