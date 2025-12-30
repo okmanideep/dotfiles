@@ -5,6 +5,7 @@ brew "starship"
 brew "asdf"
 brew "opencode"
 brew "bat"
+brew "glow"
 brew "lazygit"
 
 # Ruby build dependencies
