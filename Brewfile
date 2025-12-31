@@ -18,3 +18,5 @@ brew "autoconf"
 brew "rustup"
 
 cask "wezterm"
+
+brew "1password-cli"
