@@ -16,7 +16,7 @@ mkdir -p ~/.asdf/completions
 asdf completion nushell | sed 's/get --ignore-errors/get -o/g' > ~/.asdf/completions/nushell.nu
 
 # Install plugins
-PLUGINS=(java kotlin ruby golang nodejs)
+PLUGINS=(java kotlin ruby golang nodejs uv)
 
 for plugin in "${PLUGINS[@]}"; do
     if ! asdf plugin list | grep -q "^$plugin$"; then
