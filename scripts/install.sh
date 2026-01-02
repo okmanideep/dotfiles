@@ -174,7 +174,11 @@ if ! grep -q "$NU_PATH" /etc/shells; then
     log "Adding $NU_PATH to /etc/shells"
     echo "$NU_PATH" | sudo tee -a /etc/shells
 fi
-chsh -s "$NU_PATH"
+if [ "$SHELL" = "$NU_PATH" ]; then
+    log "nushell is already the default shell"
+else
+    chsh -s "$NU_PATH"
+fi
 
 # Set nvim as default editor (already configured in env.nu, but also set system-wide)
 log "Setting nvim as default editor..."
