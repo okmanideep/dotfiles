@@ -19,4 +19,6 @@ brew "rustup"
 
 cask "wezterm"
 
-brew "1password-cli"
+cask "1password-cli"
+
+cask "raycast"
