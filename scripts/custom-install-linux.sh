@@ -86,6 +86,14 @@ else
     sudo apt update && sudo apt install -y glow
 fi
 
+# Install tailscale
+log "Installing tailscale..."
+if command -v tailscale &>/dev/null; then
+    log "tailscale is already installed"
+else
+    curl -fsSL https://tailscale.com/install.sh | sh
+fi
+
 # Install 1password-cli
 log "Installing 1password-cli..."
 if command -v op &>/dev/null; then
