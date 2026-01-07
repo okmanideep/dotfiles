@@ -15,10 +15,19 @@ mkdir -p ~/.asdf/completions
 # Temporary fix for [asdf-vm/asdf#2156](https://github.com/asdf-vm/asdf/issues/2156)
 asdf completion nushell | sed 's/get --ignore-errors/get -o/g' > ~/.asdf/completions/nushell.nu
 
-# Install plugins
-PLUGINS=(java kotlin ruby golang nodejs uv)
+# Plugin versions (associative array)
+declare -A PLUGINS=(
+    [java]="openjdk-21"
+    [kotlin]="2.3.0"
+    [ruby]="3.4.5"
+    [golang]="1.25.5"
+    [nodejs]="25.2.1"
+    [uv]="0.9.21"
+    [flutter]="3.35.6-stable"
+)
 
-for plugin in "${PLUGINS[@]}"; do
+# Install plugins
+for plugin in "${!PLUGINS[@]}"; do
     if ! asdf plugin list | grep -q "^$plugin$"; then
         log "Adding asdf plugin: $plugin"
         asdf plugin add "$plugin"
@@ -27,16 +36,12 @@ for plugin in "${PLUGINS[@]}"; do
     fi
 done
 
-# Install latest versions
-for plugin in "${PLUGINS[@]}"; do
-    log "Installing latest $plugin..."
-    if [ "$plugin" = "java" ]; then
-        asdf install "$plugin" openjdk-21
-        asdf set -u "$plugin" openjdk-21
-    else
-        asdf install "$plugin" latest
-        asdf set -u "$plugin" latest
-    fi
+# Install pinned versions
+for plugin in "${!PLUGINS[@]}"; do
+    version="${PLUGINS[$plugin]}"
+    log "Installing $plugin $version..."
+    asdf install "$plugin" "$version"
+    asdf set -u "$plugin" "$version"
 done
 
 log "asdf setup complete!"
