@@ -2,6 +2,9 @@ gh
 nushell
 wezterm
 bat
+ca-certificates
+curl
+gnupg
 autoconf
 libssl-dev
 libyaml-dev

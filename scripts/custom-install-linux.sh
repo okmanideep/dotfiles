@@ -86,6 +86,27 @@ else
     sudo apt update && sudo apt install -y glow
 fi
 
+# Install docker
+log "Installing docker..."
+if command -v docker &>/dev/null; then
+    log "docker is already installed"
+else
+    sudo apt update
+    sudo apt install -y ca-certificates curl
+    sudo install -m 0755 -d /etc/apt/keyrings
+    sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+    sudo chmod a+r /etc/apt/keyrings/docker.asc
+    sudo tee /etc/apt/sources.list.d/docker.sources <<EOF
+Types: deb
+URIs: https://download.docker.com/linux/ubuntu
+Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
+Components: stable
+Signed-By: /etc/apt/keyrings/docker.asc
+EOF
+    sudo apt update
+    sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+fi
+
 # Install tailscale
 log "Installing tailscale..."
 if command -v tailscale &>/dev/null; then
@@ -111,4 +132,3 @@ else
         sudo gpg --dearmor --yes --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg && \
         sudo apt update && sudo apt install 1password-cli
 fi
-

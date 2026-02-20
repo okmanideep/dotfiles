@@ -19,6 +19,8 @@ brew "rustup"
 
 cask "wezterm"
 
+cask "docker"
+
 cask "1password-cli"
 
 cask "raycast"
