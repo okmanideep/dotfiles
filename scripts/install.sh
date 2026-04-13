@@ -143,7 +143,8 @@ fi
 create_symlink "$DOTFILES_DIR/starship/starship.toml" "$HOME/.config/starship.toml"
 create_symlink "$DOTFILES_DIR/wezterm" "$HOME/.config/wezterm"
 create_symlink "$DOTFILES_DIR/opencode/opencode.json" "$HOME/.config/opencode/opencode.json"
-create_symlink "$DOTFILES_DIR/opencode/skills" "$HOME/.config/opencode/skills"
+create_symlink "$DOTFILES_DIR/claude/skills" "$HOME/.claude/skills"
+create_symlink "$DOTFILES_DIR/claude/skills" "$HOME/.config/opencode/skills"
 create_symlink "$DOTFILES_DIR/bat/bat.conf" "$HOME/.config/bat/config"
 create_symlink "$DOTFILES_DIR/lazygit/config.yml" "$HOME/Library/Application Support/lazygit/config.yml"
 
