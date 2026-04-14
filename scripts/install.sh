@@ -144,6 +144,7 @@ create_symlink "$DOTFILES_DIR/starship/starship.toml" "$HOME/.config/starship.to
 create_symlink "$DOTFILES_DIR/wezterm" "$HOME/.config/wezterm"
 create_symlink "$DOTFILES_DIR/opencode/opencode.json" "$HOME/.config/opencode/opencode.json"
 create_symlink "$DOTFILES_DIR/claude/skills" "$HOME/.claude/skills"
+create_symlink "$DOTFILES_DIR/claude/settings.json" "$HOME/.claude/settings.json"
 create_symlink "$DOTFILES_DIR/claude/skills" "$HOME/.config/opencode/skills"
 create_symlink "$DOTFILES_DIR/bat/bat.conf" "$HOME/.config/bat/config"
 create_symlink "$DOTFILES_DIR/lazygit/config.yml" "$HOME/Library/Application Support/lazygit/config.yml"
@@ -176,7 +177,8 @@ if ! grep -q "$NU_PATH" /etc/shells; then
     log "Adding $NU_PATH to /etc/shells"
     echo "$NU_PATH" | sudo tee -a /etc/shells
 fi
-if [ "$SHELL" = "$NU_PATH" ]; then
+CURRENT_SHELL=$(dscl . -read /Users/"$USER" UserShell 2>/dev/null | awk '{print $2}')
+if [ "$CURRENT_SHELL" = "$NU_PATH" ]; then
     log "nushell is already the default shell"
 else
     chsh -s "$NU_PATH"
