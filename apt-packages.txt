@@ -1,5 +1,6 @@
 gh
 nushell
+podman
 wezterm
 bat
 ca-certificates

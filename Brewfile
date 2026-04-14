@@ -19,7 +19,7 @@ brew "rustup"
 
 cask "wezterm"
 
-cask "docker"
+cask "podman-desktop"
 
 cask "1password-cli"
 
