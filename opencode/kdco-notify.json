@@ -1,0 +1,11 @@
+{
+  "notifyChildSessions": false,
+  "sounds": {
+    "permission": true,
+    "error": true
+  },
+  "quietHours": {
+    "start": "22:00",
+    "end": "08:00"
+  }
+}

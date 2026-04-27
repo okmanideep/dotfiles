@@ -7,5 +7,27 @@
     ]
   },
   "effortLevel": "medium",
-  "model": "haiku"
+  "model": "haiku",
+  "hooks": {
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_name' | xargs -I {} osascript -e 'display notification \"Waiting for your approval\" with title \"Permission needed: {}\"' 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "TaskCompleted": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.task.subject // .task_id // \"Task\"' | xargs -I {} osascript -e 'display notification \"Task done\" with title \"{}\"' 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  }
 }
