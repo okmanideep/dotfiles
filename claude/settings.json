@@ -5,5 +5,7 @@
       "WebFetch",
       "Read"
     ]
-  }
+  },
+  "effortLevel": "medium",
+  "model": "haiku"
 }
