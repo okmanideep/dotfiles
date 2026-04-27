@@ -4,6 +4,7 @@
   "small_model": "opencode/kimi-k2.5",
   "mcp": {
     "chrome-devtools": {
+      "enabled": false,
       "type": "local",
       "command": [
         "npx",
