@@ -94,6 +94,14 @@ else
     curl -fsSL https://tailscale.com/install.sh | sh
 fi
 
+# Install ccusage
+log "Installing ccusage..."
+if command -v ccusage &>/dev/null; then
+    log "ccusage is already installed"
+else
+    npm install -g ccusage
+fi
+
 # Install 1password-cli
 log "Installing 1password-cli..."
 if command -v op &>/dev/null; then

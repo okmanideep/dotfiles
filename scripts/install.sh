@@ -146,6 +146,7 @@ create_symlink "$DOTFILES_DIR/opencode/opencode.json" "$HOME/.config/opencode/op
 create_symlink "$DOTFILES_DIR/claude/skills" "$HOME/.claude/skills"
 create_symlink "$DOTFILES_DIR/claude/settings.json" "$HOME/.claude/settings.json"
 create_symlink "$DOTFILES_DIR/claude/skills" "$HOME/.config/opencode/skills"
+create_symlink "$DOTFILES_DIR/claude/statusline.sh" "$HOME/.claude/statusline.sh"
 create_symlink "$DOTFILES_DIR/bat/bat.conf" "$HOME/.config/bat/config"
 create_symlink "$DOTFILES_DIR/lazygit/config.yml" "$HOME/Library/Application Support/lazygit/config.yml"
 

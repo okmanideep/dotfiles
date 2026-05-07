@@ -7,6 +7,7 @@ brew "opencode"
 brew "bat"
 brew "glow"
 brew "lazygit"
+brew "ccusage"
 
 # Ruby build dependencies
 brew "openssl@3"

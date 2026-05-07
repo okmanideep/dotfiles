@@ -6,8 +6,7 @@
       "Read"
     ]
   },
-  "effortLevel": "medium",
-  "model": "haiku",
+  "model": "sonnet",
   "hooks": {
     "PermissionRequest": [
       {
@@ -29,5 +28,11 @@
         ]
       }
     ]
-  }
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline.sh"
+  },
+  "effortLevel": "medium",
+  "skipAutoPermissionPrompt": true
 }
