@@ -24,7 +24,7 @@ PLUGIN_SPECS=(
     "nodejs:25.2.1"
     "uv:0.9.21"
     "flutter:3.35.6-stable"
-    "zig:0.15.2"
+    "zig:0.16.0"
 )
 
 # Install plugins
