@@ -15,6 +15,3 @@ export alias vim = nvim
 
 # Lazygit
 export alias lg = lazygit
-
-# Podman
-export alias docker = podman

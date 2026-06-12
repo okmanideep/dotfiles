@@ -60,6 +60,28 @@ create_symlink() {
     log "Created symlink: $dest -> $src"
 }
 
+create_bin_symlinks() {
+    local source_dir="$1"
+    local target_dir="$2"
+    local entry
+
+    if [ ! -d "$source_dir" ]; then
+        return
+    fi
+
+    mkdir -p "$target_dir"
+
+    for entry in "$source_dir"/*; do
+        if [ ! -e "$entry" ]; then
+            continue
+        fi
+
+        if [ -x "$entry" ]; then
+            create_symlink "$entry" "$target_dir/$(basename "$entry")"
+        fi
+    done
+}
+
 OS=$(detect_os)
 log "Detected OS: $OS"
 
@@ -78,7 +100,12 @@ if [ "$OS" = "macos" ]; then
     if command -v rustc &>/dev/null; then
         log "Rust toolchain already installed"
     else
-        rustup-init -y
+        RUSTUP_BIN="$(brew --prefix rustup)/bin/rustup"
+        if [ -x "$RUSTUP_BIN" ]; then
+            "$RUSTUP_BIN" default stable
+        else
+            error "rustup is installed but the executable was not found"
+        fi
     fi
 else
     sudo apt update
@@ -131,6 +158,7 @@ fi
 
 # Create symlinks
 log "Creating symlinks..."
+create_bin_symlinks "$DOTFILES_DIR/bin" "$HOME/.local/bin"
 create_symlink "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
 
 # Nushell config path differs by OS
