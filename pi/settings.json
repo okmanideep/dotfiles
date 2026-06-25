@@ -1,0 +1,10 @@
+{
+  "lastChangelogVersion": "0.80.2",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.4",
+  "packages": [
+    "npm:pi-web-access",
+    "npm:pi-mcp-extension"
+  ],
+  "theme": "dark"
+}

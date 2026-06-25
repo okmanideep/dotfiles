@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "coralogix_prod": {
+      "transport": "streamable-http",
+      "url": "https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp",
+      "headers": {
+        "x-bf-vk": "REPLACE_LOCALLY_CORALOGIX_PROD_BF_VK"
+      },
+      "lifecycle": "lazy"
+    },
+    "hotstar_eks": {
+      "transport": "streamable-http",
+      "url": "https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp",
+      "headers": {
+        "x-bf-vk": "REPLACE_LOCALLY_HOTSTAR_EKS_BF_VK"
+      },
+      "lifecycle": "lazy"
+    }
+  }
+}

@@ -82,6 +82,103 @@ create_bin_symlinks() {
     done
 }
 
+install_pi_package() {
+    local package="$1"
+    local package_name="${package#npm:}"
+    local package_path="$HOME/.pi/agent/npm/node_modules/$package_name"
+
+    if ! command -v pi &>/dev/null; then
+        warn "pi is not installed; skipping package install for $package"
+        return
+    fi
+
+    if [ -d "$package_path" ]; then
+        log "Pi package already installed: $package"
+        return
+    fi
+
+    log "Installing Pi package: $package"
+    pi install "$package"
+}
+
+remove_if_symlink() {
+    local path="$1"
+
+    if [ -L "$path" ]; then
+        log "Removing existing symlink: $path"
+        rm "$path"
+    fi
+}
+
+get_device_env_value() {
+    local device_env="$1"
+    local env_name="$2"
+
+    if [ ! -f "$device_env" ]; then
+        return
+    fi
+
+    python3 - "$device_env" "$env_name" <<'PY'
+import pathlib
+import re
+import sys
+
+path = pathlib.Path(sys.argv[1])
+name = re.escape(sys.argv[2])
+pattern = re.compile(r'^\s*\$env\.' + name + r'\s*=\s*"([^"]*)"', re.MULTILINE)
+match = pattern.search(path.read_text())
+if match:
+    print(match.group(1))
+PY
+}
+
+write_pi_mcp_config() {
+    local device_env="$1"
+    local mcp_path="$HOME/.pi/agent/mcp.json"
+    local coralogix_prod_key
+    local hotstar_eks_key
+
+    remove_if_symlink "$mcp_path"
+
+    coralogix_prod_key="$(get_device_env_value "$device_env" "PI_MCP_CORALOGIX_PROD_BF_VK")"
+    hotstar_eks_key="$(get_device_env_value "$device_env" "PI_MCP_HOTSTAR_EKS_BF_VK")"
+
+    if [ -z "$coralogix_prod_key" ] && [ -z "$hotstar_eks_key" ]; then
+        log "Skipping Pi MCP config generation; no Pi MCP keys set in $device_env"
+        return
+    fi
+
+    mkdir -p "$(dirname "$mcp_path")"
+    CORALOGIX_PROD_KEY="$coralogix_prod_key" HOTSTAR_EKS_KEY="$hotstar_eks_key" MCP_PATH="$mcp_path" python3 - <<'PY'
+import json
+import os
+import pathlib
+
+servers = {}
+url = "https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp"
+entries = [
+    ("coralogix_prod", os.environ.get("CORALOGIX_PROD_KEY", "")),
+    ("hotstar_eks", os.environ.get("HOTSTAR_EKS_KEY", "")),
+]
+
+for name, key in entries:
+    if not key:
+        continue
+    servers[name] = {
+        "transport": "streamable-http",
+        "url": url,
+        "headers": {
+            "x-bf-vk": key,
+        },
+        "lifecycle": "lazy",
+    }
+
+path = pathlib.Path(os.environ["MCP_PATH"])
+path.write_text(json.dumps({"mcpServers": servers}, indent=2) + "\n")
+PY
+    log "Wrote Pi MCP config: $mcp_path"
+}
+
 OS=$(detect_os)
 log "Detected OS: $OS"
 
@@ -178,19 +275,15 @@ create_symlink "$DOTFILES_DIR/claude/statusline.sh" "$HOME/.claude/statusline.sh
 create_symlink "$DOTFILES_DIR/bat/bat.conf" "$HOME/.config/bat/config"
 create_symlink "$DOTFILES_DIR/lazygit/config.yml" "$HOME/Library/Application Support/lazygit/config.yml"
 
-# Initialize starship
-"$DOTFILES_DIR/scripts/init-starship.sh"
-
-# Initialize asdf completions
-"$DOTFILES_DIR/scripts/init-asdf.sh"
-
-# Copy device-env template if needed
-log "Setting up device-env.nu..."
+# Nushell config path differs by OS
 if [ "$OS" = "macos" ]; then
     NUSHELL_CONFIG_DIR="$HOME/Library/Application Support/nushell"
 else
     NUSHELL_CONFIG_DIR="$HOME/.config/nushell"
 fi
+
+# Copy device-env template if needed
+log "Setting up device-env.nu..."
 DEVICE_ENV="$NUSHELL_CONFIG_DIR/scripts/device-env.nu"
 if [ ! -f "$DEVICE_ENV" ]; then
     cp "$DOTFILES_DIR/nushell/scripts/example-${OS}-device-env.nu" "$DEVICE_ENV"
@@ -198,6 +291,21 @@ if [ ! -f "$DEVICE_ENV" ]; then
 else
     log "device-env.nu already exists, skipping"
 fi
+
+log "Setting up Pi config..."
+mkdir -p "$HOME/.pi/agent"
+create_symlink "$DOTFILES_DIR/pi/settings.json" "$HOME/.pi/agent/settings.json"
+remove_if_symlink "$HOME/.pi/agent/mcp.json"
+write_pi_mcp_config "$DEVICE_ENV"
+create_symlink "$DOTFILES_DIR/pi/extensions" "$HOME/.pi/agent/extensions"
+install_pi_package "npm:pi-web-access"
+install_pi_package "npm:pi-mcp-extension"
+
+# Initialize starship
+"$DOTFILES_DIR/scripts/init-starship.sh"
+
+# Initialize asdf completions
+"$DOTFILES_DIR/scripts/init-asdf.sh"
 
 # Set nushell as default shell
 log "Setting nushell as default shell..."
