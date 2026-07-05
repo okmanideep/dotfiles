@@ -16,17 +16,25 @@ Configured MCP servers are **lazy** by default, so they stay off until you enabl
 
 ### Start inside Pi
 - `/mcp` — show MCP status
+- `/mcp:start launchdarkly`
 - `/mcp:start slack`
 - `/mcp:start hotstar`
+- `/mcp:start chrome-devtools`
 
 ### Stop inside Pi
+- `/mcp:stop launchdarkly`
 - `/mcp:stop slack`
 - `/mcp:stop hotstar`
+- `/mcp:stop chrome-devtools`
 
 ## MCP servers
+- `launchdarkly` → `https://mcp.launchdarkly.com/mcp/launchdarkly`
 - `slack` → `https://mcp.slack.com/mcp`
 - `hotstar` → `https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp`
+- `chrome-devtools` → `npx -y chrome-devtools-mcp@latest`
 
 ## Notes
+- LaunchDarkly hosted MCP uses OAuth in the client after you start/connect the server.
 - Slack MCP needs Slack auth/app setup separately.
+- Chrome DevTools MCP uses the official `chrome-devtools-mcp` package.
 - Do **not** commit `~/.pi/agent/auth.json` or sessions.

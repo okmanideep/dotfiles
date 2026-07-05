@@ -135,6 +135,7 @@ PY
 write_pi_mcp_config() {
     local device_env="$1"
     local mcp_path="$HOME/.pi/agent/mcp.json"
+    local mcp_template="$DOTFILES_DIR/pi/mcp.json"
     local coralogix_prod_key
     local hotstar_eks_key
 
@@ -143,40 +144,102 @@ write_pi_mcp_config() {
     coralogix_prod_key="$(get_device_env_value "$device_env" "PI_MCP_CORALOGIX_PROD_BF_VK")"
     hotstar_eks_key="$(get_device_env_value "$device_env" "PI_MCP_HOTSTAR_EKS_BF_VK")"
 
-    if [ -z "$coralogix_prod_key" ] && [ -z "$hotstar_eks_key" ]; then
-        log "Skipping Pi MCP config generation; no Pi MCP keys set in $device_env"
-        return
-    fi
-
     mkdir -p "$(dirname "$mcp_path")"
-    CORALOGIX_PROD_KEY="$coralogix_prod_key" HOTSTAR_EKS_KEY="$hotstar_eks_key" MCP_PATH="$mcp_path" python3 - <<'PY'
+    MCP_TEMPLATE="$mcp_template" CORALOGIX_PROD_KEY="$coralogix_prod_key" HOTSTAR_EKS_KEY="$hotstar_eks_key" MCP_PATH="$mcp_path" python3 - <<'PY'
 import json
 import os
 import pathlib
 
-servers = {}
-url = "https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp"
-entries = [
-    ("coralogix_prod", os.environ.get("CORALOGIX_PROD_KEY", "")),
-    ("hotstar_eks", os.environ.get("HOTSTAR_EKS_KEY", "")),
-]
+placeholder_values = {
+    "REPLACE_LOCALLY_CORALOGIX_PROD_BF_VK": os.environ.get("CORALOGIX_PROD_KEY", ""),
+    "REPLACE_LOCALLY_HOTSTAR_EKS_BF_VK": os.environ.get("HOTSTAR_EKS_KEY", ""),
+}
 
-for name, key in entries:
-    if not key:
+with pathlib.Path(os.environ["MCP_TEMPLATE"]).open() as f:
+    config = json.load(f)
+
+servers = config.get("mcpServers", {})
+filtered_servers = {}
+
+for name, server in servers.items():
+    raw = json.dumps(server)
+    placeholders = [token for token in placeholder_values if token in raw]
+
+    if placeholders and any(not placeholder_values[token] for token in placeholders):
         continue
-    servers[name] = {
-        "transport": "streamable-http",
-        "url": url,
-        "headers": {
-            "x-bf-vk": key,
-        },
-        "lifecycle": "lazy",
-    }
+
+    resolved = raw
+    for token, value in placeholder_values.items():
+        resolved = resolved.replace(token, value)
+
+    filtered_servers[name] = json.loads(resolved)
 
 path = pathlib.Path(os.environ["MCP_PATH"])
-path.write_text(json.dumps({"mcpServers": servers}, indent=2) + "\n")
+path.write_text(json.dumps({"mcpServers": filtered_servers}, indent=2) + "\n")
 PY
-    log "Wrote Pi MCP config: $mcp_path"
+    log "Wrote Pi MCP config from template: $mcp_path"
+}
+
+setup_cloudflare_r2_aws_profile() {
+    local device_env="$1"
+    local cloudflare_api_token
+    local access_key_id
+    local secret_access_key
+    local verify_response
+
+    cloudflare_api_token="$(get_device_env_value "$device_env" "CLOUDFLARE_API_TOKEN")"
+
+    if [ -z "$cloudflare_api_token" ]; then
+        log "CLOUDFLARE_API_TOKEN not set; skipping AWS CLI R2 profile setup"
+        return
+    fi
+
+    if ! command -v aws &>/dev/null; then
+        warn "aws CLI not found; skipping AWS CLI R2 profile setup"
+        return
+    fi
+
+    if ! command -v curl &>/dev/null; then
+        warn "curl not found; skipping AWS CLI R2 profile setup"
+        return
+    fi
+
+    log "Setting up AWS CLI R2 profile..."
+
+    if ! verify_response="$(curl -fsS https://api.cloudflare.com/client/v4/user/tokens/verify -H "Authorization: Bearer $cloudflare_api_token")"; then
+        warn "Unable to verify CLOUDFLARE_API_TOKEN; skipping AWS CLI R2 profile setup"
+        return
+    fi
+
+    access_key_id="$(VERIFY_RESPONSE="$verify_response" python3 - <<'PY'
+import json
+import os
+
+payload = json.loads(os.environ["VERIFY_RESPONSE"])
+result = payload.get("result") or {}
+print(result.get("id", ""))
+PY
+)"
+
+    if [ -z "$access_key_id" ]; then
+        warn "Could not determine Cloudflare token ID; skipping AWS CLI R2 profile setup"
+        return
+    fi
+
+    secret_access_key="$(CLOUDFLARE_API_TOKEN="$cloudflare_api_token" python3 - <<'PY'
+import hashlib
+import os
+
+print(hashlib.sha256(os.environ["CLOUDFLARE_API_TOKEN"].encode()).hexdigest())
+PY
+)"
+
+    aws configure set aws_access_key_id "$access_key_id" --profile r2
+    aws configure set aws_secret_access_key "$secret_access_key" --profile r2
+    aws configure set region auto --profile r2
+    aws configure set output json --profile r2
+
+    log "Configured AWS CLI profile: r2"
 }
 
 OS=$(detect_os)
@@ -297,6 +360,7 @@ mkdir -p "$HOME/.pi/agent"
 create_symlink "$DOTFILES_DIR/pi/settings.json" "$HOME/.pi/agent/settings.json"
 remove_if_symlink "$HOME/.pi/agent/mcp.json"
 write_pi_mcp_config "$DEVICE_ENV"
+setup_cloudflare_r2_aws_profile "$DEVICE_ENV"
 create_symlink "$DOTFILES_DIR/pi/extensions" "$HOME/.pi/agent/extensions"
 install_pi_package "npm:pi-web-access"
 install_pi_package "npm:pi-mcp-extension"

@@ -1,5 +1,11 @@
 {
   "mcpServers": {
+    "launchdarkly": {
+      "transport": "streamable-http",
+      "url": "https://mcp.launchdarkly.com/mcp/launchdarkly",
+      "lifecycle": "lazy",
+      "auth": { "type": "oauth" }
+    },
     "coralogix_prod": {
       "transport": "streamable-http",
       "url": "https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp",
@@ -14,6 +20,15 @@
       "headers": {
         "x-bf-vk": "REPLACE_LOCALLY_HOTSTAR_EKS_BF_VK"
       },
+      "lifecycle": "lazy"
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "chrome-devtools-mcp@latest"
+      ],
+      "transport": "stdio",
       "lifecycle": "lazy"
     }
   }
