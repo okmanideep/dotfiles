@@ -55,6 +55,7 @@ return {
 							end
 
 							local aliases = {
+								alert = '🚨',
 								tada = '🎉',
 							}
 
