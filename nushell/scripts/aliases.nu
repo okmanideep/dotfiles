@@ -15,3 +15,5 @@ export alias vim = nvim
 
 # Lazygit
 export alias lg = lazygit
+
+export alias o2 = opencode2
