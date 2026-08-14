@@ -69,7 +69,7 @@ You are a terminal helper running on ($os_name). Tailor your searches and respon
         loop {
             let ev = (input listen --types [key])
             if ($ev.type == "key") and ($ev.key_type == "char") and (($ev.modifiers | length) == 0) {
-                let code = ($ev.code | str downcase)
+                let code = ($ev.code | str lowercase)
                 if ((($has_script and ($code == "e")) or ($has_script and ($code == "b"))) or ($code == "a") or ($code == "q")) {
                     $choice = $code
                     break
