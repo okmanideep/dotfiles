@@ -1,7 +1,7 @@
 {
-  "lastChangelogVersion": "0.80.2",
+  "lastChangelogVersion": "0.81.1",
   "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.4",
+  "defaultModel": "gpt-5.6-terra",
   "packages": [
     "npm:pi-web-access",
     "npm:pi-mcp-extension"

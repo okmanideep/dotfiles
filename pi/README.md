@@ -18,19 +18,22 @@ Configured MCP servers are **lazy** by default, so they stay off until you enabl
 - `/mcp` — show MCP status
 - `/mcp:start launchdarkly`
 - `/mcp:start slack`
-- `/mcp:start hotstar`
+- `/mcp:start coralogix_nonprod`
+- `/mcp:start service_catalog`
 - `/mcp:start chrome-devtools`
 
 ### Stop inside Pi
 - `/mcp:stop launchdarkly`
 - `/mcp:stop slack`
-- `/mcp:stop hotstar`
+- `/mcp:stop coralogix_nonprod`
+- `/mcp:stop service_catalog`
 - `/mcp:stop chrome-devtools`
 
 ## MCP servers
 - `launchdarkly` → `https://mcp.launchdarkly.com/mcp/launchdarkly`
 - `slack` → `https://mcp.slack.com/mcp`
-- `hotstar` → `https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp`
+- `coralogix_nonprod` → `https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp`
+- `service_catalog` → `https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp`
 - `chrome-devtools` → `npx -y chrome-devtools-mcp@latest`
 
 ## Notes

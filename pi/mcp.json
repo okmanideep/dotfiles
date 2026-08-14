@@ -6,11 +6,11 @@
       "lifecycle": "lazy",
       "auth": { "type": "oauth" }
     },
-    "coralogix_prod": {
+    "coralogix_nonprod": {
       "transport": "streamable-http",
       "url": "https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp",
       "headers": {
-        "x-bf-vk": "REPLACE_LOCALLY_CORALOGIX_PROD_BF_VK"
+        "x-bf-vk": "REPLACE_LOCALLY_CORALOGIX_NONPROD_BF_VK"
       },
       "lifecycle": "lazy"
     },
@@ -19,6 +19,14 @@
       "url": "https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp",
       "headers": {
         "x-bf-vk": "REPLACE_LOCALLY_HOTSTAR_EKS_BF_VK"
+      },
+      "lifecycle": "lazy"
+    },
+    "service_catalog": {
+      "transport": "streamable-http",
+      "url": "https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp",
+      "headers": {
+        "x-bf-vk": "REPLACE_LOCALLY_SERVICE_CATALOG_BF_VK"
       },
       "lifecycle": "lazy"
     },

@@ -136,23 +136,26 @@ write_pi_mcp_config() {
     local device_env="$1"
     local mcp_path="$HOME/.pi/agent/mcp.json"
     local mcp_template="$DOTFILES_DIR/pi/mcp.json"
-    local coralogix_prod_key
+    local coralogix_nonprod_key
     local hotstar_eks_key
+    local service_catalog_key
 
     remove_if_symlink "$mcp_path"
 
-    coralogix_prod_key="$(get_device_env_value "$device_env" "PI_MCP_CORALOGIX_PROD_BF_VK")"
+    coralogix_nonprod_key="$(get_device_env_value "$device_env" "PI_MCP_CORALOGIX_NONPROD_BF_VK")"
     hotstar_eks_key="$(get_device_env_value "$device_env" "PI_MCP_HOTSTAR_EKS_BF_VK")"
+    service_catalog_key="$(get_device_env_value "$device_env" "PI_MCP_SERVICE_CATALOG_BF_VK")"
 
     mkdir -p "$(dirname "$mcp_path")"
-    MCP_TEMPLATE="$mcp_template" CORALOGIX_PROD_KEY="$coralogix_prod_key" HOTSTAR_EKS_KEY="$hotstar_eks_key" MCP_PATH="$mcp_path" python3 - <<'PY'
+    MCP_TEMPLATE="$mcp_template" CORALOGIX_NONPROD_KEY="$coralogix_nonprod_key" HOTSTAR_EKS_KEY="$hotstar_eks_key" SERVICE_CATALOG_KEY="$service_catalog_key" MCP_PATH="$mcp_path" python3 - <<'PY'
 import json
 import os
 import pathlib
 
 placeholder_values = {
-    "REPLACE_LOCALLY_CORALOGIX_PROD_BF_VK": os.environ.get("CORALOGIX_PROD_KEY", ""),
+    "REPLACE_LOCALLY_CORALOGIX_NONPROD_BF_VK": os.environ.get("CORALOGIX_NONPROD_KEY", ""),
     "REPLACE_LOCALLY_HOTSTAR_EKS_BF_VK": os.environ.get("HOTSTAR_EKS_KEY", ""),
+    "REPLACE_LOCALLY_SERVICE_CATALOG_BF_VK": os.environ.get("SERVICE_CATALOG_KEY", ""),
 }
 
 with pathlib.Path(os.environ["MCP_TEMPLATE"]).open() as f:
