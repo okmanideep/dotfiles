@@ -1,0 +1,34 @@
+claude/settings.json
+  h_ed7ef8ca79e302 2,8-9,14-35,40-41,47-53,55-60
+nushell/config.nu
+  h_ed7ef8ca79e302 494,501,508,520,532,546,558,584,591,598,605,612,626,638,700,707,719,726,745,752
+nushell/scripts/example-macos-device-env.nu
+  h_ed7ef8ca79e302 17-22
+nushell/scripts/example-ubuntu-device-env.nu
+  h_ed7ef8ca79e302 17-22
+opencode/opencode.json
+  h_ed7ef8ca79e302 6-65
+opencode/plugins/idle-sound.ts
+  h_ed7ef8ca79e302 1-51
+pi/README.md
+  h_ed7ef8ca79e302 8,34,41
+pi/extensions/idle-sound.ts
+  h_ed7ef8ca79e302 1-26
+pi/mcp.json
+  h_ed7ef8ca79e302 9-16,25-32
+pi/settings.json
+  h_ed7ef8ca79e302 2
+scripts/install.sh
+  h_ed7ef8ca79e302 116-121,141,143-145,147,150,154-158,161,168,171,177-180,197-202,204,381-383,388-389
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "434fc1f8f94bef667e2134d5ce6acd2767764e25",
+  "prompts": {},
+  "humans": {
+    "h_ed7ef8ca79e302": {
+      "author": "Manideep Polireddi <okmanideep@users.noreply.github.com>"
+    }
+  }
+}
