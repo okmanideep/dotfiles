@@ -5,7 +5,7 @@ Dotfile-managed Pi config lives here and is symlinked into `~/.pi/agent/` by `sc
 ## Files
 - `settings.json` — Pi defaults + installed packages
 - `mcp.json` — MCP server config
-- `extensions/` — custom Pi extensions
+- `extensions/` — global Pi extensions, including the idle sound notification
 
 ## Installed packages
 - `npm:pi-web-access`
@@ -31,13 +31,13 @@ Configured MCP servers are **lazy** by default, so they stay off until you enabl
 
 ## MCP servers
 - `launchdarkly` → `https://mcp.launchdarkly.com/mcp/launchdarkly`
-- `slack` → `https://mcp.slack.com/mcp`
+- `slack` → `https://bifrost-llm-proxy-alb-0.cmd.hotstar-prod.com/mcp`
 - `coralogix_nonprod` → `https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp`
 - `service_catalog` → `https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp`
 - `chrome-devtools` → `npx -y chrome-devtools-mcp@latest`
 
 ## Notes
 - LaunchDarkly hosted MCP uses OAuth in the client after you start/connect the server.
-- Slack MCP needs Slack auth/app setup separately.
+- Slack MCP uses the locally configured `MCP_SLACK_BF_VK` credential.
 - Chrome DevTools MCP uses the official `chrome-devtools-mcp` package.
 - Do **not** commit `~/.pi/agent/auth.json` or sessions.

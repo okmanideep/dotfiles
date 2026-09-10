@@ -3,14 +3,66 @@
   "model": "openai/gpt-5.4",
   "small_model": "openai/gpt-5.4-mini",
   "mcp": {
-    "chrome-devtools": {
-      "enabled": false,
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "chrome-devtools-mcp@latest"
-      ]
+    "servers": {
+      "launchdarkly": {
+        "type": "remote",
+        "url": "https://mcp.launchdarkly.com/mcp/launchdarkly",
+        "disabled": true
+      },
+      "slack": {
+        "type": "remote",
+        "url": "https://bifrost-llm-proxy-alb-0.cmd.hotstar-prod.com/mcp",
+        "oauth": false,
+        "disabled": true,
+        "headers": {
+          "x-bf-vk": "REPLACE_LOCALLY_SLACK_BF_VK"
+        }
+      },
+      "coralogix_nonprod": {
+        "type": "remote",
+        "url": "https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp",
+        "oauth": false,
+        "disabled": true,
+        "headers": {
+          "x-bf-vk": "REPLACE_LOCALLY_CORALOGIX_NONPROD_BF_VK"
+        }
+      },
+      "coralogix_prod": {
+        "type": "remote",
+        "url": "https://bifrost-llm-proxy-alb-0.cmd.hotstar-prod.com/mcp",
+        "oauth": false,
+        "disabled": true,
+        "headers": {
+          "x-bf-vk": "REPLACE_LOCALLY_CORALOGIX_PROD_BF_VK"
+        }
+      },
+      "hotstar_eks": {
+        "type": "remote",
+        "url": "https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp",
+        "oauth": false,
+        "disabled": true,
+        "headers": {
+          "x-bf-vk": "REPLACE_LOCALLY_HOTSTAR_EKS_BF_VK"
+        }
+      },
+      "service_catalog": {
+        "type": "remote",
+        "url": "https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp",
+        "oauth": false,
+        "disabled": true,
+        "headers": {
+          "x-bf-vk": "REPLACE_LOCALLY_SERVICE_CATALOG_BF_VK"
+        }
+      },
+      "chrome-devtools": {
+        "type": "local",
+        "command": [
+          "npx",
+          "-y",
+          "chrome-devtools-mcp@latest"
+        ],
+        "disabled": true
+      }
     }
   }
 }

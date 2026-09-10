@@ -6,11 +6,27 @@
       "lifecycle": "lazy",
       "auth": { "type": "oauth" }
     },
+    "slack": {
+      "transport": "streamable-http",
+      "url": "https://bifrost-llm-proxy-alb-0.cmd.hotstar-prod.com/mcp",
+      "headers": {
+        "x-bf-vk": "REPLACE_LOCALLY_SLACK_BF_VK"
+      },
+      "lifecycle": "lazy"
+    },
     "coralogix_nonprod": {
       "transport": "streamable-http",
       "url": "https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp",
       "headers": {
         "x-bf-vk": "REPLACE_LOCALLY_CORALOGIX_NONPROD_BF_VK"
+      },
+      "lifecycle": "lazy"
+    },
+    "coralogix_prod": {
+      "transport": "streamable-http",
+      "url": "https://bifrost-llm-proxy-alb-0.cmd.hotstar-prod.com/mcp",
+      "headers": {
+        "x-bf-vk": "REPLACE_LOCALLY_CORALOGIX_PROD_BF_VK"
       },
       "lifecycle": "lazy"
     },

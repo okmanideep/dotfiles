@@ -113,6 +113,12 @@ remove_if_symlink() {
 get_device_env_value() {
     local device_env="$1"
     local env_name="$2"
+    local env_value="${!env_name:-}"
+
+    if [ -n "$env_value" ]; then
+        printf '%s\n' "$env_value"
+        return
+    fi
 
     if [ ! -f "$device_env" ]; then
         return
@@ -132,36 +138,46 @@ if match:
 PY
 }
 
-write_pi_mcp_config() {
+write_mcp_config() {
     local device_env="$1"
-    local mcp_path="$HOME/.pi/agent/mcp.json"
-    local mcp_template="$DOTFILES_DIR/pi/mcp.json"
+    local mcp_template="$2"
+    local mcp_path="$3"
+    local client_name="$4"
     local coralogix_nonprod_key
+    local coralogix_prod_key
     local hotstar_eks_key
     local service_catalog_key
+    local slack_key
 
     remove_if_symlink "$mcp_path"
 
-    coralogix_nonprod_key="$(get_device_env_value "$device_env" "PI_MCP_CORALOGIX_NONPROD_BF_VK")"
-    hotstar_eks_key="$(get_device_env_value "$device_env" "PI_MCP_HOTSTAR_EKS_BF_VK")"
-    service_catalog_key="$(get_device_env_value "$device_env" "PI_MCP_SERVICE_CATALOG_BF_VK")"
+    coralogix_nonprod_key="$(get_device_env_value "$device_env" "MCP_CORALOGIX_NONPROD_BF_VK")"
+    coralogix_prod_key="$(get_device_env_value "$device_env" "MCP_CORALOGIX_PROD_BF_VK")"
+    hotstar_eks_key="$(get_device_env_value "$device_env" "MCP_HOTSTAR_EKS_BF_VK")"
+    service_catalog_key="$(get_device_env_value "$device_env" "MCP_SERVICE_CATALOG_BF_VK")"
+    slack_key="$(get_device_env_value "$device_env" "MCP_SLACK_BF_VK")"
 
     mkdir -p "$(dirname "$mcp_path")"
-    MCP_TEMPLATE="$mcp_template" CORALOGIX_NONPROD_KEY="$coralogix_nonprod_key" HOTSTAR_EKS_KEY="$hotstar_eks_key" SERVICE_CATALOG_KEY="$service_catalog_key" MCP_PATH="$mcp_path" python3 - <<'PY'
+    MCP_TEMPLATE="$mcp_template" CORALOGIX_NONPROD_KEY="$coralogix_nonprod_key" CORALOGIX_PROD_KEY="$coralogix_prod_key" HOTSTAR_EKS_KEY="$hotstar_eks_key" SERVICE_CATALOG_KEY="$service_catalog_key" SLACK_KEY="$slack_key" MCP_PATH="$mcp_path" python3 - <<'PY'
 import json
 import os
 import pathlib
 
 placeholder_values = {
     "REPLACE_LOCALLY_CORALOGIX_NONPROD_BF_VK": os.environ.get("CORALOGIX_NONPROD_KEY", ""),
+    "REPLACE_LOCALLY_CORALOGIX_PROD_BF_VK": os.environ.get("CORALOGIX_PROD_KEY", ""),
     "REPLACE_LOCALLY_HOTSTAR_EKS_BF_VK": os.environ.get("HOTSTAR_EKS_KEY", ""),
     "REPLACE_LOCALLY_SERVICE_CATALOG_BF_VK": os.environ.get("SERVICE_CATALOG_KEY", ""),
+    "REPLACE_LOCALLY_SLACK_BF_VK": os.environ.get("SLACK_KEY", ""),
 }
 
 with pathlib.Path(os.environ["MCP_TEMPLATE"]).open() as f:
     config = json.load(f)
 
-servers = config.get("mcpServers", {})
+if "mcpServers" in config:
+    servers = config["mcpServers"]
+else:
+    servers = config.get("mcp", {}).get("servers", {})
 filtered_servers = {}
 
 for name, server in servers.items():
@@ -178,9 +194,14 @@ for name, server in servers.items():
     filtered_servers[name] = json.loads(resolved)
 
 path = pathlib.Path(os.environ["MCP_PATH"])
-path.write_text(json.dumps({"mcpServers": filtered_servers}, indent=2) + "\n")
+if "mcpServers" in config:
+    config["mcpServers"] = filtered_servers
+else:
+    config.setdefault("mcp", {})["servers"] = filtered_servers
+
+path.write_text(json.dumps(config, indent=2) + "\n")
 PY
-    log "Wrote Pi MCP config from template: $mcp_path"
+    log "Wrote $client_name MCP config from template: $mcp_path"
 }
 
 setup_cloudflare_r2_aws_profile() {
@@ -333,7 +354,6 @@ fi
 
 create_symlink "$DOTFILES_DIR/starship/starship.toml" "$HOME/.config/starship.toml"
 create_symlink "$DOTFILES_DIR/wezterm" "$HOME/.config/wezterm"
-create_symlink "$DOTFILES_DIR/opencode/opencode.json" "$HOME/.config/opencode/opencode.json"
 create_symlink "$DOTFILES_DIR/claude/skills" "$HOME/.claude/skills"
 create_symlink "$DOTFILES_DIR/claude/settings.json" "$HOME/.claude/settings.json"
 create_symlink "$DOTFILES_DIR/claude/skills" "$HOME/.config/opencode/skills"
@@ -358,13 +378,15 @@ else
     log "device-env.nu already exists, skipping"
 fi
 
+write_mcp_config "$DEVICE_ENV" "$DOTFILES_DIR/opencode/opencode.json" "$HOME/.config/opencode/opencode.json" "OpenCode"
+create_symlink "$DOTFILES_DIR/opencode/plugins/idle-sound.ts" "$HOME/.config/opencode/plugins/idle-sound.ts"
+
 log "Setting up Pi config..."
 mkdir -p "$HOME/.pi/agent"
 create_symlink "$DOTFILES_DIR/pi/settings.json" "$HOME/.pi/agent/settings.json"
-remove_if_symlink "$HOME/.pi/agent/mcp.json"
-write_pi_mcp_config "$DEVICE_ENV"
-setup_cloudflare_r2_aws_profile "$DEVICE_ENV"
 create_symlink "$DOTFILES_DIR/pi/extensions" "$HOME/.pi/agent/extensions"
+write_mcp_config "$DEVICE_ENV" "$DOTFILES_DIR/pi/mcp.json" "$HOME/.pi/agent/mcp.json" "Pi"
+setup_cloudflare_r2_aws_profile "$DEVICE_ENV"
 install_pi_package "npm:pi-web-access"
 install_pi_package "npm:pi-mcp-extension"
 
@@ -395,4 +417,3 @@ if [ "$OS" = "ubuntu" ]; then
 fi
 
 log "Installation complete!"
-
