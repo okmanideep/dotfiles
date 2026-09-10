@@ -147,7 +147,6 @@ write_mcp_config() {
     local coralogix_prod_key
     local hotstar_eks_key
     local service_catalog_key
-    local slack_key
 
     remove_if_symlink "$mcp_path"
 
@@ -155,10 +154,9 @@ write_mcp_config() {
     coralogix_prod_key="$(get_device_env_value "$device_env" "MCP_CORALOGIX_PROD_BF_VK")"
     hotstar_eks_key="$(get_device_env_value "$device_env" "MCP_HOTSTAR_EKS_BF_VK")"
     service_catalog_key="$(get_device_env_value "$device_env" "MCP_SERVICE_CATALOG_BF_VK")"
-    slack_key="$(get_device_env_value "$device_env" "MCP_SLACK_BF_VK")"
 
     mkdir -p "$(dirname "$mcp_path")"
-    MCP_TEMPLATE="$mcp_template" CORALOGIX_NONPROD_KEY="$coralogix_nonprod_key" CORALOGIX_PROD_KEY="$coralogix_prod_key" HOTSTAR_EKS_KEY="$hotstar_eks_key" SERVICE_CATALOG_KEY="$service_catalog_key" SLACK_KEY="$slack_key" MCP_PATH="$mcp_path" python3 - <<'PY'
+    MCP_TEMPLATE="$mcp_template" CORALOGIX_NONPROD_KEY="$coralogix_nonprod_key" CORALOGIX_PROD_KEY="$coralogix_prod_key" HOTSTAR_EKS_KEY="$hotstar_eks_key" SERVICE_CATALOG_KEY="$service_catalog_key" MCP_PATH="$mcp_path" python3 - <<'PY'
 import json
 import os
 import pathlib
@@ -168,7 +166,6 @@ placeholder_values = {
     "REPLACE_LOCALLY_CORALOGIX_PROD_BF_VK": os.environ.get("CORALOGIX_PROD_KEY", ""),
     "REPLACE_LOCALLY_HOTSTAR_EKS_BF_VK": os.environ.get("HOTSTAR_EKS_KEY", ""),
     "REPLACE_LOCALLY_SERVICE_CATALOG_BF_VK": os.environ.get("SERVICE_CATALOG_KEY", ""),
-    "REPLACE_LOCALLY_SLACK_BF_VK": os.environ.get("SLACK_KEY", ""),
 }
 
 with pathlib.Path(os.environ["MCP_TEMPLATE"]).open() as f:
@@ -385,6 +382,7 @@ log "Setting up Pi config..."
 mkdir -p "$HOME/.pi/agent"
 create_symlink "$DOTFILES_DIR/pi/settings.json" "$HOME/.pi/agent/settings.json"
 create_symlink "$DOTFILES_DIR/pi/extensions" "$HOME/.pi/agent/extensions"
+create_symlink "$DOTFILES_DIR/claude/skills" "$HOME/.pi/agent/skills"
 write_mcp_config "$DEVICE_ENV" "$DOTFILES_DIR/pi/mcp.json" "$HOME/.pi/agent/mcp.json" "Pi"
 setup_cloudflare_r2_aws_profile "$DEVICE_ENV"
 install_pi_package "npm:pi-web-access"

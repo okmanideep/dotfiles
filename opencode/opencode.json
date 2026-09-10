@@ -9,15 +9,6 @@
         "url": "https://mcp.launchdarkly.com/mcp/launchdarkly",
         "disabled": true
       },
-      "slack": {
-        "type": "remote",
-        "url": "https://bifrost-llm-proxy-alb-0.cmd.hotstar-prod.com/mcp",
-        "oauth": false,
-        "disabled": true,
-        "headers": {
-          "x-bf-vk": "REPLACE_LOCALLY_SLACK_BF_VK"
-        }
-      },
       "coralogix_nonprod": {
         "type": "remote",
         "url": "https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp",

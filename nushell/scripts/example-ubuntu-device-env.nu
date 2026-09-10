@@ -19,7 +19,6 @@ $env.MCP_CORALOGIX_NONPROD_BF_VK = ""
 $env.MCP_CORALOGIX_PROD_BF_VK = ""
 $env.MCP_HOTSTAR_EKS_BF_VK = ""
 $env.MCP_SERVICE_CATALOG_BF_VK = ""
-$env.MCP_SLACK_BF_VK = ""
 
 # Device-specific commands
 # export def --env my-project [] {
