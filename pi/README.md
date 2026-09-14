@@ -44,4 +44,8 @@ Configured MCP servers are **lazy** by default, so they stay off until you enabl
 ## Slack lookup
 
 Use `/skill:lookup-slack` to search, read, or analyze Slack through the authenticated Codex CLI and its Slack skill. The helper uses Codex's configured default model and is read-only.
+
+## Google Drive lookup
+
+Use `/skill:lookup-google-drive` to search, read, or analyze Google Drive files, including Google Sheets, through the authenticated Codex CLI and its Google Drive skill. The helper uses Codex's configured default model and is read-only.
 - Do **not** commit `~/.pi/agent/auth.json` or sessions.
