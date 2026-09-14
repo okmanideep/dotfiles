@@ -806,6 +806,7 @@ source note.nu
 source pad.nu
 source wezterm-tab-title.nu
 source repo.nu
+source ws.nu
 source ding.nu
 source gpt.nu
 source asdf.nu
