@@ -1,0 +1,16 @@
+nushell/config.nu
+  h_ed7ef8ca79e302 809
+nushell/scripts/ws.nu
+  h_ed7ef8ca79e302 1-12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "08c4467e4a5c4648973d663c83c630c4fc0e6dc1",
+  "prompts": {},
+  "humans": {
+    "h_ed7ef8ca79e302": {
+      "author": "Manideep Polireddi <okmanideep@users.noreply.github.com>"
+    }
+  }
+}
