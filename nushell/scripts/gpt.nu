@@ -1,35 +1,59 @@
 def gpt [query?: string] {
     let api_key = $env.OPEN_AI_API_KEY
-    let model = "gpt-4o-mini-search-preview"
+    let model = "gpt-5.6-luna"
     let os_name = match (sys host).name {
         "Darwin" => "macOS"
         $other => $other
     }
 
-    mut messages = [
-        {
-            role: "developer"
-            content: $"
-You are a terminal helper running on ($os_name). Tailor your searches and responses for command line in ($os_name). Preferably nushell otherwise bash. Look up online if necessary and respond with ONLY a single JSON object and nothing else:
-{\"message\":\"<short guidance>\", \"script\":\"<Nushell script or empty string>\"}
-- message: brief human-readable guidance in markdown \(1–5 short lines\)
-- script: Nushell \(or bash\) script to run \(may be multi-line\); empty string if none"
+    let instructions = $"
+You are a terminal helper running on ($os_name). Tailor your searches and responses for command line in ($os_name). Prefer Nushell, otherwise bash. Search the web when needed. Return short guidance and an optional runnable script."
+    let response_format = {
+        type: "json_schema"
+        name: "terminal_helper"
+        strict: true
+        schema: {
+            type: "object"
+            properties: {
+                message: { type: "string" }
+                script: { type: "string" }
+            }
+            required: [message script]
+            additionalProperties: false
         }
-    ]
+    }
 
     let initial_q = if ($query == null) { input '> ' } else { $query }
-    $messages = ($messages | append { role: "user", content: $initial_q })
+    mut current_input = $initial_q
+    mut previous_response_id = ""
 
     loop {
-        let body = { model: $model, messages: $messages } | to json
+        # The Responses API supersedes Chat Completions and provides the web search tool.
+        let request = {
+            model: $model
+            instructions: $instructions
+            input: $current_input
+            tools: [{ type: "web_search" }]
+            text: { format: $response_format }
+        }
+        let body = if ($previous_response_id | is-empty) {
+            $request
+        } else {
+            $request | insert previous_response_id $previous_response_id
+        } | to json
 
-        let raw_content = (
-            http post https://api.openai.com/v1/chat/completions --headers [
-                "Authorization" $"Bearer ($api_key)"
-                "Content-Type" "application/json"
-            ] $body
-            | get choices.0.message.content
-        )
+        let response = (http post https://api.openai.com/v1/responses --headers [
+            "Authorization" $"Bearer ($api_key)"
+            "Content-Type" "application/json"
+        ] $body)
+        $previous_response_id = $response.id
+        let raw_content = ($response.output
+            | where type == "message"
+            | get content
+            | flatten
+            | where type == "output_text"
+            | get text
+            | str join "\n")
 
         # Clean potential code fences
         let cleaned = ($raw_content
@@ -54,9 +78,6 @@ You are a terminal helper running on ($os_name). Tailor your searches and respon
         if ($parts | is-not-empty) {
             $parts | flatten | str join "\n" | glow -s dark
         }
-
-        # Keep assistant turn as the exact JSON for better context
-        $messages = ($messages | append { role: "assistant", content: $cleaned })
 
         # Single-keystroke menu via input listen
         let has_script = (($parsed.script | str length) > 0)
@@ -86,8 +107,7 @@ You are a terminal helper running on ($os_name). Tailor your searches and respon
             ^bash -lc $parsed.script
             break
         } else if $choice == "a" {
-            let follow = (input "> ")
-            $messages = ($messages | append { role: "user", content: $follow })
+            $current_input = (input "> ")
             continue
         } else if $choice == "q" {
             break
