@@ -1,0 +1,14 @@
+nushell/scripts/gpt.nu
+  h_ed7ef8ca79e302 3,9-22,24,27-28,31-43,45-56,110
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "858580fe4af12049b5022c0c70cd5919c26f70c7",
+  "prompts": {},
+  "humans": {
+    "h_ed7ef8ca79e302": {
+      "author": "Manideep Polireddi <okmanideep@users.noreply.github.com>"
+    }
+  }
+}
