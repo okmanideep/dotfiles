@@ -1,0 +1,18 @@
+pi/README.md
+  h_ed7ef8ca79e302 9
+pi/prompts/review.md
+  h_ed7ef8ca79e302 1-61
+scripts/install.sh
+  h_ed7ef8ca79e302 385
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "b6f15d65c30ee66aeed30d3d72eb23b6494bf5e8",
+  "prompts": {},
+  "humans": {
+    "h_ed7ef8ca79e302": {
+      "author": "Manideep Polireddi <okmanideep@users.noreply.github.com>"
+    }
+  }
+}
