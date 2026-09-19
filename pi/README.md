@@ -6,6 +6,7 @@ Dotfile-managed Pi config lives here and is symlinked into `~/.pi/agent/` by `sc
 - `settings.json` — Pi defaults + installed packages
 - `mcp.json` — MCP server config
 - `extensions/` — global Pi extensions, including the idle sound notification
+- `prompts/` — global prompt templates, including `/review`.
 - Shared skills live in `claude/skills/` and are symlinked to `~/.pi/agent/skills/`.
 
 ## Installed packages
