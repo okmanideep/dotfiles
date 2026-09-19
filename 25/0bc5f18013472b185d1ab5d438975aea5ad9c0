@@ -1,0 +1,14 @@
+pi/extensions/wezterm-tab-title.ts
+  h_ed7ef8ca79e302 1-19
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "250bc5f18013472b185d1ab5d438975aea5ad9c0",
+  "prompts": {},
+  "humans": {
+    "h_ed7ef8ca79e302": {
+      "author": "Manideep Polireddi <okmanideep@users.noreply.github.com>"
+    }
+  }
+}
