@@ -2,6 +2,7 @@
 - Repo captures personal dotfiles (Neovim, Nushell, tmux, etc.).
 - Keep secrets, tokens, and machine-specific paths out of commits.
 - Prefer minimal, surgical diffs focused on the requested task.
+- Commit messages: use a concise, lowercase component prefix followed by `: ` and an imperative summary. Examples: `pi: add review prompt template`, `nushell: fix gpt.nu - move to newer openai api`, `opencode: default to openai models`.
 - Build/lint: run `stylua nvim/**/*.lua` before touching Lua config.
 - Build/lint: run `nu -c "fmt nushell/**/*.nu"` to reformat Nushell scripts (Nu >=0.97).
 - Build/lint: run `yamlfmt **/*.yml` if you change YAML (2-space indent).
