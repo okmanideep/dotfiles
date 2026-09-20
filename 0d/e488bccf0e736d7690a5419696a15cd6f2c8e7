@@ -1,0 +1,14 @@
+pi/README.md
+  h_ed7ef8ca79e302 12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "0de488bccf0e736d7690a5419696a15cd6f2c8e7",
+  "prompts": {},
+  "humans": {
+    "h_ed7ef8ca79e302": {
+      "author": "Manideep Polireddi <okmanideep@users.noreply.github.com>"
+    }
+  }
+}
