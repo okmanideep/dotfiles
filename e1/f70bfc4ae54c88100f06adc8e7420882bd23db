@@ -1,0 +1,14 @@
+pi/settings.json
+  h_ed7ef8ca79e302 2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "e1f70bfc4ae54c88100f06adc8e7420882bd23db",
+  "prompts": {},
+  "humans": {
+    "h_ed7ef8ca79e302": {
+      "author": "Manideep Polireddi <okmanideep@users.noreply.github.com>"
+    }
+  }
+}
