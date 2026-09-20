@@ -1,0 +1,14 @@
+pi/extensions/mcps.ts
+  h_ed7ef8ca79e302 83-84,94-95,100-101,107,112-123,127-128
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "03c0db9b1b630baa134429fbcb41952fb0130f19",
+  "prompts": {},
+  "humans": {
+    "h_ed7ef8ca79e302": {
+      "author": "Manideep Polireddi <okmanideep@users.noreply.github.com>"
+    }
+  }
+}
