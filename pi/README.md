@@ -9,6 +9,7 @@ Dotfile-managed Pi config lives here and is symlinked into `~/.pi/agent/` by `sc
 - `extensions/` — global Pi extensions, including the idle sound notification
 - `prompts/` — global prompt templates, including `/review`.
 - Shared skills live in `claude/skills/` and are symlinked to `~/.pi/agent/skills/`.
+- The MCP configuration skill is project-local at `.pi/skills/mcp-config/` and is not installed globally.
 
 ## Installed packages
 - `npm:pi-web-access`
