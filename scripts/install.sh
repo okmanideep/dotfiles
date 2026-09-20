@@ -381,6 +381,7 @@ create_symlink "$DOTFILES_DIR/opencode/plugins/idle-sound.ts" "$HOME/.config/ope
 log "Setting up Pi config..."
 mkdir -p "$HOME/.pi/agent"
 create_symlink "$DOTFILES_DIR/pi/settings.json" "$HOME/.pi/agent/settings.json"
+create_symlink "$DOTFILES_DIR/pi/web-search.json" "$HOME/.pi/agent/web-search.json"
 create_symlink "$DOTFILES_DIR/pi/extensions" "$HOME/.pi/agent/extensions"
 create_symlink "$DOTFILES_DIR/pi/prompts" "$HOME/.pi/agent/prompts"
 create_symlink "$DOTFILES_DIR/claude/skills" "$HOME/.pi/agent/skills"

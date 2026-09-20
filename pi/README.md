@@ -4,6 +4,7 @@ Dotfile-managed Pi config lives here and is symlinked into `~/.pi/agent/` by `sc
 
 ## Files
 - `settings.json` — Pi defaults + installed packages
+- `web-search.json` — Pi Web Access provider and credential configuration
 - `mcp.json` — MCP server config
 - `extensions/` — global Pi extensions, including the idle sound notification
 - `prompts/` — global prompt templates, including `/review`.
@@ -41,6 +42,11 @@ Configured MCP servers are **lazy** by default, so they stay off until you enabl
 ## Notes
 - LaunchDarkly hosted MCP uses OAuth in the client after you start/connect the server.
 - Chrome DevTools MCP uses the official `chrome-devtools-mcp` package.
+
+## Web search
+
+Pi Web Access uses Parallel as its default search provider. The API key is read
+from `$PARALLEL_API_KEY` at runtime and is not stored in this repository.
 
 ## Slack lookup
 

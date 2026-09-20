@@ -1,0 +1,4 @@
+{
+  "provider": "parallel",
+  "parallelApiKey": "$PARALLEL_API_KEY"
+}
