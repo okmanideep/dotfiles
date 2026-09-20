@@ -80,8 +80,8 @@ export default function mcpToggleExtension(pi: ExtensionAPI) {
 				return;
 			}
 
-			let command: string | undefined;
-			await ctx.ui.custom((_tui, theme, _keybindings, done) => {
+			const changes = new Map<string, string>();
+			await ctx.ui.custom((_tui, theme, keybindings, done) => {
 				const items: SettingItem[] = servers.map((server) => ({
 					id: server.name,
 					label: server.name,
@@ -91,28 +91,41 @@ export default function mcpToggleExtension(pi: ExtensionAPI) {
 				const container = new Container();
 				container.addChild(new Text(theme.fg("accent", theme.bold("MCP Servers")), 1, 1));
 
-				const settings = new SettingsList(
+				let settings: SettingsList;
+				settings = new SettingsList(
 					items,
 					Math.min(items.length + 2, 15),
 					getSettingsListTheme(),
 					(name, value) => {
-						command = value === "on" ? `/mcp:start ${name}` : `/mcp:stop ${name}`;
-						done(undefined);
+						changes.set(name, value);
+						settings.updateValue(name, value);
 					},
 					() => done(undefined),
 					{ enableSearch: true },
 				);
 				container.addChild(settings);
-				container.addChild(new Text(theme.fg("dim", "Space toggles • enter selects • esc cancels"), 1, 0));
+				container.addChild(new Text(theme.fg("dim", "Space toggles • enter applies • esc cancels"), 1, 0));
 
 				return {
 					render: (width) => container.render(width),
 					invalidate: () => container.invalidate(),
-					handleInput: (data) => settings.handleInput?.(data),
+					handleInput: (data) => {
+						if (keybindings.matches(data, "tui.select.confirm")) {
+							done(undefined);
+							return;
+						}
+						if (keybindings.matches(data, "tui.select.cancel")) {
+							changes.clear();
+							done(undefined);
+							return;
+						}
+						settings.handleInput?.(data);
+					},
 				};
 			});
 
-			if (command) {
+			for (const [name, value] of changes) {
+				const command = value === "on" ? `/mcp:start ${name}` : `/mcp:stop ${name}`;
 				pi.sendUserMessage(command, { expandPromptTemplates: true });
 			}
 		},
