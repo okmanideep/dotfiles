@@ -5,7 +5,7 @@
  * provides an OpenCode-style picker that sends the appropriate command.
  */
 
-import type { ExtensionAPI, ExtensionCommandContext } from "@earendil-works/pi-coding-agent";
+import type { ExtensionAPI, ExtensionContext } from "@earendil-works/pi-coding-agent";
 import { getSettingsListTheme } from "@earendil-works/pi-coding-agent";
 import { readFile } from "node:fs/promises";
 import { homedir } from "node:os";
@@ -14,7 +14,7 @@ import { Container, type SettingItem, SettingsList, Text } from "@earendil-works
 
 interface McpConfig {
 	settings?: { toolPrefix?: string };
-	mcpServers?: Record<string, unknown>;
+	mcpServers?: Record<string, { lifecycle?: string }>;
 }
 
 interface McpServer {
@@ -35,7 +35,7 @@ async function readConfig(path: string): Promise<McpConfig> {
 	}
 }
 
-async function getServers(ctx: ExtensionCommandContext, activeTools: string[]): Promise<McpServer[]> {
+async function getServers(ctx: ExtensionContext, activeTools: string[]): Promise<McpServer[]> {
 	const globalConfig = await readConfig(join(homedir(), ".pi", "agent", "mcp.json"));
 	const projectConfig = ctx.isProjectTrusted()
 		? await readConfig(join(ctx.cwd, ".pi", "mcp.json"))
@@ -53,12 +53,72 @@ async function getServers(ctx: ExtensionCommandContext, activeTools: string[]): 
 			const serverToolPrefix = `${sanitizeName(toolPrefix)}_${sanitizeName(name)}_`;
 			return {
 				name,
-				active: [...activeToolNames].some((toolName) => toolName.startsWith(serverToolPrefix)), 
+				active: [...activeToolNames].some((toolName) => toolName.startsWith(serverToolPrefix)),
 			};
 		});
 }
 
+async function getEagerServers(ctx: ExtensionContext): Promise<string[]> {
+	const globalConfig = await readConfig(join(homedir(), ".pi", "agent", "mcp.json"));
+	const projectConfig = ctx.isProjectTrusted()
+		? await readConfig(join(ctx.cwd, ".pi", "mcp.json"))
+		: {};
+	const configs = {
+		...(globalConfig.mcpServers ?? {}),
+		...(projectConfig.mcpServers ?? {}),
+	};
+
+	return Object.entries(configs)
+		.filter(([, config]) => config.lifecycle === "eager")
+		.map(([name]) => name)
+		.sort((left, right) => left.localeCompare(right));
+}
+
+async function notifyWhenEagerServersStart(
+	pi: ExtensionAPI,
+	ctx: ExtensionContext,
+	eagerServers: string[],
+): Promise<void> {
+	const pendingServers = new Set(eagerServers);
+	const deadline = Date.now() + 30_000;
+
+	while (pendingServers.size > 0 && Date.now() < deadline) {
+		try {
+			const activeServers = new Set(
+				(await getServers(ctx, pi.getActiveTools()))
+					.filter((server) => server.active)
+					.map((server) => server.name),
+			);
+
+			for (const serverName of pendingServers) {
+				if (!activeServers.has(serverName)) continue;
+				ctx.ui.notify(`pi-mcp: Started ${serverName}`, "info");
+				pendingServers.delete(serverName);
+			}
+		} catch {
+			// MCP status is informational; keep polling while startup is in progress.
+		}
+
+		if (pendingServers.size > 0) {
+			await new Promise((resolve) => setTimeout(resolve, 250));
+		}
+	}
+}
+
 export default function mcpToggleExtension(pi: ExtensionAPI) {
+	pi.on("session_start", async (_event, ctx) => {
+		if (ctx.mode !== "tui") return;
+
+		try {
+			const eagerServers = await getEagerServers(ctx);
+			if (eagerServers.length > 0) {
+				void notifyWhenEagerServersStart(pi, ctx, eagerServers);
+			}
+		} catch {
+			// MCP status is informational; do not make startup fail if config is unavailable.
+		}
+	});
+
 	pi.registerCommand("mcps", {
 		description: "Interactively start or stop MCP servers",
 		handler: async (_args, ctx) => {
