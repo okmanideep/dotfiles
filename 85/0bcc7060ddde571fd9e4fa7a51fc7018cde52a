@@ -1,0 +1,22 @@
+agents/skills/confluence/SKILL.md
+  h_ed7ef8ca79e302 1-37
+agents/skills/jira/SKILL.md
+  h_ed7ef8ca79e302 1-56
+agents/skills/launchdarkly/SKILL.md
+  h_ed7ef8ca79e302 1-36
+pi/README.md
+  h_ed7ef8ca79e302 11
+scripts/install.sh
+  h_ed7ef8ca79e302 354,356,387
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "850bcc7060ddde571fd9e4fa7a51fc7018cde52a",
+  "prompts": {},
+  "humans": {
+    "h_ed7ef8ca79e302": {
+      "author": "Manideep Polireddi <okmanideep@users.noreply.github.com>"
+    }
+  }
+}
