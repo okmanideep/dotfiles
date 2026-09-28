@@ -1,0 +1,14 @@
+agents/skills/confluence/SKILL.md
+  h_ed7ef8ca79e302 38-64
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "af3d6cd99ddefa61b4bf1149f8af8a8a95ff9c1b",
+  "prompts": {},
+  "humans": {
+    "h_ed7ef8ca79e302": {
+      "author": "Manideep Polireddi <okmanideep@users.noreply.github.com>"
+    }
+  }
+}
