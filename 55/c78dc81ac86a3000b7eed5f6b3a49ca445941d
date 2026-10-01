@@ -1,0 +1,22 @@
+pi/README.md
+  h_ed7ef8ca79e302 8-9,19,22-26
+pi/extensions/mcps.ts
+  h_ed7ef8ca79e302 1-2,8,11-13,16,19,23,25-26,28,32-33,38-51,53-65,68,71-81,83-84
+pi/mcp.json
+  h_ed7ef8ca79e302 5,11,17,23,29,36
+pi/settings.json
+  h_ed7ef8ca79e302 2,6
+scripts/install.sh
+  h_ed7ef8ca79e302 388-390
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "55c78dc81ac86a3000b7eed5f6b3a49ca445941d",
+  "prompts": {},
+  "humans": {
+    "h_ed7ef8ca79e302": {
+      "author": "Manideep Polireddi <okmanideep@users.noreply.github.com>"
+    }
+  }
+}
