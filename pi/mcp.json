@@ -1,51 +1,39 @@
 {
   "mcpServers": {
     "launchdarkly": {
-      "transport": "streamable-http",
       "url": "https://mcp.launchdarkly.com/mcp/launchdarkly",
-      "lifecycle": "lazy",
-      "auth": { "type": "oauth" }
+      "oauth": {}
     },
     "coralogix_nonprod": {
-      "transport": "streamable-http",
       "url": "https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp",
       "headers": {
         "x-bf-vk": "REPLACE_LOCALLY_CORALOGIX_NONPROD_BF_VK"
-      },
-      "lifecycle": "lazy"
+      }
     },
     "coralogix_prod": {
-      "transport": "streamable-http",
       "url": "https://bifrost-llm-proxy-alb-0.cmd.hotstar-prod.com/mcp",
       "headers": {
         "x-bf-vk": "REPLACE_LOCALLY_CORALOGIX_PROD_BF_VK"
-      },
-      "lifecycle": "lazy"
+      }
     },
     "hotstar_eks": {
-      "transport": "streamable-http",
       "url": "https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp",
       "headers": {
         "x-bf-vk": "REPLACE_LOCALLY_HOTSTAR_EKS_BF_VK"
-      },
-      "lifecycle": "lazy"
+      }
     },
     "service_catalog": {
-      "transport": "streamable-http",
       "url": "https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp",
       "headers": {
         "x-bf-vk": "REPLACE_LOCALLY_SERVICE_CATALOG_BF_VK"
-      },
-      "lifecycle": "lazy"
+      }
     },
     "chrome-devtools": {
       "command": "npx",
       "args": [
         "-y",
         "chrome-devtools-mcp@latest"
-      ],
-      "transport": "stdio",
-      "lifecycle": "lazy"
+      ]
     }
   }
 }

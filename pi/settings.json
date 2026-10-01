@@ -1,10 +1,9 @@
 {
-  "lastChangelogVersion": "0.86.1",
+  "lastChangelogVersion": "0.99.2",
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-6-luna",
   "packages": [
-    "npm:pi-web-access",
-    "npm:pi-mcp-extension"
+    "npm:pi-web-access"
   ],
   "theme": "dark"
 }

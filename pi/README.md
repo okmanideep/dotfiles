@@ -5,7 +5,8 @@ Dotfile-managed Pi config lives here and is symlinked into `~/.pi/agent/` by `sc
 ## Files
 - `settings.json` — Pi defaults + installed packages
 - `web-search.json` — Pi Web Access provider and credential configuration
-- `mcp.json` — MCP server config
+- `mcp.json` — empty built-in config; MCP connections are managed by the session picker
+- `mcps.json` — generated server definitions, with secrets from local `device-env.nu`
 - `extensions/` — global Pi extensions, including the idle sound notification
 - `prompts/` — global prompt templates, including `/review`.
 - Shared skills live in `agents/skills/` and are symlinked to `~/.pi/agent/skills/`, including LaunchDarkly, Jira, and Confluence workflows.
@@ -13,36 +14,17 @@ Dotfile-managed Pi config lives here and is symlinked into `~/.pi/agent/` by `sc
 
 ## Installed packages
 - `npm:pi-web-access`
-- `npm:pi-mcp-extension`
 
 ## MCP setup
-Configured MCP servers are **lazy** by default, so they stay off until you enable them inside Pi.
-
-### Toggle inside Pi
-- `/mcps` — interactive OpenCode-style picker; press Space to turn a server on/off.
-
-### Start inside Pi
-- `/mcp` — show MCP status
-- `/mcp:start launchdarkly`
-- `/mcp:start coralogix_nonprod`
-- `/mcp:start service_catalog`
-- `/mcp:start chrome-devtools`
-
-### Stop inside Pi
-- `/mcp:stop launchdarkly`
-- `/mcp:stop coralogix_nonprod`
-- `/mcp:stop service_catalog`
-- `/mcp:stop chrome-devtools`
+`scripts/install.sh` generates `~/.pi/agent/mcps.json` from this template, substituting MCP keys from the local `device-env.nu`. Servers with missing required keys are omitted. The built-in `mcp.json` is kept empty so the custom extension can register selected servers without conflicts. `/mcps` opens a session-only checklist: use Up/Down to move, Space to toggle, Enter to apply, or Esc to cancel. Selected servers connect for the current session; nothing is written to global configuration. `/mcp` remains available for Pi's built-in MCP status and OAuth actions.
 
 ## MCP servers
-- `launchdarkly` → `https://mcp.launchdarkly.com/mcp/launchdarkly`
-- `coralogix_nonprod` → `https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp`
-- `service_catalog` → `https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp`
+- `launchdarkly` → `https://mcp.launchdarkly.com/mcp/launchdarkly` (OAuth; sign in via `/mcp`)
+- `coralogix_nonprod` → Bifrost MCP endpoint
+- `coralogix_prod` → Bifrost MCP endpoint
+- `hotstar_eks` → Bifrost MCP endpoint
+- `service_catalog` → Bifrost MCP endpoint
 - `chrome-devtools` → `npx -y chrome-devtools-mcp@latest`
-
-## Notes
-- LaunchDarkly hosted MCP uses OAuth in the client after you start/connect the server.
-- Chrome DevTools MCP uses the official `chrome-devtools-mcp` package.
 
 ## Web search
 

@@ -385,10 +385,11 @@ create_symlink "$DOTFILES_DIR/pi/web-search.json" "$HOME/.pi/agent/web-search.js
 create_symlink "$DOTFILES_DIR/pi/extensions" "$HOME/.pi/agent/extensions"
 create_symlink "$DOTFILES_DIR/pi/prompts" "$HOME/.pi/agent/prompts"
 create_symlink "$DOTFILES_DIR/agents/skills" "$HOME/.pi/agent/skills"
-write_mcp_config "$DEVICE_ENV" "$DOTFILES_DIR/pi/mcp.json" "$HOME/.pi/agent/mcp.json" "Pi"
+write_mcp_config "$DEVICE_ENV" "$DOTFILES_DIR/pi/mcp.json" "$HOME/.pi/agent/mcps.json" "Pi"
+remove_if_symlink "$HOME/.pi/agent/mcp.json"
+printf '{\n  "mcpServers": {}\n}\n' > "$HOME/.pi/agent/mcp.json"
 setup_cloudflare_r2_aws_profile "$DEVICE_ENV"
 install_pi_package "npm:pi-web-access"
-install_pi_package "npm:pi-mcp-extension"
 
 # Initialize starship
 "$DOTFILES_DIR/scripts/init-starship.sh"
