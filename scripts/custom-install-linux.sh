@@ -9,19 +9,13 @@ log() {
     echo -e "${GREEN}==>${NC} $1"
 }
 
-# Install asdf (not available in apt)
-log "Installing asdf..."
-if ! command -v asdf &>/dev/null; then
-    ASDF_VERSION=$(curl -s https://api.github.com/repos/asdf-vm/asdf/releases/latest | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
-    ASDF_BINARY="asdf-${ASDF_VERSION}-linux-amd64.tar.gz"
-    curl -LO "https://github.com/asdf-vm/asdf/releases/download/${ASDF_VERSION}/${ASDF_BINARY}"
-    tar -xzf "$ASDF_BINARY"
-    mkdir -p "$HOME/.local/bin"
-    mv asdf "$HOME/.local/bin/"
-    rm "$ASDF_BINARY"
-    log "asdf ${ASDF_VERSION} installed to ~/.local/bin/asdf"
+# Install mise (not available in apt)
+log "Installing mise..."
+if ! command -v mise &>/dev/null; then
+    curl -fsSL https://mise.run | sh
+    log "mise installed to ~/.local/bin/mise"
 else
-    log "asdf is already installed"
+    log "mise is already installed"
 fi
 
 # Install neovim (apt version is outdated)

@@ -5,6 +5,8 @@ return {
 		{ "<leader>pi", "<cmd>PiAskSelection<CR>", mode = "v", desc = "Ask Pi about selection" },
 	},
 	config = function()
-		require("pi").setup()
+		require("pi").setup({
+			thinking = "off",
+		})
 	end,
 }

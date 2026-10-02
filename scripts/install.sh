@@ -300,7 +300,7 @@ else
         log "starship is already installed"
     fi
 
-    # Run custom Linux installations (asdf, neovim, opencode)
+    # Run custom Linux installations (mise, neovim, opencode)
     "$DOTFILES_DIR/scripts/custom-install-linux.sh"
 fi
 
@@ -394,8 +394,8 @@ install_pi_package "npm:pi-web-access"
 # Initialize starship
 "$DOTFILES_DIR/scripts/init-starship.sh"
 
-# Initialize asdf completions
-"$DOTFILES_DIR/scripts/init-asdf.sh"
+# Initialize mise and install configured tool versions
+"$DOTFILES_DIR/scripts/init-mise.sh"
 
 # Set nushell as default shell
 log "Setting nushell as default shell..."
