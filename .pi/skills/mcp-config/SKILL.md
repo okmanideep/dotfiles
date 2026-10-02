@@ -23,12 +23,12 @@ Treat header values as secrets. Never add them to tracked files, commit them, or
 
 ## Target Files
 
-Update both tracked MCP templates:
+Update both tracked MCP templates for additions, edits, and removals:
 
-- `opencode/opencode.json`
-- `pi/mcp.json`
+- `opencode/opencode.json` — OpenCode's `mcp.servers` map.
+- `pi/mcp.json` — source template for Pi's session MCP picker.
 
-For a remote Streamable HTTP server, translate the TOML server name and URL as follows:
+Translate a remote Streamable HTTP server into the clients' respective formats:
 
 ```jsonc
 // opencode/opencode.json: mcp.servers
@@ -46,22 +46,22 @@ For a remote Streamable HTTP server, translate the TOML server name and URL as f
 ```jsonc
 // pi/mcp.json: mcpServers
 "example": {
-  "transport": "streamable-http",
   "url": "https://example.com/mcp",
   "headers": {
     "X-Api-Key": "REPLACE_LOCALLY_EXAMPLE_API_KEY"
-  },
-  "lifecycle": "lazy"
+  }
 }
 ```
 
-Keep OpenCode remote servers disabled by default and Pi servers lazy, matching the existing configuration. Set `oauth` to `false` only for header/API-key authenticated servers. OAuth-only servers need their client-specific auth configuration instead of a secret placeholder.
+Pi's template is consumed by `scripts/install.sh`, which writes the resolved definitions to `~/.pi/agent/mcps.json`. The custom `pi/extensions/mcps.ts` extension registers selected servers only when the user chooses them with `/mcps`; the selection lasts only for the current session. Do not add `enabled`, `lifecycle`, or legacy `transport` fields to the Pi template. Do not put server definitions in the built-in `~/.pi/agent/mcp.json`: the installer intentionally keeps that file empty to avoid conflicts with extension-registered servers.
 
-For stdio servers, preserve each client’s existing local/stdio schema rather than using the remote examples above.
+Keep OpenCode servers disabled by default. The Pi picker starts with all servers off for each session. Set `oauth` to `false` in the OpenCode config for header/API-key authenticated servers. OAuth-only servers need their client-specific auth configuration instead of a secret placeholder.
+
+For stdio servers, preserve each client's current schema. OpenCode uses `type: "local"` and a `command` array; Pi uses `command` and `args`.
 
 ## Secret Placeholders
 
-The installer generates client configs from templates and only includes a server when every placeholder in that server resolves to a non-empty value.
+The installer generates client configs from templates and includes a server only when every placeholder in that server resolves to a non-empty value.
 
 For every new secret placeholder:
 
@@ -71,18 +71,19 @@ For every new secret placeholder:
    - `nushell/scripts/example-macos-device-env.nu`
    - `nushell/scripts/example-ubuntu-device-env.nu`
 4. Add the supplied value only to the ignored local `nushell/scripts/device-env.nu` when the user asks to configure the current machine.
-5. Update `scripts/install.sh` so `write_mcp_config` reads the environment variable and maps the placeholder. This function currently has explicit declarations, lookups, environment forwarding, and `placeholder_values` entries; update all four.
+5. Update `scripts/install.sh` so `write_mcp_config` reads the environment variable and maps the placeholder. This function has explicit declarations, lookups, environment forwarding, and `placeholder_values`; update all four.
 
-Do not create a symlink for either MCP config. `make install` writes generated files to:
+Do not create symlinks for generated MCP configs. `make install` writes:
 
-- `~/.config/opencode/opencode.json`
-- `~/.pi/agent/mcp.json`
+- `~/.config/opencode/opencode.json` — generated OpenCode config.
+- `~/.pi/agent/mcps.json` — resolved Pi definitions for `/mcps`.
+- `~/.pi/agent/mcp.json` — overwritten with an empty `mcpServers` map so Pi's built-in MCP loader does not conflict with `/mcps`.
 
-The generated files intentionally contain resolved secrets and must remain outside the repository.
+The generated `mcps.json` and OpenCode config can contain resolved secrets and must remain outside the repository. For server removal, remove its entry from both tracked templates and any in-scope generated local config if requested; do not leave orphaned definitions in Pi's `mcps.json`.
 
 ## Documentation And Validation
 
-Update `pi/README.md` when its MCP server list or setup notes become inaccurate.
+Update `pi/README.md` when its MCP server list or setup notes become inaccurate. Keep the description of `/mcps`, session-only selections, config paths, and OpenCode/Pi behavior aligned with the installer and extension.
 
 Run after changes:
 
@@ -92,4 +93,4 @@ jq empty opencode/opencode.json pi/mcp.json
 git diff --check
 ```
 
-Confirm the supplied secret is absent from tracked files. Do not run `make install` unless requested: it is a full workstation bootstrap. Tell the user to run it to regenerate the live MCP configs, or perform only the equivalent targeted generation if requested.
+Confirm supplied secrets are absent from tracked files. Do not run `make install` unless requested: it is a full workstation bootstrap. Tell the user to run it to regenerate live MCP configs, or perform only equivalent targeted generation if requested.

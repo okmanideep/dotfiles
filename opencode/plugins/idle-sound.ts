@@ -37,15 +37,18 @@ export default {
 				.finally(() => waiting.delete(event.sessionID))
 		})
 
-		return () => registration.dispose()
-	},
-	async server() {
-		return {
-			event: async ({ event }) => {
+		const controller = new AbortController()
+		void (async () => {
+			for await (const event of context.event.subscribe({ signal: controller.signal })) {
 				if (event.type === "session.status" && event.properties.status.type === "idle") {
 					await playSound()
 				}
-			},
+			}
+		})()
+
+		return () => {
+			controller.abort()
+			return registration.dispose()
 		}
 	},
 }
