@@ -1,0 +1,18 @@
+nvim/lazy-lock.json
+  h_ed7ef8ca79e302 29
+nvim/lua/plugins/pi.lua
+  h_ed7ef8ca79e302 1-10
+pi/settings.json
+  h_ed7ef8ca79e302 2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "1b7850a699e1c0900f2113319a3a0d880b19a788",
+  "prompts": {},
+  "humans": {
+    "h_ed7ef8ca79e302": {
+      "author": "Manideep Polireddi <okmanideep@users.noreply.github.com>"
+    }
+  }
+}
