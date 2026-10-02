@@ -1,0 +1,16 @@
+.pi/skills/mcp-config/SKILL.md
+  h_ed7ef8ca79e302 26,28-29,31,52,56-58,60,64,74,76,78-80,82,86,96
+opencode/plugins/idle-sound.ts
+  h_ed7ef8ca79e302 40-42,46-51
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "7ab22e6617a45878a6eaa69d10fae35d00c41e67",
+  "prompts": {},
+  "humans": {
+    "h_ed7ef8ca79e302": {
+      "author": "Manideep Polireddi <okmanideep@users.noreply.github.com>"
+    }
+  }
+}
