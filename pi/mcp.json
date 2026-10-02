@@ -1,9 +1,5 @@
 {
   "mcpServers": {
-    "launchdarkly": {
-      "url": "https://mcp.launchdarkly.com/mcp/launchdarkly",
-      "oauth": {}
-    },
     "coralogix_nonprod": {
       "url": "https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp",
       "headers": {
