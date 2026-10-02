@@ -1,0 +1,30 @@
+.tool-versions
+  h_ed7ef8ca79e302 1-9
+Brewfile
+  h_ed7ef8ca79e302 5
+nushell/config.nu
+  h_ed7ef8ca79e302 812
+nushell/mise.nu
+  h_ed7ef8ca79e302 1-60
+nvim/lazy-lock.json
+  h_ed7ef8ca79e302 29,33
+nvim/lua/plugins/pi.lua
+  h_ed7ef8ca79e302 8-10
+scripts/custom-install-linux.sh
+  h_ed7ef8ca79e302 12-16,18
+scripts/init-mise.sh
+  h_ed7ef8ca79e302 12-15,17-21,23-24,26-33,35
+scripts/install.sh
+  h_ed7ef8ca79e302 303,397-398
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "b2023e3e3c74680256cadc1f21ac2359eb2d6bf0",
+  "prompts": {},
+  "humans": {
+    "h_ed7ef8ca79e302": {
+      "author": "Manideep Polireddi <okmanideep@users.noreply.github.com>"
+    }
+  }
+}
