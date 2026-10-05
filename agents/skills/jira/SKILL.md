@@ -54,3 +54,8 @@ jira issue comment add <ISSUE-KEY> '<comment>' --no-input
 ```
 
 Never delete an issue or make a state-changing action from an ambiguous request.
+
+### Images in descriptions
+
+- Preserve existing ADF when editing; plain-text/Markdown `--body` edits can remove image nodes. Upload images as Jira attachments, then embed them with Jira’s editor or valid ADF `mediaSingle`/`media` nodes. Don’t use Markdown image syntax or attachment-content URLs as embeds. Re-read the issue to verify rendering.
+- Official references: [ADF structure](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/), [mediaSingle node](https://developer.atlassian.com/cloud/jira/platform/apis/document/nodes/mediaSingle/), [media node](https://developer.atlassian.com/cloud/jira/platform/apis/document/nodes/media/), [upload issue attachment API](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-attachments/#api-rest-api-3-issue-issueidorkey-attachments-post).
