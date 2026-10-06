@@ -1,0 +1,16 @@
+agents/skills/wispr-flow-transcripts/SKILL.md
+  h_ed7ef8ca79e302 1-64
+scripts/install.sh
+  h_ed7ef8ca79e302 63-78,373
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "fe4f35b428b311e3968bbdd52686fbfbc1f616b2",
+  "prompts": {},
+  "humans": {
+    "h_ed7ef8ca79e302": {
+      "author": "Manideep Polireddi <okmanideep@users.noreply.github.com>"
+    }
+  }
+}
