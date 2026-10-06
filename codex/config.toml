@@ -2,6 +2,9 @@
 # Header values are read from the environment so credentials stay in device-env.nu.
 approval_policy = "never"
 
+[features]
+code_mode = true
+
 [mcp_servers.coralogix_nonprod]
 url = "https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp"
 enabled = false
@@ -22,6 +25,10 @@ url = "https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp"
 enabled = false
 env_http_headers = { "x-bf-vk" = "MCP_SERVICE_CATALOG_BF_VK" }
 
+[mcp_servers.wispr_flow]
+url = "https://api.wisprflow.ai/connect/mcp"
+enabled = true
+
 [mcp_servers.chrome-devtools]
 command = "npx"
 args = ["-y", "chrome-devtools-mcp@latest"]
@@ -31,4 +38,7 @@ enabled = false
 screen_reader_detection_done = true
 
 [tui.model_availability_nux]
-"gpt-6.1-sol" = 3
+"gpt-6.1-sol" = 4
+
+[projects."/Users/polireddi.manideep/Documents/code/personal/dotfiles"]
+trust_level = "trusted"
