@@ -23,13 +23,8 @@ done < "$(cd "$(dirname "$0")/.." && pwd)/.tool-versions"
 log "Installing configured tool versions..."
 mise install
 
-# Generate Nushell integration into the configured Nushell directory.
-if [ "$(uname -s)" = "Darwin" ]; then
-    NUSHELL_CONFIG_DIR="$HOME/Library/Application Support/nushell"
-else
-    NUSHELL_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/nushell"
-fi
-mkdir -p "$NUSHELL_CONFIG_DIR"
-mise activate nu > "$NUSHELL_CONFIG_DIR/mise.nu"
+# Keep machine-specific generated output outside the symlinked dotfiles directory.
+mkdir -p "$HOME/.cache/mise"
+mise activate nu > "$HOME/.cache/mise/init.nu"
 
 log "mise setup complete!"

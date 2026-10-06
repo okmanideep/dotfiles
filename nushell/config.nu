@@ -809,6 +809,6 @@ source repo.nu
 source ws.nu
 source ding.nu
 source gpt.nu
-use ($nu.default-config-dir | path join "mise.nu")
+use ~/.cache/mise/init.nu
 source clipboard.nu
 source cloudflare.nu
