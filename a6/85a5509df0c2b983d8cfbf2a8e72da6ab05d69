@@ -1,0 +1,14 @@
+codex/config.toml
+  h_ed7ef8ca79e302 5-7,28-31,41-44
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "a685a5509df0c2b983d8cfbf2a8e72da6ab05d69",
+  "prompts": {},
+  "humans": {
+    "h_ed7ef8ca79e302": {
+      "author": "Manideep Polireddi <okmanideep@users.noreply.github.com>"
+    }
+  }
+}
