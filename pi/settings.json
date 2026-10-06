@@ -1,9 +1,10 @@
 {
   "lastChangelogVersion": "1.0.2",
-  "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-6-luna",
+  "defaultProvider": "opencode",
+  "defaultModel": "muse-spark-1.3",
   "packages": [
     "npm:pi-web-access"
   ],
-  "theme": "dark"
+  "theme": "dark",
+  "deviceId": "32699146-92f7-4265-a3f3-494f78adf86b"
 }
