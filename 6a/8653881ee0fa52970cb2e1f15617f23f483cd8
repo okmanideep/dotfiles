@@ -1,0 +1,18 @@
+agents/skills/lookup-google-drive/SKILL.md
+  h_ed7ef8ca79e302 9,13,17,20-21,29
+agents/skills/lookup-google-drive/scripts/lookup-google-drive.sh
+  h_ed7ef8ca79e302 14
+pi/settings.json
+  h_ed7ef8ca79e302 3-4,8-9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "6a8653881ee0fa52970cb2e1f15617f23f483cd8",
+  "prompts": {},
+  "humans": {
+    "h_ed7ef8ca79e302": {
+      "author": "Manideep Polireddi <okmanideep@users.noreply.github.com>"
+    }
+  }
+}
