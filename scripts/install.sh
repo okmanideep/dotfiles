@@ -353,6 +353,7 @@ create_symlink "$DOTFILES_DIR/starship/starship.toml" "$HOME/.config/starship.to
 create_symlink "$DOTFILES_DIR/wezterm" "$HOME/.config/wezterm"
 create_symlink "$DOTFILES_DIR/agents/skills" "$HOME/.claude/skills"
 create_symlink "$DOTFILES_DIR/claude/settings.json" "$HOME/.claude/settings.json"
+create_symlink "$DOTFILES_DIR/codex/config.toml" "$HOME/.codex/config.toml"
 create_symlink "$DOTFILES_DIR/agents/skills" "$HOME/.config/opencode/skills"
 create_symlink "$DOTFILES_DIR/claude/statusline.sh" "$HOME/.claude/statusline.sh"
 create_symlink "$DOTFILES_DIR/bat/bat.conf" "$HOME/.config/bat/config"

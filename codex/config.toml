@@ -1,0 +1,34 @@
+# MCP servers managed by this dotfiles repo.
+# Header values are read from the environment so credentials stay in device-env.nu.
+approval_policy = "never"
+
+[mcp_servers.coralogix_nonprod]
+url = "https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp"
+enabled = false
+env_http_headers = { "x-bf-vk" = "MCP_CORALOGIX_NONPROD_BF_VK" }
+
+[mcp_servers.coralogix_prod]
+url = "https://bifrost-llm-proxy-alb-0.cmd.hotstar-prod.com/mcp"
+enabled = false
+env_http_headers = { "x-bf-vk" = "MCP_CORALOGIX_PROD_BF_VK" }
+
+[mcp_servers.hotstar_eks]
+url = "https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp"
+enabled = false
+env_http_headers = { "x-bf-vk" = "MCP_HOTSTAR_EKS_BF_VK" }
+
+[mcp_servers.service_catalog]
+url = "https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp"
+enabled = false
+env_http_headers = { "x-bf-vk" = "MCP_SERVICE_CATALOG_BF_VK" }
+
+[mcp_servers.chrome-devtools]
+command = "npx"
+args = ["-y", "chrome-devtools-mcp@latest"]
+enabled = false
+
+[tui]
+screen_reader_detection_done = true
+
+[tui.model_availability_nux]
+"gpt-6.1-sol" = 3

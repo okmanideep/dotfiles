@@ -14,7 +14,7 @@ $env.PATH = ($env.PATH | split row (char esep) | prepend $paths_to_add)
 # Device-specific environment variables
 # $env.NOTES_DIR = ($env.HOME | path join "notes")
 
-# MCP secrets consumed by scripts/install.sh to generate Pi and OpenCode config
+# MCP secrets consumed by Codex at runtime and scripts/install.sh for Pi/OpenCode configs
 $env.MCP_CORALOGIX_NONPROD_BF_VK = ""
 $env.MCP_CORALOGIX_PROD_BF_VK = ""
 $env.MCP_HOTSTAR_EKS_BF_VK = ""
