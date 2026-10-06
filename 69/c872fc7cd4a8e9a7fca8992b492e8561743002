@@ -1,0 +1,28 @@
+scripts/install.sh
+  s_f3835683789ec9::t_49cb977e083e72 356
+nushell/scripts/example-macos-device-env.nu
+  s_f3835683789ec9::t_2dba61848f3022 17
+nushell/scripts/example-ubuntu-device-env.nu
+  s_f3835683789ec9::t_2dba61848f3022 17
+readme.md
+  s_f3835683789ec9::t_2dba61848f3022 10-15
+codex/config.toml
+  s_f3835683789ec9::t_5bb742c9dab9b8 1-28
+  s_f3835683789ec9::t_01a9e4e506de75 29-31
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "69c872fc7cd4a8e9a7fca8992b492e8561743002",
+  "prompts": {},
+  "sessions": {
+    "s_f3835683789ec9": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a110d2-0ec0-7550-8431-4574aea82965",
+        "model": "gpt-6-luna"
+      },
+      "human_author": "Manideep Polireddi <okmanideep@users.noreply.github.com>"
+    }
+  }
+}
