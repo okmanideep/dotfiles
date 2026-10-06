@@ -60,6 +60,22 @@ create_symlink() {
     log "Created symlink: $dest -> $src"
 }
 
+create_skill_symlinks() {
+    local source_dir="$1"
+    local target_dir="$2"
+    local skill_dir
+
+    mkdir -p "$target_dir"
+
+    for skill_dir in "$source_dir"/*; do
+        if [ ! -d "$skill_dir" ]; then
+            continue
+        fi
+
+        create_symlink "$skill_dir" "$target_dir/$(basename "$skill_dir")"
+    done
+}
+
 create_bin_symlinks() {
     local source_dir="$1"
     local target_dir="$2"
@@ -354,6 +370,7 @@ create_symlink "$DOTFILES_DIR/wezterm" "$HOME/.config/wezterm"
 create_symlink "$DOTFILES_DIR/agents/skills" "$HOME/.claude/skills"
 create_symlink "$DOTFILES_DIR/claude/settings.json" "$HOME/.claude/settings.json"
 create_symlink "$DOTFILES_DIR/codex/config.toml" "$HOME/.codex/config.toml"
+create_skill_symlinks "$DOTFILES_DIR/agents/skills" "$HOME/.codex/skills"
 create_symlink "$DOTFILES_DIR/agents/skills" "$HOME/.config/opencode/skills"
 create_symlink "$DOTFILES_DIR/claude/statusline.sh" "$HOME/.claude/statusline.sh"
 create_symlink "$DOTFILES_DIR/bat/bat.conf" "$HOME/.config/bat/config"
