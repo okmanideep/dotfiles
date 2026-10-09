@@ -359,12 +359,12 @@ create_bin_symlinks "$DOTFILES_DIR/bin" "$HOME/.local/bin"
 create_symlink "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
 create_symlink "$DOTFILES_DIR/zsh/zshrc" "$HOME/.zshrc"
 
-# Nushell config path differs by OS
+# On macOS, Nushell uses Application Support by default, but environments with
+# XDG_CONFIG_HOME set (including HERDR) use the XDG path. Link both to the same config.
 if [ "$OS" = "macos" ]; then
     create_symlink "$DOTFILES_DIR/nushell" "$HOME/Library/Application Support/nushell"
-else
-    create_symlink "$DOTFILES_DIR/nushell" "$HOME/.config/nushell"
 fi
+create_symlink "$DOTFILES_DIR/nushell" "$HOME/.config/nushell"
 
 create_symlink "$DOTFILES_DIR/starship/starship.toml" "$HOME/.config/starship.toml"
 create_symlink "$DOTFILES_DIR/wezterm" "$HOME/.config/wezterm"
