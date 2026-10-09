@@ -1,0 +1,3 @@
+tt() {
+	wezterm cli set-tab-title "$*"
+}
