@@ -12,6 +12,7 @@ network_access = true
 default_tools_approval_mode = "approve"
 
 [features]
+hooks = true
 code_mode = true
 
 [mcp_servers.coralogix_nonprod]
