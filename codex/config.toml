@@ -1,6 +1,15 @@
 # MCP servers managed by this dotfiles repo.
 # Header values are read from the environment so credentials stay in device-env.nu.
-approval_policy = "never"
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+model = "gpt-6.1-sol"
+model_reasoning_effort = "medium"
+
+[sandbox_workspace_write]
+network_access = true
+
+[apps._default]
+default_tools_approval_mode = "approve"
 
 [features]
 code_mode = true
@@ -34,11 +43,83 @@ command = "npx"
 args = ["-y", "chrome-devtools-mcp@latest"]
 enabled = false
 
+[mcp_servers.node_repl]
+args = []
+command = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/polireddi.manideep/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+CODEX_HOME = "/Users/polireddi.manideep/.codex"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab,mcpapps"
+BROWSER_USE_TINYSKY_ENABLED = "1"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = ""
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = ""
+NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = ""
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.1002.52244"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/polireddi.manideep/.codex/plugins/cache/openai-bundled/browser/26.1002.52244/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
+SKY_CUA_SERVICE_PATH = "/Users/polireddi.manideep/.codex/computer-use/Codex Computer Use.app"
+CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex"
+
 [tui]
 screen_reader_detection_done = true
+terminal_title = ["activity", "thread-name", "current-dir", "context-used", "model-with-reasoning"]
+status_line = ["model-with-reasoning", "current-dir", "thread-name", "git-branch", "approval-mode", "context-used"]
+status_line_use_colors = true
 
 [tui.model_availability_nux]
 "gpt-6.1-sol" = 4
 
 [projects."/Users/polireddi.manideep/Documents/code/personal/dotfiles"]
 trust_level = "trusted"
+
+[projects."/Users/polireddi.manideep/Documents/code/hotstar/hotstar-services"]
+trust_level = "trusted"
+
+[desktop]
+followUpQueueMode = "queue"
+
+[marketplaces.openai-bundled]
+source_type = "local"
+source = "/Users/polireddi.manideep/.codex/.tmp/bundled-marketplaces/openai-bundled"
+
+[marketplaces.openai-primary-runtime]
+source_type = "local"
+source = "/Users/polireddi.manideep/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[plugins."unified-computer-use@openai-bundled"]
+enabled = true
+
+[plugins."chrome@openai-bundled"]
+enabled = true
+
+[plugins."computer-use@openai-bundled"]
+enabled = true
+
+[plugins."visualize@openai-bundled"]
+enabled = true
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."pdf@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."template-creator@openai-primary-runtime"]
+enabled = true
+
+[apps.connector_5f3c8c41a1e54ad7a76272c89e2554fa.tools."google_drive.batch_update_presentation"]
+approval_mode = "approve"
