@@ -61,8 +61,8 @@ NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = ""
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = ""
 NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = ""
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.1002.52244"
-NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/polireddi.manideep/.codex/plugins/cache/openai-bundled/browser/26.1002.52244/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
+BROWSER_USE_CODEX_APP_VERSION = "26.1007.30912"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/polireddi.manideep/.codex/plugins/cache/openai-bundled/browser/26.1007.30912/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
 SKY_CUA_SERVICE_PATH = "/Users/polireddi.manideep/.codex/computer-use/Codex Computer Use.app"
 CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex"
 
@@ -121,6 +121,14 @@ enabled = true
 
 [plugins."template-creator@openai-primary-runtime"]
 enabled = true
+
+[plugins."codex-app-tools@openai-bundled"]
+enabled = true
+
+[hooks.state]
+
+[hooks.state."/Users/polireddi.manideep/.codex/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:99b683b2c6d493814b665caa461c19bdd6613bac2eab9062e513994d01f73622"
 
 [apps.connector_5f3c8c41a1e54ad7a76272c89e2554fa.tools."google_drive.batch_update_presentation"]
 approval_mode = "approve"
