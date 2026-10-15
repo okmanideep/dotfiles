@@ -357,6 +357,7 @@ fi
 log "Creating symlinks..."
 create_bin_symlinks "$DOTFILES_DIR/bin" "$HOME/.local/bin"
 create_symlink "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
+create_symlink "$DOTFILES_DIR/herdr/config.toml" "$HOME/.config/herdr/config.toml"
 create_symlink "$DOTFILES_DIR/zsh/zshrc" "$HOME/.zshrc"
 
 # On macOS, Nushell uses Application Support by default, but environments with

@@ -803,6 +803,7 @@ source aliases.nu
 source git-completions.nu
 source folder-bookmarks.nu
 source note.nu
+source herdr.nu
 source pad.nu
 source wezterm-tab-title.nu
 source repo.nu

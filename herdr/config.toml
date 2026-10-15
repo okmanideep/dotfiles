@@ -1,0 +1,7 @@
+# Herdr configuration. See https://herdr.dev/docs/configuration/.
+# Add custom keybindings under [keys], for example: prefix = "ctrl+a".
+
+[keys]
+prefix = "ctrl+b"
+new_workspace = "prefix+n"
+next_tab = ""

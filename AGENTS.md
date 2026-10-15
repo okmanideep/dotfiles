@@ -1,5 +1,6 @@
 # AGENTS
 - Repo captures personal dotfiles (Neovim, Nushell, tmux, etc.).
+- Herdr config reference: https://herdr.dev/docs/configuration/.
 - Keep secrets, tokens, and machine-specific paths out of commits.
 - Prefer minimal, surgical diffs focused on the requested task.
 - Commit messages: use a concise, lowercase component prefix followed by `: ` and an imperative summary. Examples: `pi: add review prompt template`, `nushell: fix gpt.nu - move to newer openai api`, `opencode: default to openai models`.
