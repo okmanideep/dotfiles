@@ -1,3 +1,4 @@
+onboarding = false
 # Herdr configuration. See https://herdr.dev/docs/configuration/.
 # Add custom keybindings under [keys], for example: prefix = "ctrl+a".
 
@@ -7,3 +8,14 @@ new_workspace = "prefix+n"
 next_workspace = "prefix+j"
 previous_workspace = "prefix+k"
 next_tab = ""
+
+[ui]
+sidebar_width = 36
+sidebar_max_width = 40
+
+[ui.sidebar.agents]
+rows = [
+  ["state_icon", "agent"],
+  ["terminal_title_stripped"],
+  ["workspace", "tab"],
+]
