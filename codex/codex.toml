@@ -1,0 +1,94 @@
+# Shared Codex preferences merged into ~/.codex/config.toml by the installer.
+# Keep machine-specific paths, project trust, hooks, and local marketplace paths
+# in ~/.codex/config.toml so Codex can update them without changing this repo.
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+model = "gpt-6.1-sol"
+model_reasoning_effort = "medium"
+
+[sandbox_workspace_write]
+network_access = true
+
+[apps._default]
+default_tools_approval_mode = "approve"
+
+[features]
+hooks = true
+code_mode = true
+
+[mcp_servers.coralogix_nonprod]
+url = "https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp"
+enabled = false
+env_http_headers = { "x-bf-vk" = "MCP_CORALOGIX_NONPROD_BF_VK" }
+
+[mcp_servers.coralogix_prod]
+url = "https://bifrost-llm-proxy-alb-0.cmd.hotstar-prod.com/mcp"
+enabled = false
+env_http_headers = { "x-bf-vk" = "MCP_CORALOGIX_PROD_BF_VK" }
+
+[mcp_servers.hotstar_eks]
+url = "https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp"
+enabled = false
+env_http_headers = { "x-bf-vk" = "MCP_HOTSTAR_EKS_BF_VK" }
+
+[mcp_servers.service_catalog]
+url = "https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp"
+enabled = false
+env_http_headers = { "x-bf-vk" = "MCP_SERVICE_CATALOG_BF_VK" }
+
+[mcp_servers.wispr_flow]
+url = "https://api.wisprflow.ai/connect/mcp"
+enabled = true
+
+[mcp_servers.chrome-devtools]
+command = "npx"
+args = ["-y", "chrome-devtools-mcp@latest"]
+enabled = false
+
+[tui]
+screen_reader_detection_done = true
+terminal_title = ["activity", "thread-name", "current-dir", "context-used", "model-with-reasoning"]
+status_line = ["model-with-reasoning", "current-dir", "thread-name", "git-branch", "approval-mode", "context-used"]
+status_line_use_colors = true
+
+[tui.model_availability_nux]
+"gpt-6.1-sol" = 4
+
+[desktop]
+followUpQueueMode = "queue"
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[plugins."unified-computer-use@openai-bundled"]
+enabled = true
+
+[plugins."chrome@openai-bundled"]
+enabled = true
+
+[plugins."computer-use@openai-bundled"]
+enabled = true
+
+[plugins."visualize@openai-bundled"]
+enabled = true
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."pdf@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."template-creator@openai-primary-runtime"]
+enabled = true
+
+[plugins."codex-app-tools@openai-bundled"]
+enabled = true
+
+[plugins."code-review@openai-bundled"]
+enabled = true

@@ -217,6 +217,30 @@ PY
     log "Wrote $client_name MCP config from template: $mcp_path"
 }
 
+merge_codex_config() {
+    local uv_executable
+    local mise_executable
+
+    if command -v uv &>/dev/null; then
+        uv_executable="$(command -v uv)"
+    else
+        mise_executable="$(command -v mise || true)"
+        if [ -z "$mise_executable" ] && [ -x "$HOME/.local/bin/mise" ]; then
+            mise_executable="$HOME/.local/bin/mise"
+        fi
+        if [ -z "$mise_executable" ]; then
+            error "uv is required to merge Codex config; install uv with mise and re-run"
+        fi
+
+        "$mise_executable" install uv
+        uv_executable="$("$mise_executable" which uv)"
+    fi
+
+    "$uv_executable" run --script "$DOTFILES_DIR/codex/merge_config.py" \
+        "$DOTFILES_DIR/codex/codex.toml" "$HOME/.codex/config.toml"
+    log "Merged shared Codex settings into $HOME/.codex/config.toml"
+}
+
 setup_cloudflare_r2_aws_profile() {
     local device_env="$1"
     local cloudflare_api_token
@@ -371,7 +395,7 @@ create_symlink "$DOTFILES_DIR/starship/starship.toml" "$HOME/.config/starship.to
 create_symlink "$DOTFILES_DIR/wezterm" "$HOME/.config/wezterm"
 create_symlink "$DOTFILES_DIR/agents/skills" "$HOME/.claude/skills"
 create_symlink "$DOTFILES_DIR/claude/settings.json" "$HOME/.claude/settings.json"
-create_symlink "$DOTFILES_DIR/codex/config.toml" "$HOME/.codex/config.toml"
+merge_codex_config
 create_skill_symlinks "$DOTFILES_DIR/agents/skills" "$HOME/.codex/skills"
 create_symlink "$DOTFILES_DIR/agents/skills" "$HOME/.config/opencode/skills"
 create_symlink "$DOTFILES_DIR/claude/statusline.sh" "$HOME/.claude/statusline.sh"

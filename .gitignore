@@ -4,3 +4,4 @@ nvim/.netrwhist
 vim/undodir
 .DS_Store
 user_profile.ps1
+**/*/__pycache__
