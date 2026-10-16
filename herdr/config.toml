@@ -4,4 +4,6 @@
 [keys]
 prefix = "ctrl+b"
 new_workspace = "prefix+n"
+next_workspace = "prefix+j"
+previous_workspace = "prefix+k"
 next_tab = ""
