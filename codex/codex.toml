@@ -1,8 +1,8 @@
 # Shared Codex preferences merged into ~/.codex/config.toml by the installer.
 # Keep machine-specific paths, project trust, hooks, and local marketplace paths
 # in ~/.codex/config.toml so Codex can update them without changing this repo.
-approval_policy = "on-request"
-sandbox_mode = "workspace-write"
+approval_policy = "never"
+sandbox_mode = "danger-full-access"
 model = "gpt-6.1-sol"
 model_reasoning_effort = "medium"
 
