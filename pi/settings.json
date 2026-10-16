@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "1.1.0",
   "defaultProvider": "opencode",
-  "defaultModel": "muse-spark-1.3",
+  "defaultModel": "gpt-6-luna",
   "packages": [
     "npm:pi-web-access"
   ],

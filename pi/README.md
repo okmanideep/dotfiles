@@ -7,7 +7,7 @@ Dotfile-managed Pi config lives here and is symlinked into `~/.pi/agent/` by `sc
 - `web-search.json` — Pi Web Access provider and credential configuration
 - `mcp.json` — empty built-in config; MCP connections are managed by the session picker
 - `mcps.json` — generated server definitions, with secrets from local `device-env.nu`
-- `extensions/` — global Pi extensions, including the idle sound notification
+- `extensions/` — global Pi extensions
 - `prompts/` — global prompt templates, including `/review`.
 - Shared skills live in `agents/skills/` and are symlinked to `~/.pi/agent/skills/`, including LaunchDarkly, Jira, and Confluence workflows.
 - The MCP configuration skill is project-local at `.pi/skills/mcp-config/` and is not installed globally.

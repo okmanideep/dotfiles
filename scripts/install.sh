@@ -382,7 +382,6 @@ log "Creating symlinks..."
 create_bin_symlinks "$DOTFILES_DIR/bin" "$HOME/.local/bin"
 create_symlink "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
 create_symlink "$DOTFILES_DIR/herdr/config.toml" "$HOME/.config/herdr/config.toml"
-create_symlink "$DOTFILES_DIR/zsh/zshrc" "$HOME/.zshrc"
 
 # On macOS, Nushell uses Application Support by default, but environments with
 # XDG_CONFIG_HOME set (including HERDR) use the XDG path. Link both to the same config.
@@ -420,7 +419,6 @@ else
 fi
 
 write_mcp_config "$DEVICE_ENV" "$DOTFILES_DIR/opencode/opencode.json" "$HOME/.config/opencode/opencode.json" "OpenCode"
-create_symlink "$DOTFILES_DIR/opencode/plugins/idle-sound.ts" "$HOME/.config/opencode/plugins/idle-sound.ts"
 
 log "Setting up Pi config..."
 mkdir -p "$HOME/.pi/agent"
