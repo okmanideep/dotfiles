@@ -5,6 +5,20 @@ set -e
 GREEN='\033[0;32m'
 NC='\033[0m'
 
+# Tools installed and pinned by the dotfiles setup.
+MISE_TOOLS=(
+	"nodejs@25.2.1"
+	"ruby@3.4.8"
+	"golang@1.25.5"
+	"java@openjdk-21"
+	"kotlin@2.3.0"
+	"uv@0.9.21"
+	"flutter@3.35.6-stable"
+	"zig@0.16.0"
+	"stylua@2.5.2"
+	"bun@1.4.3"
+)
+
 log() {
     echo -e "${GREEN}==>${NC} $1"
 }
@@ -14,11 +28,10 @@ if ! command -v mise &>/dev/null; then
     exit 1
 fi
 
-# Preserve the former asdf global pins as mise's global configuration.
-while read -r tool version; do
-    [ -n "$tool" ] || continue
-    mise use --global "$tool@$version"
-done < "$(cd "$(dirname "$0")/.." && pwd)/.tool-versions"
+# Configure the pinned tools for mise's global configuration.
+for tool in "${MISE_TOOLS[@]}"; do
+    mise use --global "$tool"
+done
 
 log "Installing configured tool versions..."
 mise install

@@ -218,26 +218,22 @@ PY
 }
 
 merge_codex_config() {
-    local uv_executable
     local mise_executable
 
-    if command -v uv &>/dev/null; then
-        uv_executable="$(command -v uv)"
-    else
-        mise_executable="$(command -v mise || true)"
-        if [ -z "$mise_executable" ] && [ -x "$HOME/.local/bin/mise" ]; then
-            mise_executable="$HOME/.local/bin/mise"
-        fi
-        if [ -z "$mise_executable" ]; then
-            error "uv is required to merge Codex config; install uv with mise and re-run"
-        fi
-
-        "$mise_executable" install uv
-        uv_executable="$("$mise_executable" which uv)"
+    mise_executable="$(command -v mise || true)"
+    if [ -z "$mise_executable" ] && [ -x "$HOME/.local/bin/mise" ]; then
+        mise_executable="$HOME/.local/bin/mise"
+    fi
+    if [ -z "$mise_executable" ]; then
+        error "mise is required to run uv for the Codex config merge"
     fi
 
-    "$uv_executable" run --script "$DOTFILES_DIR/codex/merge_config.py" \
-        "$DOTFILES_DIR/codex/codex.toml" "$HOME/.codex/config.toml"
+    (
+        cd "$DOTFILES_DIR"
+        "$mise_executable" install uv
+        "$mise_executable" exec -- uv run --script "$DOTFILES_DIR/codex/merge_config.py" \
+            "$DOTFILES_DIR/codex/codex.toml" "$HOME/.codex/config.toml"
+    )
     log "Merged shared Codex settings into $HOME/.codex/config.toml"
 }
 
