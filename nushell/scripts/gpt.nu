@@ -1,5 +1,5 @@
 def gpt [query?: string] {
-    let api_key = $env.OPEN_AI_API_KEY
+    let api_key = (^secrets read 'op://Private/openai_api_key/credential')
     let model = "gpt-5.6-luna"
     let os_name = match (sys host).name {
         "Darwin" => "macOS"
