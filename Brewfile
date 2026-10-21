@@ -26,4 +26,4 @@ cask "1password-cli"
 
 cask "raycast"
 
-cask "tailscale-app"
+brew "tailscale"
