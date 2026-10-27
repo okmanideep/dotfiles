@@ -1,1 +1,30 @@
-export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.local/share/mise/shims:$PATH"
+typeset -U path PATH
+
+if [[ "$OSTYPE" == darwin* ]]; then
+	path=(
+		/opt/homebrew/opt/openssl@3/bin
+		/opt/homebrew/bin
+		/opt/homebrew/sbin
+		/usr/local/bin
+		/usr/local/go/bin
+		"$HOME/.local/bin"
+		"$HOME/.local/share/mise/shims"
+		"$HOME/go/bin"
+		"$HOME/Library/Android/sdk/platform-tools"
+		"$HOME/Library/Android/sdk/emulator"
+		"$HOME/google-cloud-sdk/bin"
+		"$HOME/fvm/default/bin/cache/dart-sdk/bin"
+		"$HOME/.cargo/bin"
+		"$HOME/.opencode/bin"
+		/Library/TeX/texbin
+		"$HOME/Documents/code/personal/muzic"
+		$path
+	)
+else
+	path=(
+		"$HOME/.local/bin"
+		"$HOME/.cargo/bin"
+		"$HOME/.local/share/mise/shims"
+		$path
+	)
+fi

@@ -230,7 +230,6 @@ merge_codex_config() {
 
     (
         cd "$DOTFILES_DIR"
-        "$mise_executable" install uv
         "$mise_executable" exec -- uv run --script "$DOTFILES_DIR/codex/merge_config.py" \
             "$DOTFILES_DIR/codex/codex.toml" "$HOME/.codex/config.toml"
     )
@@ -390,7 +389,6 @@ create_symlink "$DOTFILES_DIR/starship/starship.toml" "$HOME/.config/starship.to
 create_symlink "$DOTFILES_DIR/wezterm" "$HOME/.config/wezterm"
 create_symlink "$DOTFILES_DIR/agents/skills" "$HOME/.claude/skills"
 create_symlink "$DOTFILES_DIR/claude/settings.json" "$HOME/.claude/settings.json"
-merge_codex_config
 create_skill_symlinks "$DOTFILES_DIR/agents/skills" "$HOME/.codex/skills"
 create_symlink "$DOTFILES_DIR/agents/skills" "$HOME/.config/opencode/skills"
 create_symlink "$DOTFILES_DIR/claude/statusline.sh" "$HOME/.claude/statusline.sh"
@@ -434,6 +432,7 @@ install_pi_package "npm:pi-web-access"
 
 # Initialize mise and install configured tool versions
 "$DOTFILES_DIR/scripts/init-mise.sh"
+merge_codex_config
 
 # Set nushell as default shell
 log "Setting nushell as default shell..."

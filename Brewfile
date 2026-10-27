@@ -8,6 +8,8 @@ brew "bat"
 brew "glow"
 brew "lazygit"
 brew "ccusage"
+brew "ca-certificates"
+brew "git"
 
 # Ruby build dependencies
 brew "openssl@3"

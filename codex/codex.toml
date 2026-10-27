@@ -16,24 +16,14 @@ default_tools_approval_mode = "approve"
 hooks = true
 code_mode = true
 
-[mcp_servers.coralogix_nonprod]
-url = "https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp"
-enabled = false
-env_http_headers = { "x-bf-vk" = "MCP_CORALOGIX_NONPROD_BF_VK" }
-
-[mcp_servers.coralogix_prod]
-url = "https://bifrost-llm-proxy-alb-0.cmd.hotstar-prod.com/mcp"
-enabled = false
-env_http_headers = { "x-bf-vk" = "MCP_CORALOGIX_PROD_BF_VK" }
-
 [mcp_servers.hotstar_eks]
 url = "https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp"
-enabled = false
+enabled = true
 env_http_headers = { "x-bf-vk" = "MCP_HOTSTAR_EKS_BF_VK" }
 
 [mcp_servers.service_catalog]
 url = "https://origin-bifrost-llm-proxy.cmd.hotstar-prod.com/mcp"
-enabled = false
+enabled = true
 env_http_headers = { "x-bf-vk" = "MCP_SERVICE_CATALOG_BF_VK" }
 
 [mcp_servers.wispr_flow]
@@ -43,7 +33,7 @@ enabled = true
 [mcp_servers.chrome-devtools]
 command = "npx"
 args = ["-y", "chrome-devtools-mcp@latest"]
-enabled = false
+enabled = true
 
 [tui]
 screen_reader_detection_done = true

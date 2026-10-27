@@ -1,6 +1,6 @@
 # AGENTS
 - Repo captures personal dotfiles (Neovim, Nushell, tmux, etc.).
-- `scripts/init-mise.sh` keeps the pinned tools installed by the dotfiles setup in its `MISE_TOOLS` constant. Keep `.tool-versions` limited to tools whose version must be selected while running repo workflows; `uv` is pinned there because the Codex config merge runs before `init-mise.sh` applies global pins. Do not add other system setup tools to `.tool-versions`.
+- `scripts/init-mise.sh` keeps the pinned tools installed by the dotfiles setup in its `MISE_TOOLS` constant. Keep `.tool-versions` limited to tools whose version must be selected while running repo workflows. Do not add other system setup tools to `.tool-versions`.
 - Herdr config reference: https://herdr.dev/docs/configuration/.
 - Keep secrets, tokens, and machine-specific paths out of commits.
 - Prefer minimal, surgical diffs focused on the requested task.
